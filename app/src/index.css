@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* GLASS SHARP — Dark Glassmorphism */
+  /* GLASS GOLD — Dark Glassmorphism with Gold */
 
   /* Base (light fallback — app forces dark mode) */
   --color-primary: #FAFAFA;
@@ -12,22 +12,22 @@
   --color-surface: #F3F4F6;
   --color-hover: #E5E7EB;
 
-  /* Accent: warm amber glow */
-  --color-accent: #F59E0B;
-  --color-accent-light: #FBBF24;
+  /* Accent: metallic gold */
+  --color-accent: #D4AF37;
+  --color-accent-light: #E8C547;
 
   /* Semantic */
   --color-info: #3B82F6;
   --color-success: #22C55E;
-  --color-warning: #F59E0B;
+  --color-warning: #D4AF37;
   --color-danger: #EF4444;
   --color-muted: #D1D5DB;
 
   /* Dark Glass mode */
-  --color-dark-bg: #0F172A;
+  --color-dark-bg: #0A0E1A;
   --color-dark-text: #F1F5F9;
   --color-dark-border: #1E293B;
-  --color-dark-surface: #1E293B;
+  --color-dark-surface: #141B2D;
 
   --font-sans: "Rubik", "Segoe UI", -apple-system, "Ubuntu", "DejaVu Sans", sans-serif;
 }
@@ -56,25 +56,58 @@
 }
 
 @layer components {
-  /* Glass panel — semi-transparent with blur */
+  /* Glass panel */
   .glass {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(212, 175, 55, 0.08);
   }
 
-  /* Glass card — interactive glass with hover */
+  /* Glass card — interactive */
   .glass-card {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: all 0.2s ease;
+    border: 1px solid rgba(212, 175, 55, 0.10);
+    transition: all 0.3s ease;
   }
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.20);
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+  }
+
+  /* Gold gradient text */
+  .text-gold {
+    background: linear-gradient(135deg, #B8962E 0%, #D4AF37 25%, #F0D060 50%, #E8C547 75%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer — light reflection sweep */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.12) 48%, rgba(255, 255, 255, 0.20) 50%, rgba(255, 255, 255, 0.12) 52%, transparent 70%);
+    background-size: 250% 100%;
+    animation: shimmerSweep 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes shimmerSweep {
+    0% { background-position: 250% 0; }
+    100% { background-position: -250% 0; }
+  }
+
+  /* Gold glow */
+  .glow-gold {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.20), 0 0 45px rgba(212, 175, 55, 0.08);
   }
 
   /* Sharp buttons */
@@ -86,29 +119,23 @@
   }
   .btn-sharp:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
   }
   .btn-sharp:active {
     transform: translateY(0);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
-  /* Subtle texture for dark background */
+  /* Subtle texture */
   .bg-texture {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
-  /* Pulse animation */
   .pulse-subtle {
     animation: pulseSubtle 2s ease-in-out infinite;
   }
   @keyframes pulseSubtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
-  }
-
-  /* Accent glow */
-  .glow-accent {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
   }
 }

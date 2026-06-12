@@ -133,8 +133,8 @@ export default function Network({ onSelectLetter }) {
                 <circle
                   cx={pos.x} cy={pos.y}
                   r={isHovered ? 28 : (isRich ? 24 : 18)}
-                  fill={isRich ? '#F59E0B' : 'var(--color-surface, #F5F5F5)'}
-                  stroke={isHovered ? '#FBBF24' : (isRich ? '#F59E0B' : 'var(--color-border, #E0E0E0)')}
+                  fill={isRich ? '#D4AF37' : 'var(--color-surface, #F5F5F5)'}
+                  stroke={isHovered ? '#E8C547' : (isRich ? '#D4AF37' : 'var(--color-border, #E0E0E0)')}
                   strokeWidth={isHovered ? 2.5 : 1}
                   style={{ transition: 'r 0.2s, stroke-width 0.2s' }}
                 />
