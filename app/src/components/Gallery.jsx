@@ -33,7 +33,7 @@ export default function Gallery({ onSelectLetter, letterImages }) {
           return (
             <div
               key={letter.id}
-              className="group relative aspect-square rounded-lg border border-border dark:border-dark-border bg-surface dark:bg-dark-surface overflow-hidden hover:border-accent dark:hover:border-accent-light transition-all duration-200"
+              className="group relative aspect-square border border-border dark:border-dark-border bg-surface dark:bg-dark-surface overflow-hidden hover:border-accent dark:hover:border-accent-light transition-all duration-200"
             >
               <button
                 onClick={() => onSelectLetter(letter.id)}
@@ -53,7 +53,7 @@ export default function Gallery({ onSelectLetter, letterImages }) {
                 {hasPrompt && (
                   <button
                     onClick={(e) => { e.stopPropagation(); copyPrompt(full) }}
-                    className="mt-1 w-full text-xs py-1 rounded bg-accent dark:bg-accent-light text-white hover:opacity-90 transition-opacity"
+                    className="mt-1 w-full text-xs py-1 bg-accent dark:bg-accent-light text-white hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
                   >
                     {copiedId === letter.id ? 'הועתק!' : 'העתק פרומפט'}
                   </button>

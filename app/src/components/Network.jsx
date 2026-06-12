@@ -83,7 +83,7 @@ export default function Network({ onSelectLetter }) {
             key={f.id}
             onClick={() => setFilter(f.id)}
             className={`
-              px-5 py-2.5 text-base rounded-lg border transition-colors
+              px-5 py-2.5 text-base border transition-colors
               ${filter === f.id
                 ? 'bg-accent dark:bg-accent-light text-white border-accent dark:border-accent-light'
                 : 'border-border dark:border-dark-border text-text-secondary dark:text-gray-400 hover:bg-surface dark:hover:bg-dark-surface'
@@ -95,7 +95,7 @@ export default function Network({ onSelectLetter }) {
         ))}
       </div>
 
-      <div className="border border-border dark:border-dark-border rounded-xl p-4 bg-white dark:bg-dark-surface overflow-x-auto transition-colors">
+      <div className="border border-border dark:border-dark-border p-4 bg-white dark:bg-dark-surface overflow-x-auto transition-colors">
         <svg viewBox="0 0 700 500" className="w-full max-w-[700px] mx-auto">
           {edges.map((edge, i) => {
             const fromPos = getPos(edge.from - 1, 22)
@@ -133,8 +133,8 @@ export default function Network({ onSelectLetter }) {
                 <circle
                   cx={pos.x} cy={pos.y}
                   r={isHovered ? 28 : (isRich ? 24 : 18)}
-                  fill={isRich ? '#2A5F5F' : 'var(--color-surface, #F5F5F5)'}
-                  stroke={isHovered ? '#4DBBA0' : (isRich ? '#2A5F5F' : 'var(--color-border, #E0E0E0)')}
+                  fill={isRich ? '#F59E0B' : 'var(--color-surface, #F5F5F5)'}
+                  stroke={isHovered ? '#FBBF24' : (isRich ? '#F59E0B' : 'var(--color-border, #E0E0E0)')}
                   strokeWidth={isHovered ? 2.5 : 1}
                   style={{ transition: 'r 0.2s, stroke-width 0.2s' }}
                 />

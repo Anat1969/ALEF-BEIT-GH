@@ -63,7 +63,7 @@ export default function ImageUploader({ currentImage, onSave, onRemove }) {
 
   if (currentImage) {
     return (
-      <div className="relative w-full rounded-lg overflow-hidden border border-border dark:border-dark-border group">
+      <div className="relative w-full overflow-hidden border border-border dark:border-dark-border group">
         <img
           src={currentImage}
           alt="תמונת אות"
@@ -72,13 +72,13 @@ export default function ImageUploader({ currentImage, onSave, onRemove }) {
         <div className="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
             onClick={() => fileRef.current?.click()}
-            className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm rounded-lg shadow-lg hover:opacity-90"
+            className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm shadow-lg hover:-translate-y-px hover:shadow-sm active:translate-y-0"
           >
             החלף
           </button>
           <button
             onClick={onRemove}
-            className="px-3 py-1.5 bg-danger text-white text-sm rounded-lg shadow-lg hover:opacity-90"
+            className="px-3 py-1.5 bg-danger text-white text-sm shadow-lg hover:-translate-y-px hover:shadow-sm active:translate-y-0"
           >
             הסר
           </button>
@@ -103,7 +103,7 @@ export default function ImageUploader({ currentImage, onSave, onRemove }) {
       onDragLeave={onDragLeave}
       onClick={() => fileRef.current?.click()}
       className={`
-        w-full aspect-[4/3] rounded-lg border-2 border-dashed cursor-pointer
+        w-full aspect-[4/3] border-2 border-dashed cursor-pointer
         flex flex-col items-center justify-center gap-3 transition-all duration-200 outline-none
         focus:ring-2 focus:ring-accent/50 dark:focus:ring-accent-light/50
         ${dragging

@@ -46,7 +46,7 @@ export default function Matrix({ onSelectLetter }) {
         tip="השתמשי במטריצה כדי לתכנן שבוע שלם — בחרי 3-4 אותיות שמשלימות זו את זו ותרגלי אותן יחד."
       />
 
-      <div className="overflow-x-auto border border-border dark:border-dark-border rounded-xl">
+      <div className="overflow-x-auto border border-border dark:border-dark-border">
         <table className="border-collapse text-xs">
           <thead>
             <tr>
@@ -95,10 +95,10 @@ export default function Matrix({ onSelectLetter }) {
       </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-5 text-sm text-text-tertiary dark:text-gray-500">
-        <span className="flex items-center gap-2"><span className="w-4 h-4 rounded bg-danger/20 dark:bg-danger/30 inline-block"></span> ⊗ מנוגדות</span>
-        <span className="flex items-center gap-2"><span className="w-4 h-4 rounded bg-info/20 dark:bg-info/30 inline-block"></span> ◎ משלימות</span>
-        <span className="flex items-center gap-2"><span className="w-4 h-4 rounded bg-success/20 dark:bg-success/30 inline-block"></span> ♪ דומות קולית</span>
-        <span className="flex items-center gap-2"><span className="w-4 h-4 rounded bg-warning/20 dark:bg-warning/30 inline-block"></span> ↗ מחזקות</span>
+        <span className="flex items-center gap-2"><span className="w-4 h-4 bg-danger/20 dark:bg-danger/30 inline-block"></span> ⊗ מנוגדות</span>
+        <span className="flex items-center gap-2"><span className="w-4 h-4 bg-info/20 dark:bg-info/30 inline-block"></span> ◎ משלימות</span>
+        <span className="flex items-center gap-2"><span className="w-4 h-4 bg-success/20 dark:bg-success/30 inline-block"></span> ♪ דומות קולית</span>
+        <span className="flex items-center gap-2"><span className="w-4 h-4 bg-warning/20 dark:bg-warning/30 inline-block"></span> ↗ מחזקות</span>
       </div>
     </div>
   )

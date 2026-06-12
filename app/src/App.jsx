@@ -66,32 +66,32 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-bg transition-colors duration-300">
-      <header className="sticky top-0 z-50 bg-white dark:bg-dark-bg border-b border-border dark:border-dark-border h-14 flex items-center justify-between px-6 transition-colors">
-        <h1 className="text-xl font-medium text-text dark:text-dark-text">
+    <div className="min-h-screen bg-primary dark:bg-dark-bg bg-texture transition-colors duration-300">
+      <header className="sticky top-0 z-50 bg-primary/95 dark:bg-dark-bg/95 backdrop-blur-sm border-b border-border dark:border-dark-border h-14 flex items-center justify-between px-6 transition-colors">
+        <h1 className="text-xl font-extrabold tracking-tight text-text dark:text-dark-text">
           22 אותיות
-          <span className="text-text-tertiary dark:text-gray-500 font-normal text-sm mr-2">מערכת חיה</span>
+          <span className="text-text-tertiary dark:text-gray-500 font-normal text-sm mr-2 opacity-60">מערכת חיה</span>
         </h1>
         <button
           onClick={() => setDark(!dark)}
-          className="w-9 h-9 rounded-lg border border-border dark:border-dark-border flex items-center justify-center hover:bg-surface dark:hover:bg-dark-surface transition-colors text-lg"
+          className="w-9 h-9 border border-border dark:border-dark-border flex items-center justify-center hover:bg-surface dark:hover:bg-dark-surface hover:-translate-y-px hover:shadow-sm active:translate-y-0 active:shadow-none transition-all text-lg"
           title={dark ? 'מצב בהיר' : 'מצב כהה'}
         >
           {dark ? '☀️' : '🌙'}
         </button>
       </header>
 
-      <nav className="border-b border-border dark:border-dark-border bg-white dark:bg-dark-bg transition-colors">
+      <nav className="border-b border-border dark:border-dark-border bg-primary/90 dark:bg-dark-bg/90 backdrop-blur-sm transition-colors">
         <div className="max-w-[1200px] mx-auto flex gap-0 overflow-x-auto">
           {TABS.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`
-                px-5 py-3 text-sm font-medium transition-colors duration-200 border-b-2 whitespace-nowrap
+                px-5 py-3 text-sm font-semibold transition-all duration-150 border-b-2 whitespace-nowrap
                 ${activeTab === tab.id
                   ? 'text-accent dark:text-accent-light border-accent dark:border-accent-light'
-                  : 'text-text-secondary dark:text-gray-400 border-transparent hover:text-text dark:hover:text-dark-text hover:bg-surface dark:hover:bg-dark-surface'
+                  : 'text-text-secondary dark:text-gray-400 border-transparent hover:text-text dark:hover:text-dark-text hover:bg-surface/60 dark:hover:bg-dark-surface/60 opacity-60 hover:opacity-100'
                 }
               `}
             >

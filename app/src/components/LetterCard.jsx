@@ -95,14 +95,14 @@ function SectionOverview({ letter }) {
         <span className="text-[100px] leading-none font-medium text-text dark:text-dark-text">{letter.character}</span>
         <h2 className="text-2xl font-bold text-text dark:text-dark-text">{letter.name}</h2>
         {letter.hasData && letter.core?.archetypal_role && (
-          <span className="inline-block mt-2 text-base font-medium text-accent dark:text-accent-light bg-accent/10 dark:bg-accent-light/15 px-4 py-1.5 rounded-full">
+          <span className="inline-block mt-2 text-base font-medium text-accent dark:text-accent-light bg-accent/10 dark:bg-accent-light/15 px-4 py-1.5">
             {letter.core.archetypal_role}
           </span>
         )}
       </div>
 
       {letter.synthesis && (
-        <div className="bg-accent/5 dark:bg-accent-light/10 rounded-xl p-4 border border-accent/20 dark:border-accent-light/20">
+        <div className="bg-accent/5 dark:bg-accent-light/10 p-4 border border-accent/20 dark:border-accent-light/20">
           <p className="text-lg text-accent dark:text-accent-light italic leading-relaxed">
             "{letter.synthesis.one_liner}"
           </p>
@@ -113,23 +113,23 @@ function SectionOverview({ letter }) {
       )}
 
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <div className="bg-surface/50 dark:bg-dark-bg/50 rounded-lg p-3">
+        <div className="bg-surface/50 dark:bg-dark-bg/50 p-3">
           <span className="text-text-tertiary dark:text-gray-500 text-xs">גימטריה</span>
           <p className="text-2xl font-bold text-text dark:text-dark-text">{letter.gematria}</p>
         </div>
-        <div className="bg-surface/50 dark:bg-dark-bg/50 rounded-lg p-3">
+        <div className="bg-surface/50 dark:bg-dark-bg/50 p-3">
           <span className="text-text-tertiary dark:text-gray-500 text-xs">סדר</span>
           <p className="text-2xl font-bold text-text dark:text-dark-text">#{letter.id}</p>
         </div>
       </div>
 
       {letter.hasData && (
-        <div className="border border-border/50 dark:border-dark-border/50 rounded-xl p-3 space-y-2">
+        <div className="border border-border/50 dark:border-dark-border/50 p-3 space-y-2">
           <div className="flex items-center justify-between">
             <p className="text-xs text-text-tertiary dark:text-gray-500">יצירת פרומפט לתמונה (אנגלית)</p>
             <button
               onClick={generateImagePrompt}
-              className="px-3 py-1.5 text-xs rounded-lg bg-accent dark:bg-accent-light text-white hover:opacity-90 transition-opacity"
+              className="px-3 py-1.5 text-xs font-semibold bg-accent dark:bg-accent-light text-white hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
             >
               צור פרומפט
             </button>
@@ -140,19 +140,19 @@ function SectionOverview({ letter }) {
               <p className="text-[11px] text-accent dark:text-accent-light italic">
                 פרומפט ליצירת תמונה אמנותית המזקקת את מהות האות {letter.character}׳
               </p>
-              <div className="bg-white dark:bg-dark-bg rounded-lg p-3 text-xs leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[120px] overflow-y-auto" dir="ltr">
+              <div className="bg-white dark:bg-dark-bg p-3 text-xs leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[120px] overflow-y-auto" dir="ltr">
                 {generatedPrompt}
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={copyPrompt}
-                  className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+                  className="flex-1 py-1.5 text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
                 >
                   {copied ? 'הועתק!' : 'העתק'}
                 </button>
                 <button
                   onClick={pasteToFrame}
-                  className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+                  className="flex-1 py-1.5 text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
                 >
                   {saved ? 'נשמר!' : 'שמור למסגרת'}
                 </button>
@@ -193,7 +193,7 @@ function DimItem({ dimKey, value, label, isOpen, onToggle }) {
   const fields = fieldMap[dimKey] || Object.keys(value).filter(k => k !== 'description')
 
   return (
-    <div className="border border-border/40 dark:border-dark-border/40 rounded-lg overflow-hidden">
+    <div className="border border-border/40 dark:border-dark-border/40 overflow-hidden">
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between p-2.5 text-right hover:bg-surface/50 dark:hover:bg-dark-bg/50 transition-colors"
@@ -227,7 +227,7 @@ function SectionDimensions({ letter }) {
         const isCatOpen = openCat === cat.id
 
         return (
-          <div key={cat.id} className="rounded-xl border border-border/50 dark:border-dark-border/50 overflow-hidden">
+          <div key={cat.id} className="border border-border/50 dark:border-dark-border/50 overflow-hidden">
             <button
               onClick={() => setOpenCat(isCatOpen ? null : cat.id)}
               className="w-full flex items-center justify-between p-3 text-right bg-accent/5 dark:bg-accent-light/10 hover:bg-accent/10 dark:hover:bg-accent-light/15 transition-colors"
@@ -284,7 +284,7 @@ function SectionWords({ letterId, character }) {
           <button
             key={tab.id}
             onClick={() => setLangTab(tab.id)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3 py-1.5 text-xs font-medium transition-all ${
               langTab === tab.id
                 ? 'bg-accent dark:bg-accent-light text-white'
                 : 'bg-surface dark:bg-dark-surface text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10'
@@ -304,7 +304,7 @@ function SectionWords({ letterId, character }) {
       ) : (
         <div className="space-y-1.5">
           {items.map((item, i) => (
-            <div key={i} className="flex gap-3 items-start p-2.5 rounded-lg bg-surface/50 dark:bg-dark-bg/50 border border-border/30 dark:border-dark-border/30">
+            <div key={i} className="flex gap-3 items-start p-2.5 bg-surface/50 dark:bg-dark-bg/50 border border-border/30 dark:border-dark-border/30">
               <span className="text-lg font-bold text-accent dark:text-accent-light shrink-0 w-20 text-center">
                 {item.word}
               </span>
@@ -332,7 +332,7 @@ function SectionRelationships({ letter, letters, onSelectLetter }) {
 
   return (
     <div className="space-y-4">
-      <div className="bg-surface/50 dark:bg-dark-bg/50 rounded-xl p-3 border border-border/30 dark:border-dark-border/30">
+      <div className="bg-surface/50 dark:bg-dark-bg/50 p-3 border border-border/30 dark:border-dark-border/30">
         <h4 className="text-sm font-bold text-text dark:text-dark-text mb-2">סוגי קשרים אפשריים</h4>
         <div className="space-y-1.5">
           {RELATIONSHIP_TYPES.map(rt => (
@@ -354,7 +354,7 @@ function SectionRelationships({ letter, letters, onSelectLetter }) {
                 const t = letters.find(l => l.character === rel.opposite.letter)
                 if (t) onSelectLetter(t.id)
               }}
-              className="w-full text-right px-4 py-3 bg-danger/10 dark:bg-danger/20 border border-danger/20 dark:border-danger/30 rounded-xl hover:bg-danger/20 dark:hover:bg-danger/30 transition-colors"
+              className="w-full text-right px-4 py-3 bg-danger/10 dark:bg-danger/20 border border-danger/20 dark:border-danger/30 hover:bg-danger/20 dark:hover:bg-danger/30 transition-colors"
             >
               <span className="font-bold text-base text-text dark:text-dark-text">מנוגדת: {rel.opposite.letter}׳</span>
               <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.opposite.quality}</span>
@@ -366,7 +366,7 @@ function SectionRelationships({ letter, letters, onSelectLetter }) {
                 const t = letters.find(l => l.character === rel.complementary.letter)
                 if (t) onSelectLetter(t.id)
               }}
-              className="w-full text-right px-4 py-3 bg-info/10 dark:bg-info/20 border border-info/20 dark:border-info/30 rounded-xl hover:bg-info/20 dark:hover:bg-info/30 transition-colors"
+              className="w-full text-right px-4 py-3 bg-info/10 dark:bg-info/20 border border-info/20 dark:border-info/30 hover:bg-info/20 dark:hover:bg-info/30 transition-colors"
             >
               <span className="font-bold text-base text-text dark:text-dark-text">משלימה: {rel.complementary.letter}׳</span>
               <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.complementary.quality}</span>
@@ -375,7 +375,7 @@ function SectionRelationships({ letter, letters, onSelectLetter }) {
           {rel.reinforces?.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-2">
               {rel.reinforces.map((r, i) => (
-                <span key={i} className="px-3 py-2 bg-warning/10 dark:bg-warning/20 border border-warning/20 rounded-xl text-sm text-text-secondary dark:text-gray-400">
+                <span key={i} className="px-3 py-2 bg-warning/10 dark:bg-warning/20 border border-warning/20 text-sm text-text-secondary dark:text-gray-400">
                   מחזקת: {r}
                 </span>
               ))}
@@ -391,7 +391,7 @@ function SectionSkill({ letter }) {
   if (!letter.skill) return <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">מיומנות תתווסף בהמשך</p>
 
   return (
-    <div className="bg-accent/5 dark:bg-accent-light/10 rounded-xl p-4 border border-accent/20 dark:border-accent-light/20">
+    <div className="bg-accent/5 dark:bg-accent-light/10 p-4 border border-accent/20 dark:border-accent-light/20">
       <h3 className="text-base font-bold text-accent dark:text-accent-light mb-1">
         מיומנות #{letter.skill.number}: {letter.skill.name}
       </h3>
@@ -402,20 +402,20 @@ function SectionSkill({ letter }) {
         <p className="text-sm text-text-secondary dark:text-gray-400 mt-1 leading-relaxed">{letter.skill.description}</p>
       )}
       <div className="mt-3 space-y-2 text-sm">
-        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 rounded-lg p-2.5">
+        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 p-2.5">
           <span className="font-bold text-text dark:text-dark-text shrink-0 w-14">זמן:</span>
           <span className="text-text-secondary dark:text-gray-400">{letter.skill.trigger_time}</span>
         </div>
-        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 rounded-lg p-2.5">
+        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 p-2.5">
           <span className="font-bold text-text dark:text-dark-text shrink-0 w-14">פעולה:</span>
           <span className="text-text-secondary dark:text-gray-400">{letter.skill.action}</span>
         </div>
-        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 rounded-lg p-2.5">
+        <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 p-2.5">
           <span className="font-bold text-text dark:text-dark-text shrink-0 w-14">תוצאה:</span>
           <span className="text-text-secondary dark:text-gray-400">{letter.skill.outcome}</span>
         </div>
         {letter.skill.duration_minutes && (
-          <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 rounded-lg p-2.5">
+          <div className="flex gap-2 items-start bg-white/60 dark:bg-dark-surface/60 p-2.5">
             <span className="font-bold text-text dark:text-dark-text shrink-0 w-14">משך:</span>
             <span className="text-text-secondary dark:text-gray-400">{letter.skill.duration_minutes} דקות</span>
           </div>
@@ -430,7 +430,7 @@ function SectionSpace({ letter }) {
 
   return (
     <div className="space-y-3">
-      <div className="bg-surface/50 dark:bg-dark-bg/50 rounded-xl p-4 border border-border/30 dark:border-dark-border/30">
+      <div className="bg-surface/50 dark:bg-dark-bg/50 p-4 border border-border/30 dark:border-dark-border/30">
         <p className="text-sm text-text dark:text-dark-text leading-relaxed mb-3">{letter.spatial_model.architectural_principle}</p>
         <div className="space-y-1">
           <Detail label="ביטוי פיזי" value={letter.spatial_model.physical_expression} />
@@ -440,7 +440,7 @@ function SectionSpace({ letter }) {
         </div>
       </div>
       {letter.spatial_model.human_experience && (
-        <div className="bg-accent/5 dark:bg-accent-light/10 rounded-lg p-3 border-r-4 border-accent dark:border-accent-light">
+        <div className="bg-accent/5 dark:bg-accent-light/10 p-3 border-r-4 border-accent dark:border-accent-light">
           <p className="text-sm text-accent dark:text-accent-light italic leading-relaxed">{letter.spatial_model.human_experience}</p>
         </div>
       )}
@@ -512,7 +512,7 @@ function SectionPrompt({ letter, letterImages }) {
           </div>
           <button
             onClick={() => { setArchImage(''); localStorage.removeItem(`arch-image-${letter.id}`) }}
-            className="absolute top-2 left-2 px-2 py-1 bg-danger/80 text-white text-xs rounded-lg hover:bg-danger"
+            className="absolute top-2 left-2 px-2 py-1 bg-danger/80 text-white text-xs hover:bg-danger"
           >
             הסר
           </button>
@@ -521,7 +521,7 @@ function SectionPrompt({ letter, letterImages }) {
 
       <div>
         <p className="text-xs text-text-secondary dark:text-gray-400 mb-2">פרומפט למבנה מינימליסטי המזקק את משמעות האות כהשראה אדריכלית</p>
-        <div className="bg-white dark:bg-dark-bg rounded-xl p-4 text-sm leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[160px] overflow-y-auto" dir="ltr">
+        <div className="bg-white dark:bg-dark-bg p-4 text-sm leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[160px] overflow-y-auto" dir="ltr">
           {archPrompt}
         </div>
       </div>
@@ -529,11 +529,11 @@ function SectionPrompt({ letter, letterImages }) {
       <div className="flex gap-2">
         <button
           onClick={() => copy(archPrompt)}
-          className="flex-1 py-2 rounded-xl bg-accent dark:bg-accent-light text-white text-sm font-bold hover:opacity-90 transition-opacity"
+          className="flex-1 py-2 bg-accent dark:bg-accent-light text-white text-sm font-bold hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
         >
           {copied ? 'הועתק!' : 'העתק פרומפט'}
         </button>
-        <label className="flex-1 py-2 rounded-xl bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-bold text-center cursor-pointer hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors">
+        <label className="flex-1 py-2 bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-bold text-center cursor-pointer hover:bg-accent/20 dark:hover:bg-accent-light/25 hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
           העלה תמונה
           <input type="file" accept="image/*" className="hidden" onChange={handleArchImageUpload} />
         </label>
@@ -541,12 +541,12 @@ function SectionPrompt({ letter, letterImages }) {
 
       <div className="border-t border-border/50 dark:border-dark-border/50 pt-3">
         <h4 className="text-sm font-bold text-text dark:text-dark-text mb-1">פוסט מסכם</h4>
-        <div className="bg-accent/5 dark:bg-accent-light/10 rounded-lg p-3 text-sm text-text dark:text-dark-text leading-relaxed border border-accent/20 dark:border-accent-light/20" dir="rtl">
+        <div className="bg-accent/5 dark:bg-accent-light/10 p-3 text-sm text-text dark:text-dark-text leading-relaxed border border-accent/20 dark:border-accent-light/20" dir="rtl">
           {postText}
         </div>
         <button
           onClick={() => copy(postText)}
-          className="mt-2 w-full py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+          className="mt-2 w-full py-1.5 text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
         >
           העתק פוסט
         </button>
@@ -657,8 +657,8 @@ function SectionArticle({ letter }) {
       {/* Hero image */}
       {heroImage ? (
         <div className="relative w-full group">
-          <img src={heroImage} alt={`${letter.hebrew_name} — אדריכלות`} className="w-full h-[340px] object-cover rounded-t-xl" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-t-xl" />
+          <img src={heroImage} alt={`${letter.hebrew_name} — אדריכלות`} className="w-full h-[340px] object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute bottom-0 right-0 left-0 p-8">
             <div className="max-w-[700px] mx-auto">
               <span className="text-[80px] leading-none font-light text-white/90 drop-shadow-lg">{letter.character}</span>
@@ -667,22 +667,22 @@ function SectionArticle({ letter }) {
             </div>
           </div>
           <div className="absolute top-3 left-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <label className="px-3 py-1.5 bg-white/90 text-text text-xs rounded-lg shadow-lg cursor-pointer hover:bg-white">
+            <label className="px-3 py-1.5 bg-white/90 text-text text-xs shadow-lg cursor-pointer hover:bg-white">
               החלף תמונה
               <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
             </label>
             <button
               onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
-              className="px-3 py-1.5 bg-danger/80 text-white text-xs rounded-lg shadow-lg hover:bg-danger"
+              className="px-3 py-1.5 bg-danger/80 text-white text-xs shadow-lg hover:bg-danger"
             >
               הסר
             </button>
           </div>
         </div>
       ) : (
-        <div className="w-full h-[200px] bg-gradient-to-bl from-accent/10 via-surface dark:via-dark-bg to-accent/5 dark:to-accent-light/10 rounded-t-xl flex flex-col items-center justify-center gap-3 border-2 border-dashed border-border/50 dark:border-dark-border/50">
+        <div className="w-full h-[200px] bg-gradient-to-bl from-accent/10 via-surface dark:via-dark-bg to-accent/5 dark:to-accent-light/10 flex flex-col items-center justify-center gap-3 border-2 border-dashed border-border/50 dark:border-dark-border/50">
           <span className="text-[72px] leading-none text-accent/30 dark:text-accent-light/30">{letter.character}</span>
-          <label className="px-4 py-2 bg-accent dark:bg-accent-light text-white text-sm rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+          <label className="px-4 py-2 bg-accent dark:bg-accent-light text-white text-sm cursor-pointer hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
             העלה תמונת אדריכלות
             <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
           </label>
@@ -709,7 +709,7 @@ function SectionArticle({ letter }) {
         <div className="flex items-center justify-end gap-2 mb-4">
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
+            className={`px-3 py-1.5 text-xs transition-colors ${
               isEditing
                 ? 'bg-accent dark:bg-accent-light text-white'
                 : 'bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10'
@@ -719,7 +719,7 @@ function SectionArticle({ letter }) {
           </button>
           <button
             onClick={copy}
-            className="px-3 py-1.5 text-xs rounded-lg bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10 transition-colors"
+            className="px-3 py-1.5 text-xs bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10 transition-colors"
           >
             {copied ? 'הועתק!' : 'העתק'}
           </button>
@@ -729,7 +729,7 @@ function SectionArticle({ letter }) {
           <textarea
             value={currentText}
             onChange={(e) => save(e.target.value)}
-            className="w-full min-h-[400px] p-4 rounded-xl border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-base text-text dark:text-dark-text leading-[1.9] resize-y focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30"
+            className="w-full min-h-[400px] p-4 border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-base text-text dark:text-dark-text leading-[1.9] resize-y focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30"
             dir="rtl"
           />
         ) : (
@@ -791,7 +791,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
       <div className="flex items-center justify-between mb-3">
         <button
           onClick={() => onSelectLetter(nextId)}
-          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border rounded-lg hover:bg-surface dark:hover:bg-dark-surface transition-colors"
+          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border hover:bg-surface dark:hover:bg-dark-surface hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
         >
           הבאה →
         </button>
@@ -800,7 +800,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
             <button
               key={l.id}
               onClick={() => onSelectLetter(l.id)}
-              className={`w-8 h-8 rounded text-sm font-medium transition-all ${
+              className={`w-8 h-8 text-sm font-medium transition-all ${
                 l.id === letter.id
                   ? 'bg-accent dark:bg-accent-light text-white scale-110'
                   : l.hasData
@@ -814,14 +814,14 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
         </div>
         <button
           onClick={() => onSelectLetter(prevId)}
-          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border rounded-lg hover:bg-surface dark:hover:bg-dark-surface transition-colors"
+          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border hover:bg-surface dark:hover:bg-dark-surface hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
         >
           ← הקודמת
         </button>
       </div>
 
       {/* Main card */}
-      <div className="border border-border dark:border-dark-border rounded-2xl bg-white dark:bg-dark-surface overflow-hidden">
+      <div className="border border-border dark:border-dark-border bg-white dark:bg-dark-surface overflow-hidden">
         {/* Section buttons bar */}
         <div className="border-b border-border dark:border-dark-border bg-surface/50 dark:bg-dark-bg/50 px-4 py-2.5">
           <div className="flex gap-1.5 overflow-x-auto">
@@ -830,7 +830,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                 key={s.id}
                 onClick={() => setActiveSection(s.id)}
                 className={`
-                  px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all
+                  px-4 py-2 text-sm font-medium whitespace-nowrap transition-all
                   ${activeSection === s.id
                     ? 'bg-accent dark:bg-accent-light text-white shadow-sm'
                     : 'bg-white dark:bg-dark-surface text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10 border border-border/50 dark:border-dark-border/50'
@@ -854,10 +854,10 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                   <img
                     src={currentImage}
                     alt={`תמונת ${letter.name}`}
-                    className="w-full rounded-xl object-contain"
+                    className="w-full object-contain"
                   />
                   <div className="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <label className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm rounded-lg shadow-lg hover:opacity-90 cursor-pointer">
+                    <label className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm shadow-lg hover:opacity-90 cursor-pointer">
                       החלף
                       <input
                         type="file"
@@ -875,7 +875,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                     </label>
                     <button
                       onClick={() => letterImages.removeImage(letter.id)}
-                      className="px-3 py-1.5 bg-danger text-white text-sm rounded-lg shadow-lg hover:opacity-90"
+                      className="px-3 py-1.5 bg-danger text-white text-sm shadow-lg hover:opacity-90"
                     >
                       הסר
                     </button>
@@ -890,7 +890,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
               )}
 
               {letter.hasData && letter.dimensions?.energetic && (
-                <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 rounded-xl p-4">
+                <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 p-4">
                   <h4 className="text-sm font-bold text-warning uppercase tracking-wider mb-1">הכוח של האות</h4>
                   <p className="text-sm text-text dark:text-dark-text leading-relaxed">{letter.dimensions.energetic.description}</p>
                   {letter.dimensions.energetic.flow_direction && (

@@ -63,9 +63,9 @@ export default function Workflow() {
         </div>
       </div>
 
-      <div className="w-full bg-surface dark:bg-dark-surface rounded-full h-3 mb-8">
+      <div className="w-full bg-surface dark:bg-dark-surface h-3 mb-8">
         <div
-          className="bg-accent dark:bg-accent-light h-3 rounded-full transition-all duration-500"
+          className="bg-accent dark:bg-accent-light h-3 transition-all duration-500"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -78,7 +78,7 @@ export default function Workflow() {
             <div
               key={skill.id}
               className={`
-                border rounded-lg transition-all duration-200
+                border transition-all duration-200
                 ${isDone
                   ? 'border-success/40 bg-success/5 dark:border-success/30 dark:bg-success/10'
                   : 'border-border dark:border-dark-border'
@@ -89,7 +89,7 @@ export default function Workflow() {
                 <button
                   onClick={() => toggle(skill.id)}
                   className={`
-                    w-7 h-7 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors text-sm
+                    w-7 h-7 border-2 flex items-center justify-center shrink-0 transition-colors text-sm
                     ${isDone
                       ? 'bg-success border-success text-white'
                       : 'border-border dark:border-dark-border hover:border-accent dark:hover:border-accent-light'
@@ -111,7 +111,7 @@ export default function Workflow() {
                   <span className="text-sm text-text-tertiary dark:text-gray-500 block">{skill.time}</span>
                 </button>
 
-                <span className="text-sm text-text-tertiary dark:text-gray-500 shrink-0 bg-surface dark:bg-dark-bg px-2 py-1 rounded">{skill.duration} דק׳</span>
+                <span className="text-sm text-text-tertiary dark:text-gray-500 shrink-0 bg-surface dark:bg-dark-bg px-2 py-1">{skill.duration} דק׳</span>
               </div>
 
               {isExpanded && (

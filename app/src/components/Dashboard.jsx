@@ -23,10 +23,10 @@ export default function Dashboard({ onSelectLetter }) {
             key={letter.id}
             onClick={() => onSelectLetter(letter.id)}
             className={`
-              group aspect-square rounded-xl border
+              group aspect-square border
               flex flex-col items-center justify-center gap-1
               transition-all duration-200
-              hover:border-accent dark:hover:border-accent-light hover:scale-[1.04] hover:shadow-sm
+              hover:border-accent dark:hover:border-accent-light hover:-translate-y-px hover:shadow-sm
               ${letter.hasData
                 ? 'bg-white dark:bg-dark-surface border-border dark:border-dark-border'
                 : 'bg-surface dark:bg-dark-bg border-border dark:border-dark-border'
@@ -44,11 +44,11 @@ export default function Dashboard({ onSelectLetter }) {
 
       <div className="mt-8 flex items-center gap-6 text-sm text-text-tertiary dark:text-gray-500">
         <span className="flex items-center gap-2">
-          <span className="w-4 h-4 rounded bg-white dark:bg-dark-surface border border-border dark:border-dark-border inline-block"></span>
+          <span className="w-4 h-4 bg-white dark:bg-dark-surface border border-border dark:border-dark-border inline-block"></span>
           נתונים מלאים ({readyCount})
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-4 h-4 rounded bg-surface dark:bg-dark-bg border border-border dark:border-dark-border inline-block"></span>
+          <span className="w-4 h-4 bg-surface dark:bg-dark-bg border border-border dark:border-dark-border inline-block"></span>
           ממתין להשלמה ({22 - readyCount})
         </span>
       </div>

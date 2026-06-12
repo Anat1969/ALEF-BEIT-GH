@@ -1,24 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FFFFFF;
-  --color-text: #1A1A1A;
-  --color-text-secondary: #666666;
-  --color-text-tertiary: #999999;
-  --color-border: #E0E0E0;
-  --color-surface: #F5F5F5;
-  --color-hover: #EBEBEB;
-  --color-accent: #2A5F5F;
-  --color-accent-light: #4DBBA0;
-  --color-info: #378ADD;
-  --color-success: #639922;
-  --color-warning: #BA7517;
-  --color-danger: #E24B4A;
-  --color-muted: #D3D1C7;
-  --color-dark-bg: #1A1A1A;
-  --color-dark-text: #F5F5F5;
-  --color-dark-border: #333333;
-  --color-dark-surface: #2A2A2A;
+  /* THINK SHARP — Design Language */
+
+  /* Dominant: warm neutral grays */
+  --color-primary: #FAFAFA;
+  --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  --color-border: #E5E7EB;
+  --color-surface: #F3F4F6;
+  --color-hover: #E5E7EB;
+
+  /* Accent: energetic orange-yellow */
+  --color-accent: #F59E0B;
+  --color-accent-light: #FBBF24;
+
+  /* Semantic */
+  --color-info: #3B82F6;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-muted: #D1D5DB;
+
+  /* Dark mode */
+  --color-dark-bg: #111827;
+  --color-dark-text: #F9FAFB;
+  --color-dark-border: #374151;
+  --color-dark-surface: #1F2937;
 
   --font-sans: "Rubik", "Segoe UI", -apple-system, "Ubuntu", "DejaVu Sans", sans-serif;
 }
@@ -44,5 +53,37 @@
   body:where(.dark *) {
     color: var(--color-dark-text);
     background: var(--color-dark-bg);
+  }
+}
+
+@layer components {
+  /* Sharp buttons — no border-radius, clean edges */
+  .btn-sharp {
+    border-radius: 0;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: all 0.15s ease;
+  }
+  .btn-sharp:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .btn-sharp:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Subtle texture background */
+  .bg-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239CA3AF' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Pulse loading animation */
+  .pulse-subtle {
+    animation: pulseSubtle 2s ease-in-out infinite;
+  }
+  @keyframes pulseSubtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 }
