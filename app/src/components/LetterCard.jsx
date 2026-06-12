@@ -556,6 +556,12 @@ function SectionPrompt({ letter, letterImages }) {
 }
 
 function SectionArticle({ letter }) {
+  const [heroImage, setHeroImage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`) || ''
+    }
+    return ''
+  })
   const [articleText, setArticleText] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(`article-${letter.id}`) || ''
@@ -563,43 +569,187 @@ function SectionArticle({ letter }) {
     return ''
   })
   const [copied, setCopied] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+
+  const role = letter.core?.archetypal_role || ''
+  const oneLiner = letter.synthesis?.one_liner || ''
+  const poetic = letter.synthesis?.poetic_phrase || ''
+  const spatialPrinciple = letter.spatial_model?.architectural_principle || ''
+  const roomType = letter.spatial_model?.room_type || ''
+  const lightSource = letter.spatial_model?.light_source || ''
+  const materials = letter.spatial_model?.material_palette || ''
+  const humanExp = letter.spatial_model?.human_experience || ''
+  const visualMetaphor = letter.spatial_model?.visual_metaphor || ''
+  const energeticDesc = letter.dimensions?.energetic?.description || ''
+  const spatialDesc = letter.dimensions?.spatial?.description || ''
+  const sonicDesc = letter.dimensions?.sonic?.description || ''
+  const psychDesc = letter.dimensions?.psychological?.description || ''
+
+  const defaultArticle = [
+    oneLiner && `"${oneLiner}"`,
+    '',
+    role && `${letter.character}׳ — ${role}.`,
+    poetic && `${poetic}.`,
+    '',
+    sonicDesc && `הקול: ${sonicDesc}`,
+    psychDesc && `הנפש: ${psychDesc}`,
+    energeticDesc && `האנרגיה: ${energeticDesc}`,
+    '',
+    '— מרחב ואדריכלות —',
+    '',
+    spatialPrinciple && `עיקרון אדריכלי: ${spatialPrinciple}.`,
+    roomType && `סוג החלל: ${roomType}.`,
+    lightSource && `אור: ${lightSource}.`,
+    materials && `חומרים: ${materials}.`,
+    spatialDesc && `המרחב: ${spatialDesc}`,
+    '',
+    humanExp && `החוויה האנושית: ${humanExp}.`,
+    visualMetaphor && `המטפורה: ${visualMetaphor}.`,
+    '',
+    `מבנה מינימליסטי שמזקק את רוח האות ${letter.character}׳ למרחב מחייה — מההשראה הראשונית ועד לתכנון אדריכלי שאפשר לחיות בתוכו.`,
+  ].filter(Boolean).join('\n')
+
+  const currentText = articleText || defaultArticle
 
   const save = (text) => {
     setArticleText(text)
     localStorage.setItem(`article-${letter.id}`, text)
   }
 
+  const handleHeroUpload = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        setHeroImage(reader.result)
+        localStorage.setItem(`article-hero-${letter.id}`, reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handlePaste = (e) => {
+    const items = e.clipboardData?.items
+    if (!items) return
+    for (const item of items) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault()
+        const file = item.getAsFile()
+        const reader = new FileReader()
+        reader.onload = () => {
+          setHeroImage(reader.result)
+          localStorage.setItem(`article-hero-${letter.id}`, reader.result)
+        }
+        reader.readAsDataURL(file)
+        return
+      }
+    }
+  }
+
   const copy = () => {
-    navigator.clipboard.writeText(articleText)
+    navigator.clipboard.writeText(currentText)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
   return (
-    <div className="space-y-3">
-      <h3 className="text-base font-bold text-text dark:text-dark-text">מאמר על האות {letter.character}׳</h3>
-      <p className="text-xs text-text-secondary dark:text-gray-400">
-        כתבי את הפרשנות שלך על האות — מה גילית, מה השתנה בך, מה ההשראה
-      </p>
-      <textarea
-        value={articleText}
-        onChange={(e) => save(e.target.value)}
-        placeholder={`מה האות ${letter.character}׳ אומרת לך? מה הפרשנות האישית שלך?`}
-        className="w-full h-48 p-3 rounded-xl border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-sm text-text dark:text-dark-text leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30 placeholder:text-text-tertiary dark:placeholder:text-gray-600"
-        dir="rtl"
-      />
-      <div className="flex items-center justify-between text-xs text-text-tertiary dark:text-gray-500">
-        <span>{articleText.length > 0 ? `${articleText.length} תווים` : ''}</span>
-        <span>{articleText.length > 0 ? 'נשמר אוטומטית' : ''}</span>
-      </div>
-      {articleText.length > 0 && (
-        <button
-          onClick={copy}
-          className="w-full py-2 rounded-xl bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-medium hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
-        >
-          {copied ? 'הועתק!' : 'העתק מאמר'}
-        </button>
+    <div className="min-h-[600px]" dir="rtl" onPaste={handlePaste}>
+      {/* Hero image */}
+      {heroImage ? (
+        <div className="relative w-full group">
+          <img src={heroImage} alt={`${letter.hebrew_name} — אדריכלות`} className="w-full h-[340px] object-cover rounded-t-xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-t-xl" />
+          <div className="absolute bottom-0 right-0 left-0 p-8">
+            <div className="max-w-[700px] mx-auto">
+              <span className="text-[80px] leading-none font-light text-white/90 drop-shadow-lg">{letter.character}</span>
+              <h2 className="text-3xl font-bold text-white mt-1 drop-shadow-md">{letter.hebrew_name}</h2>
+              {role && <p className="text-lg text-white/80 mt-1 drop-shadow">{role}</p>}
+            </div>
+          </div>
+          <div className="absolute top-3 left-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <label className="px-3 py-1.5 bg-white/90 text-text text-xs rounded-lg shadow-lg cursor-pointer hover:bg-white">
+              החלף תמונה
+              <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
+            </label>
+            <button
+              onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
+              className="px-3 py-1.5 bg-danger/80 text-white text-xs rounded-lg shadow-lg hover:bg-danger"
+            >
+              הסר
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="w-full h-[200px] bg-gradient-to-bl from-accent/10 via-surface dark:via-dark-bg to-accent/5 dark:to-accent-light/10 rounded-t-xl flex flex-col items-center justify-center gap-3 border-2 border-dashed border-border/50 dark:border-dark-border/50">
+          <span className="text-[72px] leading-none text-accent/30 dark:text-accent-light/30">{letter.character}</span>
+          <label className="px-4 py-2 bg-accent dark:bg-accent-light text-white text-sm rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+            העלה תמונת אדריכלות
+            <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
+          </label>
+          <p className="text-xs text-text-tertiary dark:text-gray-500">או הדביקי תמונה (Ctrl+V)</p>
+        </div>
       )}
+
+      {/* Magazine content */}
+      <div className="max-w-[700px] mx-auto px-6 py-8">
+        {!heroImage && (
+          <div className="text-center mb-8">
+            <span className="text-[64px] leading-none font-light text-accent/20 dark:text-accent-light/20">{letter.character}</span>
+            <h2 className="text-2xl font-bold text-text dark:text-dark-text">{letter.hebrew_name}</h2>
+            {role && <p className="text-base text-accent dark:text-accent-light mt-1">{role}</p>}
+          </div>
+        )}
+
+        {oneLiner && (
+          <blockquote className="text-xl font-light text-accent dark:text-accent-light italic leading-relaxed text-center my-6 px-4 border-r-4 border-accent/30 dark:border-accent-light/30">
+            "{oneLiner}"
+          </blockquote>
+        )}
+
+        <div className="flex items-center justify-end gap-2 mb-4">
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
+              isEditing
+                ? 'bg-accent dark:bg-accent-light text-white'
+                : 'bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10'
+            }`}
+          >
+            {isEditing ? 'תצוגה' : 'עריכה'}
+          </button>
+          <button
+            onClick={copy}
+            className="px-3 py-1.5 text-xs rounded-lg bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10 transition-colors"
+          >
+            {copied ? 'הועתק!' : 'העתק'}
+          </button>
+        </div>
+
+        {isEditing ? (
+          <textarea
+            value={currentText}
+            onChange={(e) => save(e.target.value)}
+            className="w-full min-h-[400px] p-4 rounded-xl border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-base text-text dark:text-dark-text leading-[1.9] resize-y focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30"
+            dir="rtl"
+          />
+        ) : (
+          <article className="prose-magazine">
+            {currentText.split('\n').map((line, i) => {
+              if (!line.trim()) return <div key={i} className="h-4" />
+              if (line.startsWith('—') && line.endsWith('—'))
+                return <h3 key={i} className="text-center text-sm font-bold text-accent dark:text-accent-light tracking-widest uppercase my-6">{line.replace(/—/g, '').trim()}</h3>
+              if (line.startsWith('"') && line.endsWith('"'))
+                return <p key={i} className="text-lg italic text-accent dark:text-accent-light text-center leading-relaxed">{line}</p>
+              return <p key={i} className="text-base text-text dark:text-dark-text leading-[1.9] mb-1">{line}</p>
+            })}
+          </article>
+        )}
+
+        <div className="mt-8 pt-6 border-t border-border/30 dark:border-dark-border/30 flex items-center justify-between text-xs text-text-tertiary dark:text-gray-500">
+          <span>22 אותיות — מערכת חיה</span>
+          <span>אות #{letter.id} מתוך 22</span>
+        </div>
+      </div>
     </div>
   )
 }
@@ -630,7 +780,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
       case 'skill': return <SectionSkill letter={letter} />
       case 'space': return <SectionSpace letter={letter} />
       case 'prompt': return <SectionPrompt letter={letter} letterImages={letterImages} />
-      case 'article': return <SectionArticle letter={letter} />
+      case 'article': return null
       default: return null
     }
   }
@@ -693,77 +843,79 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
           </div>
         </div>
 
-        {/* Two columns: Image + Content side by side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[500px]">
-          {/* Image + Energetic below */}
-          <div className="p-4 md:p-5 flex flex-col border-l border-border/50 dark:border-dark-border/50 bg-surface/20 dark:bg-dark-bg/20">
-            {currentImage ? (
-              <div className="relative w-full group">
-                <img
-                  src={currentImage}
-                  alt={`תמונת ${letter.name}`}
-                  className="w-full rounded-xl object-contain"
-                />
-                <div className="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <label className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm rounded-lg shadow-lg hover:opacity-90 cursor-pointer">
-                    החלף
-                    <input
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0]
-                        if (file) {
-                          const reader = new FileReader()
-                          reader.onload = () => letterImages.saveImage(letter.id, reader.result)
-                          reader.readAsDataURL(file)
-                        }
-                      }}
-                    />
-                  </label>
-                  <button
-                    onClick={() => letterImages.removeImage(letter.id)}
-                    className="px-3 py-1.5 bg-danger text-white text-sm rounded-lg shadow-lg hover:opacity-90"
-                  >
-                    הסר
-                  </button>
+        {activeSection === 'article' ? (
+          <SectionArticle letter={letter} />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[500px]">
+            {/* Image + Energetic below */}
+            <div className="p-4 md:p-5 flex flex-col border-l border-border/50 dark:border-dark-border/50 bg-surface/20 dark:bg-dark-bg/20">
+              {currentImage ? (
+                <div className="relative w-full group">
+                  <img
+                    src={currentImage}
+                    alt={`תמונת ${letter.name}`}
+                    className="w-full rounded-xl object-contain"
+                  />
+                  <div className="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <label className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm rounded-lg shadow-lg hover:opacity-90 cursor-pointer">
+                      החלף
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0]
+                          if (file) {
+                            const reader = new FileReader()
+                            reader.onload = () => letterImages.saveImage(letter.id, reader.result)
+                            reader.readAsDataURL(file)
+                          }
+                        }}
+                      />
+                    </label>
+                    <button
+                      onClick={() => letterImages.removeImage(letter.id)}
+                      className="px-3 py-1.5 bg-danger text-white text-sm rounded-lg shadow-lg hover:opacity-90"
+                    >
+                      הסר
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <ImageUploader
-                currentImage={null}
-                onSave={(dataUrl) => letterImages.saveImage(letter.id, dataUrl)}
-                onRemove={() => {}}
-              />
-            )}
+              ) : (
+                <ImageUploader
+                  currentImage={null}
+                  onSave={(dataUrl) => letterImages.saveImage(letter.id, dataUrl)}
+                  onRemove={() => {}}
+                />
+              )}
 
-            {/* Energetic - the force of this letter, below the image */}
-            {letter.hasData && letter.dimensions?.energetic && (
-              <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 rounded-xl p-4">
-                <h4 className="text-sm font-bold text-warning uppercase tracking-wider mb-1">הכוח של האות</h4>
-                <p className="text-sm text-text dark:text-dark-text leading-relaxed">{letter.dimensions.energetic.description}</p>
-                {letter.dimensions.energetic.flow_direction && (
-                  <p className="text-xs text-text-secondary dark:text-gray-400 mt-1">כיוון: {letter.dimensions.energetic.flow_direction}</p>
-                )}
-                {letter.dimensions.energetic.expansion_type && (
-                  <p className="text-xs text-text-secondary dark:text-gray-400">התרחבות: {letter.dimensions.energetic.expansion_type}</p>
-                )}
-              </div>
-            )}
+              {letter.hasData && letter.dimensions?.energetic && (
+                <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 rounded-xl p-4">
+                  <h4 className="text-sm font-bold text-warning uppercase tracking-wider mb-1">הכוח של האות</h4>
+                  <p className="text-sm text-text dark:text-dark-text leading-relaxed">{letter.dimensions.energetic.description}</p>
+                  {letter.dimensions.energetic.flow_direction && (
+                    <p className="text-xs text-text-secondary dark:text-gray-400 mt-1">כיוון: {letter.dimensions.energetic.flow_direction}</p>
+                  )}
+                  {letter.dimensions.energetic.expansion_type && (
+                    <p className="text-xs text-text-secondary dark:text-gray-400">התרחבות: {letter.dimensions.energetic.expansion_type}</p>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Content */}
+            <div className="p-4 md:p-5 overflow-y-auto max-h-[600px]">
+              {renderSection()}
+
+              {!letter.hasData && activeSection === 'overview' && (
+                <div className="text-center py-8 text-text-tertiary dark:text-gray-500 mt-4">
+                  <p className="text-xl mb-2">נתונים מלאים יתווספו בהמשך</p>
+                  <p className="text-base">אות זו ממתינה להשלמה ב-COWORK</p>
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Content - changes with section buttons */}
-          <div className="p-4 md:p-5 overflow-y-auto max-h-[600px]">
-            {renderSection()}
-
-            {!letter.hasData && activeSection === 'overview' && (
-              <div className="text-center py-8 text-text-tertiary dark:text-gray-500 mt-4">
-                <p className="text-xl mb-2">נתונים מלאים יתווספו בהמשך</p>
-                <p className="text-base">אות זו ממתינה להשלמה ב-COWORK</p>
-              </div>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   )
