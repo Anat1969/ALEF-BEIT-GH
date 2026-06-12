@@ -1,0 +1,355 @@
+{
+  "metadata": {
+    "project": "22 Letters — Living System",
+    "version": "1.0",
+    "language": "Hebrew",
+    "date_created": "2026-06-12",
+    "total_letters": 22,
+    "complete_percentage": 15
+  },
+
+  "schema_definition": {
+    "description": "כל אות מכילה 5 שכבות ראשיות",
+    "layers": [
+      "core",
+      "dimensions",
+      "synthesis",
+      "skill",
+      "spatial_model"
+    ]
+  },
+
+  "letters": [
+    {
+      "id": 1,
+      "character": "א",
+      "hebrew_name": "אלף",
+      "english_name": "Aleph",
+      "gematria": 1,
+      "position": "beginning",
+      "visual_category": "opening",
+
+      "core": {
+        "name": "אלף",
+        "number": 1,
+        "gematria_value": 1,
+        "position_in_alphabet": "ראשונה",
+        "archetypal_role": "ההתחלה, יחידה, כל קוד"
+      },
+
+      "dimensions": {
+        "sonic": {
+          "description": "קול פתוח לחלוטין, נשימה טהורה, כנה בלא חיכוך",
+          "frequency_range": "בסיס (fundamental), כמעט תדירות אפס",
+          "articulation": "פה פתוח מקסימום, גרון חופשי",
+          "texture": "צלול, קל, בלא התנגדות",
+          "breath_quality": "נשימה שלמה, לא קול"
+        },
+        "mathematical": {
+          "description": "יחידה, בסיס כל מספור, התחלה",
+          "function": "1 = יחידה ממנה הכל נובע",
+          "ratio": "1:22 (החלק במערך)",
+          "sequence_position": "ראשון, לא משנית",
+          "pattern_role": "יוצר דפוסים, לא נובע מהם"
+        },
+        "physical": {
+          "description": "פה פתוח, גרון חופשי, תנועה ישרה למעלה",
+          "organ_of_articulation": "גרון (pharynx) כתעלת מעבר",
+          "body_posture": "התיקום, ישרה, אנרגיה למעלה",
+          "movement_quality": "פתיחה רדיאלית (לכל הכיוונים)",
+          "tension_state": "שחרור מתח"
+        },
+        "energetic": {
+          "description": "עלייה, פתיחה רדיאלית, כוח בשקט",
+          "flow_direction": "כלפי מעלה ובכל הכיוונים",
+          "intensity": "נמוכה + בסיסית (elemental)",
+          "rhythm": "קבוע, לא מקוטע",
+          "expansion_type": "פתיחה שלמה (full bloom)"
+        },
+        "psychological": {
+          "description": "תקווה, אפשרות בלא גבול, רגע התחלה",
+          "emotional_state": "תקווה, השראה, כישוף",
+          "consciousness_quality": "חדות מלאה, התעוררות",
+          "will_expression": "בחירה ראשונה, החלטה",
+          "archetypal_mood": "פרימורדיאל — לפני זמן"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ת",
+            "quality": "א׳ = התחלה | ת׳ = סוף",
+            "dynamic": "מחזור שלם בתחזוקה",
+            "tension": "דיאלקטי, משלימות צדדים"
+          },
+          "complementary": {
+            "letter": "ב",
+            "quality": "א׳ = אפשרות בודדת | ב׳ = בחירה בדואל",
+            "dynamic": "מתוך הפתיחה לשני קטבים"
+          },
+          "sonic_similar": [
+            "ע (קול דומה, פתוח)"
+          ],
+          "reinforces": [
+            "ה (פתיחה משנית)",
+            "ו (חיבור אל הפתיחה)"
+          ]
+        },
+        "spatial": {
+          "description": "גובה מקסימום, אור ישיר, נקודת כניסה",
+          "angle": "90° זקוף (vertical), או עלייה",
+          "line_type": "ישר אנכי, קו אדם עומד",
+          "color_palette": "לבן, אור צהוב-לבן, שקיפות",
+          "position_in_space": "בחזית, בגובה עיניים, מרכז",
+          "movement_through_space": "מהיר, בעל כיוון, מעלה",
+          "architectural_principle": "נקודת כניסה עם גובה מקסימום",
+          "light_quality": "ישיר, בוקר, אור טהור"
+        }
+      },
+
+      "synthesis": {
+        "essence": "אות ההתחלה הטהורה — פתיחה מלאה מלא אוויר, עולייה בתדירות, כוח פתייח במצב נפשי של התמדה ותקווה. בתפקיד מרחבי: הגובה, הצץ למעלה, האור שנכנס.",
+        "one_liner": "התחלה = פתיחה לחלוטין + אפשרות בלא גבול",
+        "poetic_phrase": "נשימה ראשונה של היום — חדות וקוהרנציה עם העתיד"
+      },
+
+      "skill": {
+        "number": 1,
+        "name": "פתיחת היום",
+        "hebrew_title": "פתיחה מודעת",
+        "description": "בחרת פתיחה מודעת בבוקר, כדי להכין את המרחב הנפשי למה שבא",
+        "action": "בעת הקימה: נשימה עמוקה × 3 + בחירה מודעת של 3 דברים שרוצים שקרו היום",
+        "trigger_time": "06:00–07:00",
+        "duration_minutes": 5,
+        "outcome": "מצב נפשי של כלִיּוּת, פתיחות, וקוהרנציה עם היום",
+        "integration": "קודם ל-ב׳ (בחירה בדואל) ול-ג׳ (גמול עמל)",
+        "daily_frequency": "פעם אחת בבוקר",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+
+      "spatial_model": {
+        "architectural_principle": "נקודת כניסה בעלת גובה מקסימום, אור ישיר, חופש תנועה",
+        "physical_expression": "דלת פתוחה גבוהה, חלון בחזית, אוויר זורם, לא מחסומים",
+        "room_type": "אולם כניסה מינימליסטי, לבן, פתוח",
+        "light_source": "אור בוקר ים-תיכוני, צפוני או מזרחי",
+        "material_palette": "לבן, אבן חלודה, עץ בהיר",
+        "spatial_qualities": ["גובה", "אור", "חופש", "פתיחה"],
+        "human_experience": "אדם עומד בסף, פנים פתוח, מחכה",
+        "visual_metaphor": "הים בבוקר — אפשרויות אינסופיות"
+      },
+
+      "visual_prompt": {
+        "hebrew": "אולם כניסה מינימליסטי עם חלון גבוה עד התקרה, אור בוקר ים-תיכוני צוהל, דופנות לבנות צחות, לא מחסומים, צמחייה יחידה וקלה, אדם עומד בסף פנים פתוח, מביט אל החוץ",
+        "english": "Minimal entrance hall with floor-to-ceiling window opening to Mediterranean landscape | White stone walls, pristine | Morning light flooding horizontally | Void of barriers except one threshold | Human figure standing at beginning, facing infinite expanse | Captures essence of ALEPH: Pure opening, infinite possibility, breath beginning everything | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean climate | Shot from low angle looking upward | #opening #hope #beginning #light #threshold",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-12"
+      }
+    },
+
+    {
+      "id": 2,
+      "character": "ב",
+      "hebrew_name": "בית",
+      "english_name": "Bet",
+      "gematria": 2,
+      "position": "middle",
+      "visual_category": "duality",
+
+      "core": {
+        "name": "בית",
+        "number": 2,
+        "gematria_value": 2,
+        "position_in_alphabet": "שנייה",
+        "archetypal_role": "דואליות, בחירה, בית (מקום)"
+      },
+
+      "dimensions": {
+        "sonic": {
+          "description": "קול חצי-פתוח, שפתיים סגורות חלקית, דיון בתוך הפה",
+          "frequency_range": "תחתון-בינוני, קצת יותר צפוף מ-א׳",
+          "articulation": "שפתיים סגורות מעט, שחרור מה-ב",
+          "texture": "חופפי, מעט עציר, אבל זורם",
+          "breath_quality": "נשימה עם התנגדות קטנה"
+        },
+        "mathematical": {
+          "description": "זוג, דואליות, בחירה בין שתיים",
+          "function": "2 = בחירה, הנחה, דואל",
+          "ratio": "2:1 (כפיל), 1:2 (חצי)",
+          "sequence_position": "שנייה, פעם בהמשך הראשונה",
+          "pattern_role": "דופלקציה, עולם כפול"
+        },
+        "physical": {
+          "description": "שפתיים, סגירה חלקית, מתח וקטן",
+          "organ_of_articulation": "שפתיים (bilabial)",
+          "body_posture": "מעט כפוף, מתלבט, אי-ודאות",
+          "movement_quality": "ויברטו קטנה, רעד",
+          "tension_state": "מתח בינוני, בחירה קשה"
+        },
+        "energetic": {
+          "description": "דואליות, ניתוק בין שני קטבים, טנסיון",
+          "flow_direction": "שמאל-ימין (בחירה בין צדדים)",
+          "intensity": "בינונית, מלחמה פנימית",
+          "rhythm": "מעומעם, לא ברור",
+          "expansion_type": "פיצול לשניים (split)"
+        },
+        "psychological": {
+          "description": "בחירה, מתלבט, בית כמקום ביטחון",
+          "emotional_state": "חוסר ודאות, בדידות, קונפליקט",
+          "consciousness_quality": "הכרה כפולה, שני דעות",
+          "will_expression": "בחירה קשה, לא הכרעה",
+          "archetypal_mood": "בית = מקום חזרה, בטן, חוזק"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ש",
+            "quality": "ב׳ = בחירה שקטה | ש׳ = קול חדש",
+            "dynamic": "שינוי חד וממדי"
+          },
+          "complementary": {
+            "letter": "א",
+            "quality": "א׳ = אפשרות | ב׳ = בחירה בתוך אפשרות",
+            "dynamic": "מצב הבא אחרי הפתיחה"
+          },
+          "sonic_similar": ["כ", "ם", "ף"]
+        }
+      },
+
+      "synthesis": {
+        "essence": "אות הדואליות החיה — בחירה בתוך שני קטבים. טנסיון בין הביטחון של הבית לבין הלא-ודאות של הבחירה. בתפקיד מרחבי: דלת סגורה-פתוחה, שני חדרים, משק הבית כדיאלוג.",
+        "one_liner": "בחירה = דואליות חיה בתוך ביטחון",
+        "poetic_phrase": "בית עם שתי דלתות — בחר אם לעזוב או להישאר"
+      },
+
+      "skill": {
+        "number": 2,
+        "name": "בחירה בדואל",
+        "hebrew_title": "בחירה מודעת",
+        "description": "כל פעם שעומדים מול בחירה, להעמיק בשתי האפשרויות ללא מיהוס",
+        "action": "לפני החלטה: רשום שתי תוצאות אפשריות. תן לכל אחת משקל שווה. בחר רק אחרי שראית שתיהן במלוא גובהן",
+        "trigger_time": "10:00–11:00",
+        "duration_minutes": 10,
+        "outcome": "בחירה מודעת, לא בלי מודעות",
+        "integration": "קודם ל-ג׳ (גמול — הבאת לפועל)"
+      },
+
+      "spatial_model": {
+        "architectural_principle": "דלת מרכזית, שני חדרים סימטריים, משקל שווה",
+        "physical_expression": "חדר עם מחיצה באמצע, שתי חלונות, תאורה משנית",
+        "room_type": "סלון דואלי עם שתי כניסות",
+        "light_source": "אור משני צדדים, לא יחיד",
+        "material_palette": "אפור, עץ, מתכת",
+        "spatial_qualities": ["מרכז", "בחירה", "משקל שווה", "דיאלוג"]
+      },
+
+      "visual_prompt": {
+        "hebrew": "חדר ביתי מינימליסטי עם מחיצה מרכזית, שתי דלתות מנוגדות, תאורה משני צדדים בעוצמה שווה, אפור ولבן בטנסיון מרשע, אדם בעמידה בסף הבחירה בין שני כיוונים",
+        "english": "Minimalist room with central dividing wall | Two opposing doors of equal size | Symmetrical lighting from both sides | Gray and white in perpetual tension | Human figure standing at threshold between two equal paths | Captures essence of BET: Duality held in balance, choice without collapse | Professional interior photography | Documentary realism | Aspect ratio 16:9 | No text | Bird's eye view from above | Mediterranean minimalism | #duality #choice #balance #threshold",
+        "prompt_version": "1.0"
+      }
+    },
+
+    {
+      "id": 3,
+      "character": "ג",
+      "hebrew_name": "גימל",
+      "english_name": "Gimel",
+      "gematria": 3,
+      "position": "middle",
+      "visual_category": "flow",
+
+      "core": {
+        "name": "גימל",
+        "number": 3,
+        "gematria_value": 3,
+        "position_in_alphabet": "שלישית",
+        "archetypal_role": "זרימה, גמול, תגבור"
+      },
+
+      "dimensions": {
+        "sonic": {
+          "description": "קול אחורי-טחוני, זרימה למטה, כמו גרון שקוע",
+          "frequency_range": "בינוני-עמוק, קול כבד",
+          "articulation": "גרון עמוק, זרימה ישרה למטה",
+          "texture": "עצום, כבד, אבל שזור",
+          "breath_quality": "נשימה דחוקה מהגרון"
+        },
+        "mathematical": {
+          "description": "תלת מימד, תגבור (גמול), סיקום",
+          "function": "3 = כפל (doubling action), גמול (reward)",
+          "ratio": "3:1 (עלייה בעוצמה), 1:3 (חלוקה)",
+          "sequence_position": "שלישית, תולדה של הראשונות",
+          "pattern_role": "סיום מחזור ראשון (1-2-3)"
+        },
+        "physical": {
+          "description": "גרון עמוק, זרימה למטה, ירידה",
+          "organ_of_articulation": "גרון (velar), אחרי הלשון",
+          "body_posture": "כיפוף, רדידה, כוח למטה",
+          "movement_quality": "משקל, כבדות, ירידה בעוצמה",
+          "tension_state": "שחרור, ירידה"
+        },
+        "energetic": {
+          "description": "זרימה למטה, גמול למי שעשה עבודה",
+          "flow_direction": "כלפי מטה ולתוך",
+          "intensity": "גבוהה בהתחלה, ירידה בהדרגה",
+          "rhythm": "קaduto (נפילה ליפה)",
+          "expansion_type": "תקצור (compression) ואח״כ שחרור"
+        },
+        "psychological": {
+          "description": "גמול, הנאה, יתרון בחזרה",
+          "emotional_state": "שביעות רצון, הנחמה, גדלות",
+          "consciousness_quality": "הכרה של התקדמות, גמול",
+          "will_expression": "גמול של מה שנעשה",
+          "archetypal_mood": "ככרדינל שעומד מעל הבחירה"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "צ",
+            "quality": "ג׳ = זרימה למטה | צ׳ = מטפל",
+            "dynamic": "מתחים פנימיים של הליחוש"
+          },
+          "complementary": {
+            "letter": "ב",
+            "quality": "ב׳ = בחירה | ג׳ = גמול על הבחירה",
+            "dynamic": "תוצאה טבעית של הבחירה"
+          }
+        }
+      },
+
+      "synthesis": {
+        "essence": "אות הזרימה המטה — גמול העמל, תגבור של המעשה. כוח הנפילה שמביאה תוצאה. בתפקיד מרחבי: אפיק זורם, מהבחזיקו רחוק אל המקום הנמוך, שם הגמול.",
+        "one_liner": "גמול = זרימה למטה של העמל להנאה",
+        "poetic_phrase": "מה שחסום מעלה זורם משמאל — גמול הוא תוצאה, לא רחמים"
+      },
+
+      "skill": {
+        "number": 3,
+        "name": "גמול העמל",
+        "hebrew_title": "הנאה מודעת",
+        "description": "אחרי עבודה או בחירה, לתת לעצמך זמן להנות מהתוצאה",
+        "action": "אחרי סיום משימה חשובה: עצור, חזור אל עצמך, אפילו 2 דקות של הנחמה (תה, אוויר, מנוחה)",
+        "trigger_time": "12:00–13:00",
+        "duration_minutes": 15,
+        "outcome": "הכרה של התקדמות, הנאה מודעת",
+        "integration": "קודם ל-ד׳ (דלת — סף הבא)"
+      },
+
+      "spatial_model": {
+        "architectural_principle": "אפיק זורם, מוקד נמוך, מקום של הנחמה",
+        "physical_expression": "קומה נמוכה, חלון עם נוף, מקום יושבת",
+        "room_type": "פינת מנוחה בתוך הבית",
+        "light_source": "אור עקיף, מוגן, חום"
+      },
+
+      "visual_prompt": {
+        "hebrew": "חדר ירידה מינימליסטי עם אפיק מים עדין, אור חם וקטום, מקום יושבת עמוק, נוף רחוק דרך חלון קטן, אדם יושב במנוחה עמוקה",
+        "english": "Minimalist descent chamber with gentle water channel flowing downward | Warm, contained light | Deep seating nook | Distant landscape visible through small window | Human figure in restful repose | Captures essence of GIMEL: Reward of effort flowing downward, comfort earned not given | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | Intimate scale | Mediterranean warmth | #reward #flow #comfort #descent",
+        "prompt_version": "1.0"
+      }
+    }
+  ]
+}
