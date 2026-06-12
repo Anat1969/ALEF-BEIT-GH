@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { useLetters } from '../hooks/useLetters'
 import PageIntro from './PageIntro'
 
+function getAnyImage(letterId, letterImages) {
+  const img = letterImages?.getImage(letterId)
+  if (img) return img
+  if (typeof window === 'undefined') return null
+  return localStorage.getItem(`article-hero-${letterId}`) || localStorage.getItem(`arch-image-${letterId}`) || null
+}
+
 export default function Gallery({ onSelectLetter, letterImages }) {
   const { letters, getLetter } = useLetters()
   const [copiedId, setCopiedId] = useState(null)
@@ -21,15 +28,18 @@ export default function Gallery({ onSelectLetter, letterImages }) {
         title="גלריה"
         subtitle="תמונות מתוך עולמה של כל אות"
         purpose="כל אות מייצגת עולם ויזואלי שלם — חלל אדריכלי, אווירה, חומרים ואור. הגלריה מציגה את התמונות שנוצרו עבור כל אות, ומאפשרת ליצור פרומפטים חדשים."
-        howToUse="לחצי על אות כדי לעבור לכרטיס המלא שלה. עבור אותיות עם נתונים — כפתור 'העתק פרומפט' מעתיק את הפרומפט ל-Midjourney, שתוכלי להדביק ישירות בכלי היצירה."
+        howToUse="לחצי על אות כדי לעבור לכרטיס המלא שלה. עבור אותיות עם נתונים — כפתור 'העתק פרומפט' מעתיק את הפרומפט ל-Midjourney."
         example={`לדוגמה: אות א׳ — הפרומפט מתאר "חלל לבן אינסופי עם דמות עומדת בשקט, אור רך ממעל" — הדביקי ב-Midjourney וקבלי תמונה מדויקת.`}
-        tip="תמונות Midjourney מומלצות ביחס 16:9 עם סגנון --style raw לתוצאה נקייה. שמרי כל תמונה בתיקיית output/ של הפרויקט."
+        tip="תמונות Midjourney מומלצות ביחס 16:9 עם סגנון --style raw לתוצאה נקייה."
       />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {letters.map(letter => {
           const full = getLetter(letter.id)
           const hasPrompt = full.hasData && full.visual_prompt
+          const image = getAnyImage(letter.id, letterImages)
+          const role = full.core?.archetypal_role || ''
+
           return (
             <div
               key={letter.id}
@@ -39,21 +49,26 @@ export default function Gallery({ onSelectLetter, letterImages }) {
                 onClick={() => onSelectLetter(letter.id)}
                 className="absolute inset-0 flex items-center justify-center w-full h-full"
               >
-                {letterImages.getImage(letter.id) ? (
-                  <img src={letterImages.getImage(letter.id)} alt={letter.name} className="w-full h-full object-cover" />
+                {image ? (
+                  <img src={image} alt={letter.name} className="w-full h-full object-cover" />
                 ) : (
-                  <span className="text-6xl text-muted dark:text-gray-600 group-hover:text-accent dark:group-hover:text-accent-light transition-colors">
-                    {letter.character}
-                  </span>
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-accent/5 to-accent/15 p-3">
+                    <span className="text-6xl font-light text-accent/25 group-hover:text-accent/50 transition-colors">
+                      {letter.character}
+                    </span>
+                    {role && (
+                      <span className="text-[10px] text-gray-500 text-center leading-tight line-clamp-2">{role}</span>
+                    )}
+                  </div>
                 )}
               </button>
 
-              <div className="absolute bottom-0 inset-x-0 bg-white/95 dark:bg-dark-bg/95 py-2 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-sm text-text dark:text-dark-text block text-center">{letter.name}</span>
+              <div className="absolute bottom-0 inset-x-0 bg-dark-bg/90 backdrop-blur-sm py-2 px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-sm text-dark-text block text-center">{letter.name}</span>
                 {hasPrompt && (
                   <button
                     onClick={(e) => { e.stopPropagation(); copyPrompt(full) }}
-                    className="mt-1 w-full text-xs py-1 bg-accent dark:bg-accent-light text-white hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
+                    className="mt-1 w-full text-[10px] py-1 text-gray-400 hover:text-accent-light transition-colors"
                   >
                     {copiedId === letter.id ? 'הועתק!' : 'העתק פרומפט'}
                   </button>
@@ -63,10 +78,6 @@ export default function Gallery({ onSelectLetter, letterImages }) {
           )
         })}
       </div>
-
-      <p className="mt-8 text-center text-base text-text-tertiary dark:text-gray-500">
-        תמונות Midjourney יתווספו בהמשך — כרגע מוצגות placeholders. העבירי עכבר מעל אות עם נתונים כדי להעתיק את הפרומפט.
-      </p>
     </div>
   )
 }

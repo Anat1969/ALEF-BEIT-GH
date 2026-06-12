@@ -945,16 +945,57 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[500px]">
             {/* Image + Energetic below */}
             <div className="p-4 md:p-5 flex flex-col border-l border-border/50 dark:border-dark-border/50 bg-surface/20 dark:bg-dark-bg/20">
-              {currentImage ? (
-                <div className="relative w-full group">
-                  <img
-                    src={currentImage}
-                    alt={`תמונת ${letter.name}`}
-                    className="w-full object-contain"
-                  />
-                  <div className="absolute top-2 left-2 flex gap-1 opacity-0 group-hover:opacity-50 hover:!opacity-100 transition-opacity">
-                    <label className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 cursor-pointer backdrop-blur-sm">
-                      החלף
+              {(() => {
+                const anyImage = currentImage
+                  || (typeof window !== 'undefined' && (localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`)))
+                  || null
+
+                if (anyImage) return (
+                  <div className="relative w-full group">
+                    <img
+                      src={anyImage}
+                      alt={`תמונת ${letter.name}`}
+                      className="w-full object-contain"
+                    />
+                    <div className="absolute top-2 left-2 flex gap-1 opacity-0 group-hover:opacity-50 hover:!opacity-100 transition-opacity">
+                      <label className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 cursor-pointer backdrop-blur-sm">
+                        החלף
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0]
+                            if (file) {
+                              const reader = new FileReader()
+                              reader.onload = () => letterImages.saveImage(letter.id, reader.result)
+                              reader.readAsDataURL(file)
+                            }
+                          }}
+                        />
+                      </label>
+                      <button
+                        onClick={() => letterImages.removeImage(letter.id)}
+                        className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 backdrop-blur-sm"
+                      >
+                        הסר
+                      </button>
+                    </div>
+                  </div>
+                )
+
+                return (
+                  <div className="relative w-full flex flex-col items-center justify-center py-10 bg-gradient-to-br from-accent/5 to-accent/15 group">
+                    <span className="text-[100px] leading-none font-extralight text-accent/20">{letter.character}</span>
+                    <h3 className="text-lg font-bold text-dark-text mt-2">{letter.name}</h3>
+                    {letter.core?.archetypal_role && (
+                      <p className="text-sm text-accent-light mt-1">{letter.core.archetypal_role}</p>
+                    )}
+                    {letter.synthesis?.one_liner && (
+                      <p className="text-xs text-gray-500 italic mt-2 px-4 text-center leading-relaxed">"{letter.synthesis.one_liner}"</p>
+                    )}
+                    <label className="mt-4 px-3 py-1.5 text-[10px] text-gray-500 hover:text-accent-light cursor-pointer hover:bg-white/5 transition-colors opacity-0 group-hover:opacity-100">
+                      העלה תמונה
                       <input
                         type="file"
                         accept="image/*"
@@ -969,21 +1010,9 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                         }}
                       />
                     </label>
-                    <button
-                      onClick={() => letterImages.removeImage(letter.id)}
-                      className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 backdrop-blur-sm"
-                    >
-                      הסר
-                    </button>
                   </div>
-                </div>
-              ) : (
-                <ImageUploader
-                  currentImage={null}
-                  onSave={(dataUrl) => letterImages.saveImage(letter.id, dataUrl)}
-                  onRemove={() => {}}
-                />
-              )}
+                )
+              })()}
 
               {letter.hasData && letter.dimensions?.energetic && (
                 <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 p-4">

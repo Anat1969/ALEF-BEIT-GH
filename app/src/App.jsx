@@ -105,7 +105,7 @@ export default function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <Dashboard onSelectLetter={handleSelectLetter} />
+        return <Dashboard onSelectLetter={handleSelectLetter} letterImages={letterImages} />
       case 'letter':
         return (
           <LetterCard
@@ -123,7 +123,7 @@ export default function App() {
       case 'workflow':
         return <Workflow />
       default:
-        return <Dashboard onSelectLetter={handleSelectLetter} />
+        return <Dashboard onSelectLetter={handleSelectLetter} letterImages={letterImages} />
     }
   }
 
