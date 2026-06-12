@@ -28,8 +28,8 @@ export default function Dashboard({ onSelectLetter }) {
               transition-all duration-200
               hover:border-accent dark:hover:border-accent-light hover:-translate-y-px hover:shadow-sm
               ${letter.hasData
-                ? 'bg-white dark:bg-dark-surface border-border dark:border-dark-border'
-                : 'bg-surface dark:bg-dark-bg border-border dark:border-dark-border'
+                ? 'glass-card'
+                : 'bg-white/3 border border-white/5'
               }
             `}
           >

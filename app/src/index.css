@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* THINK SHARP — Design Language */
+  /* GLASS SHARP — Dark Glassmorphism */
 
-  /* Dominant: warm neutral grays */
+  /* Base (light fallback — app forces dark mode) */
   --color-primary: #FAFAFA;
   --color-text: #1F2937;
   --color-text-secondary: #6B7280;
@@ -12,7 +12,7 @@
   --color-surface: #F3F4F6;
   --color-hover: #E5E7EB;
 
-  /* Accent: energetic orange-yellow */
+  /* Accent: warm amber glow */
   --color-accent: #F59E0B;
   --color-accent-light: #FBBF24;
 
@@ -23,11 +23,11 @@
   --color-danger: #EF4444;
   --color-muted: #D1D5DB;
 
-  /* Dark mode */
-  --color-dark-bg: #111827;
-  --color-dark-text: #F9FAFB;
-  --color-dark-border: #374151;
-  --color-dark-surface: #1F2937;
+  /* Dark Glass mode */
+  --color-dark-bg: #0F172A;
+  --color-dark-text: #F1F5F9;
+  --color-dark-border: #1E293B;
+  --color-dark-surface: #1E293B;
 
   --font-sans: "Rubik", "Segoe UI", -apple-system, "Ubuntu", "DejaVu Sans", sans-serif;
 }
@@ -46,7 +46,6 @@
     background: var(--color-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.3s, color 0.3s;
   }
 
   .dark body,
@@ -57,7 +56,28 @@
 }
 
 @layer components {
-  /* Sharp buttons — no border-radius, clean edges */
+  /* Glass panel — semi-transparent with blur */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  /* Glass card — interactive glass with hover */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.2s ease;
+  }
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.20);
+  }
+
+  /* Sharp buttons */
   .btn-sharp {
     border-radius: 0;
     font-weight: 600;
@@ -66,24 +86,29 @@
   }
   .btn-sharp:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
   .btn-sharp:active {
     transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   }
 
-  /* Subtle texture background */
+  /* Subtle texture for dark background */
   .bg-texture {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239CA3AF' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
-  /* Pulse loading animation */
+  /* Pulse animation */
   .pulse-subtle {
     animation: pulseSubtle 2s ease-in-out infinite;
   }
   @keyframes pulseSubtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+  }
+
+  /* Accent glow */
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
   }
 }

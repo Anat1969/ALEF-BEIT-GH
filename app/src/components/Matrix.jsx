@@ -46,7 +46,7 @@ export default function Matrix({ onSelectLetter }) {
         tip="השתמשי במטריצה כדי לתכנן שבוע שלם — בחרי 3-4 אותיות שמשלימות זו את זו ותרגלי אותן יחד."
       />
 
-      <div className="overflow-x-auto border border-border dark:border-dark-border">
+      <div className="overflow-x-auto glass">
         <table className="border-collapse text-xs">
           <thead>
             <tr>

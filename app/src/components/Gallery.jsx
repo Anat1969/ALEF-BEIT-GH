@@ -33,7 +33,7 @@ export default function Gallery({ onSelectLetter, letterImages }) {
           return (
             <div
               key={letter.id}
-              className="group relative aspect-square border border-border dark:border-dark-border bg-surface dark:bg-dark-surface overflow-hidden hover:border-accent dark:hover:border-accent-light transition-all duration-200"
+              className="group relative aspect-square glass-card overflow-hidden transition-all duration-200"
             >
               <button
                 onClick={() => onSelectLetter(letter.id)}

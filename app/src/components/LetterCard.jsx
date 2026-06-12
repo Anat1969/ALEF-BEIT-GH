@@ -667,7 +667,7 @@ function SectionArticle({ letter }) {
             </div>
           </div>
           <div className="absolute top-3 left-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <label className="px-3 py-1.5 bg-white/90 text-text text-xs shadow-lg cursor-pointer hover:bg-white">
+            <label className="px-3 py-1.5 bg-white/10 text-dark-text text-xs shadow-lg cursor-pointer hover:bg-white/20 backdrop-blur-sm">
               החלף תמונה
               <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
             </label>
@@ -821,9 +821,9 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
       </div>
 
       {/* Main card */}
-      <div className="border border-border dark:border-dark-border bg-white dark:bg-dark-surface overflow-hidden">
+      <div className="glass overflow-hidden">
         {/* Section buttons bar */}
-        <div className="border-b border-border dark:border-dark-border bg-surface/50 dark:bg-dark-bg/50 px-4 py-2.5">
+        <div className="border-b border-white/10 bg-white/5 backdrop-blur-sm px-4 py-2.5">
           <div className="flex gap-1.5 overflow-x-auto">
             {availableSections.map(s => (
               <button

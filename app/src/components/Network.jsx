@@ -95,7 +95,7 @@ export default function Network({ onSelectLetter }) {
         ))}
       </div>
 
-      <div className="border border-border dark:border-dark-border p-4 bg-white dark:bg-dark-surface overflow-x-auto transition-colors">
+      <div className="glass p-4 overflow-x-auto">
         <svg viewBox="0 0 700 500" className="w-full max-w-[700px] mx-auto">
           {edges.map((edge, i) => {
             const fromPos = getPos(edge.from - 1, 22)
