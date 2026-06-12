@@ -47,6 +47,7 @@ const SECTIONS = [
   { id: 'skill', label: 'מיומנות' },
   { id: 'space', label: 'מודל מרחבי' },
   { id: 'prompt', label: 'אדריכלות' },
+  { id: 'article', label: 'מאמר' },
 ]
 
 function Detail({ label, value }) {
@@ -59,7 +60,7 @@ function Detail({ label, value }) {
   )
 }
 
-function SectionOverview({ letter, letterImages }) {
+function SectionOverview({ letter }) {
   const [generatedPrompt, setGeneratedPrompt] = useState('')
   const [copied, setCopied] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -128,7 +129,7 @@ function SectionOverview({ letter, letterImages }) {
       {letter.hasData && (
         <div className="border border-border/50 dark:border-dark-border/50 rounded-xl p-3 space-y-2">
           <div className="flex items-center justify-between">
-            <p className="text-xs text-text-tertiary dark:text-gray-500">יצירת פרומפט לתמונה</p>
+            <p className="text-xs text-text-tertiary dark:text-gray-500">יצירת פרומפט לתמונה (אנגלית)</p>
             <button
               onClick={generateImagePrompt}
               className="px-3 py-1.5 text-xs rounded-lg bg-accent dark:bg-accent-light text-white hover:opacity-90 transition-opacity"
@@ -265,21 +266,19 @@ function SectionDimensions({ letter }) {
 const LANGUAGE_TABS = [
   { id: 'roots', label: 'שורשים' },
   { id: 'actions', label: 'פעולות' },
-  { id: 'words', label: 'מילים' },
+  { id: 'objects', label: 'חפצים ומושגים' },
 ]
 
 function SectionWords({ letterId, character }) {
-  const [langTab, setLangTab] = useState('words')
+  const [langTab, setLangTab] = useState('roots')
   const data = RELATED_WORDS[letterId]
   if (!data) return (
-    <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">רשימת מילים תתווסף בהמשך</p>
+    <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">נתוני שפה יתווספו בהמשך</p>
   )
 
-  const roots = (data.words || []).filter(w => w.word.length <= 3)
-  const actions = (data.words || []).filter(w => w.meaning && (w.meaning.includes('תנועה') || w.meaning.includes('פעולה') || w.meaning.includes('עשה') || w.meaning.includes('בנה') || w.meaning.includes('יצירה') || w.meaning.includes('שחרור') || w.meaning.includes('חיבור') || w.meaning.includes('בחירה')))
-  const allWords = data.words || []
-
-  const items = langTab === 'roots' ? roots : langTab === 'actions' ? actions : allWords
+  const items = langTab === 'roots' ? (data.roots || [])
+    : langTab === 'actions' ? (data.actions || [])
+    : (data.objects || [])
 
   return (
     <div>
@@ -299,9 +298,9 @@ function SectionWords({ letterId, character }) {
         ))}
       </div>
       <p className="text-xs text-text-secondary dark:text-gray-400 mb-3">
-        {langTab === 'roots' && `שורשים של ${character}׳ — יחידות משמעות בסיסיות`}
-        {langTab === 'actions' && `פעולות הקשורות ל-${character}׳ — ביטויי עשייה`}
-        {langTab === 'words' && `מילים שמתחילות ב-${character}׳ ומחזקות את המשמעות שלה`}
+        {langTab === 'roots' && `שורשים של ${character}׳ — יחידות משמעות בסיסיות (פ.ע.ל)`}
+        {langTab === 'actions' && `פעולות הקשורות ל-${character}׳ — ביטויי עשייה (להפעיל)`}
+        {langTab === 'objects' && `חפצים ומושגים הקשורים ל-${character}׳ — עצמים ורעיונות`}
       </p>
       {items.length === 0 ? (
         <p className="text-sm text-text-tertiary dark:text-gray-500 text-center py-4">אין פריטים בקטגוריה זו עדיין</p>
@@ -309,7 +308,7 @@ function SectionWords({ letterId, character }) {
         <div className="space-y-1.5">
           {items.map((item, i) => (
             <div key={i} className="flex gap-3 items-start p-2.5 rounded-lg bg-surface/50 dark:bg-dark-bg/50 border border-border/30 dark:border-dark-border/30">
-              <span className="text-lg font-bold text-accent dark:text-accent-light shrink-0 w-16 text-center">
+              <span className="text-lg font-bold text-accent dark:text-accent-light shrink-0 w-20 text-center">
                 {item.word}
               </span>
               <p className="text-xs text-text-secondary dark:text-gray-400 leading-relaxed pt-0.5">
@@ -323,43 +322,68 @@ function SectionWords({ letterId, character }) {
   )
 }
 
+const RELATIONSHIP_TYPES = [
+  { type: 'opposite', label: 'מנוגדת', color: 'danger', desc: 'אותיות בקוטב הנגדי — כוחות מאזנים' },
+  { type: 'complementary', label: 'משלימה', color: 'info', desc: 'אותיות שמשלימות זו את זו — חיבור הדדי' },
+  { type: 'reinforces', label: 'מחזקת', color: 'warning', desc: 'אותיות שמגבירות את הכוח — תהודה' },
+  { type: 'sequential', label: 'רצף', color: 'accent', desc: 'אותיות שכנות באלף-בית — זרימה טבעית' },
+  { type: 'mirror', label: 'מראה', color: 'info', desc: 'אותיות שמשקפות זו את זו — היפוך צורני או משמעותי' },
+]
+
 function SectionRelationships({ letter, letters, onSelectLetter }) {
   const rel = letter.dimensions?.relationships
-  if (!rel) return <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">נתוני קשרים יתווספו בהמשך</p>
 
   return (
-    <div className="space-y-3">
-      {rel.opposite && (
-        <button
-          onClick={() => {
-            const t = letters.find(l => l.character === rel.opposite.letter)
-            if (t) onSelectLetter(t.id)
-          }}
-          className="w-full text-right px-4 py-3 bg-danger/10 dark:bg-danger/20 border border-danger/20 dark:border-danger/30 rounded-xl hover:bg-danger/20 dark:hover:bg-danger/30 transition-colors"
-        >
-          <span className="font-bold text-base text-text dark:text-dark-text">מנוגדת: {rel.opposite.letter}׳</span>
-          <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.opposite.quality}</span>
-        </button>
-      )}
-      {rel.complementary && (
-        <button
-          onClick={() => {
-            const t = letters.find(l => l.character === rel.complementary.letter)
-            if (t) onSelectLetter(t.id)
-          }}
-          className="w-full text-right px-4 py-3 bg-info/10 dark:bg-info/20 border border-info/20 dark:border-info/30 rounded-xl hover:bg-info/20 dark:hover:bg-info/30 transition-colors"
-        >
-          <span className="font-bold text-base text-text dark:text-dark-text">משלימה: {rel.complementary.letter}׳</span>
-          <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.complementary.quality}</span>
-        </button>
-      )}
-      {rel.reinforces?.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-2">
-          {rel.reinforces.map((r, i) => (
-            <span key={i} className="px-3 py-2 bg-warning/10 dark:bg-warning/20 border border-warning/20 rounded-xl text-sm text-text-secondary dark:text-gray-400">
-              מחזקת: {r}
-            </span>
+    <div className="space-y-4">
+      <div className="bg-surface/50 dark:bg-dark-bg/50 rounded-xl p-3 border border-border/30 dark:border-dark-border/30">
+        <h4 className="text-sm font-bold text-text dark:text-dark-text mb-2">סוגי קשרים אפשריים</h4>
+        <div className="space-y-1.5">
+          {RELATIONSHIP_TYPES.map(rt => (
+            <div key={rt.type} className="flex gap-2 items-start text-xs">
+              <span className={`font-bold shrink-0 w-16 text-${rt.color} dark:text-${rt.color}`}>{rt.label}</span>
+              <span className="text-text-secondary dark:text-gray-400">{rt.desc}</span>
+            </div>
           ))}
+        </div>
+      </div>
+
+      {!rel && <p className="text-sm text-text-tertiary dark:text-gray-500 text-center py-4">נתוני קשרים ספציפיים יתווספו בהמשך</p>}
+
+      {rel && (
+        <div className="space-y-3">
+          {rel.opposite && (
+            <button
+              onClick={() => {
+                const t = letters.find(l => l.character === rel.opposite.letter)
+                if (t) onSelectLetter(t.id)
+              }}
+              className="w-full text-right px-4 py-3 bg-danger/10 dark:bg-danger/20 border border-danger/20 dark:border-danger/30 rounded-xl hover:bg-danger/20 dark:hover:bg-danger/30 transition-colors"
+            >
+              <span className="font-bold text-base text-text dark:text-dark-text">מנוגדת: {rel.opposite.letter}׳</span>
+              <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.opposite.quality}</span>
+            </button>
+          )}
+          {rel.complementary && (
+            <button
+              onClick={() => {
+                const t = letters.find(l => l.character === rel.complementary.letter)
+                if (t) onSelectLetter(t.id)
+              }}
+              className="w-full text-right px-4 py-3 bg-info/10 dark:bg-info/20 border border-info/20 dark:border-info/30 rounded-xl hover:bg-info/20 dark:hover:bg-info/30 transition-colors"
+            >
+              <span className="font-bold text-base text-text dark:text-dark-text">משלימה: {rel.complementary.letter}׳</span>
+              <span className="block text-sm text-text-secondary dark:text-gray-400 mt-1">{rel.complementary.quality}</span>
+            </button>
+          )}
+          {rel.reinforces?.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-2">
+              {rel.reinforces.map((r, i) => (
+                <span key={i} className="px-3 py-2 bg-warning/10 dark:bg-warning/20 border border-warning/20 rounded-xl text-sm text-text-secondary dark:text-gray-400">
+                  מחזקת: {r}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -432,9 +456,14 @@ function SectionSpace({ letter }) {
   )
 }
 
-function SectionPrompt({ letter }) {
+function SectionPrompt({ letter, letterImages }) {
   const [copied, setCopied] = useState(false)
-  const [showHebrew, setShowHebrew] = useState(false)
+  const [archImage, setArchImage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(`arch-image-${letter.id}`) || ''
+    }
+    return ''
+  })
 
   const role = letter.core?.archetypal_role || ''
   const oneLiner = letter.synthesis?.one_liner || ''
@@ -444,42 +473,130 @@ function SectionPrompt({ letter }) {
   const materials = letter.spatial_model?.material_palette || ''
   const humanExp = letter.spatial_model?.human_experience || ''
 
-  const archPromptHeb = `צור מבנה אדריכלי מינימליסטי המזקק את מהות האות ${letter.character}׳ (${letter.hebrew_name}). ${role ? `תפקיד ארכיטיפי: ${role}.` : ''} ${oneLiner ? `משמעות: "${oneLiner}".` : ''} ${spatialPrinciple ? `עיקרון אדריכלי: ${spatialPrinciple}.` : ''} ${roomType ? `סוג חלל: ${roomType}.` : ''} ${lightSource ? `אור: ${lightSource}.` : ''} ${materials ? `חומרים: ${materials}.` : ''} ${humanExp ? `חוויית אדם: ${humanExp}.` : ''} סגנון: מינימליזם ים-תיכוני, קווים נקיים, אור טבעי, השראה אדריכלית טהורה. ללא טקסט.`
+  const archPrompt = `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}). ${role ? `Archetypal role: ${role}.` : ''} ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialPrinciple ? `Architectural principle: ${spatialPrinciple}.` : ''} ${roomType ? `Space type: ${roomType}.` : ''} ${lightSource ? `Light: ${lightSource}.` : ''} ${materials ? `Materials: ${materials}.` : ''} ${humanExp ? `Human experience: ${humanExp}.` : ''} Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text.`
 
-  const archPromptEng = `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}). ${role ? `Archetypal role: ${role}.` : ''} ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialPrinciple ? `Architectural principle: ${spatialPrinciple}.` : ''} ${roomType ? `Space type: ${roomType}.` : ''} ${lightSource ? `Light: ${lightSource}.` : ''} ${materials ? `Materials: ${materials}.` : ''} ${humanExp ? `Human experience: ${humanExp}.` : ''} Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text.`
+  const postText = `האות ${letter.character}׳ (${letter.hebrew_name}) — ${role || 'מהות'}. ${oneLiner ? `"${oneLiner}"` : ''} ${spatialPrinciple ? `העיקרון האדריכלי: ${spatialPrinciple}.` : ''} ${humanExp ? `החוויה: ${humanExp}.` : ''} מבנה מינימליסטי שמזקק את רוח האות למרחב מחייה.`
 
-  const prompt = showHebrew ? archPromptHeb : archPromptEng
-
-  const copy = () => {
-    navigator.clipboard.writeText(prompt)
+  const copy = (text) => {
+    navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleArchImageUpload = (e) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const dataUrl = reader.result
+        setArchImage(dataUrl)
+        localStorage.setItem(`arch-image-${letter.id}`, dataUrl)
+      }
+      reader.readAsDataURL(file)
+    }
   }
 
   if (!letter.hasData) return <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">פרומפט אדריכלי יתווסף בהמשך</p>
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <p className="text-xs text-text-secondary dark:text-gray-400">פרומפט למבנה מינימליסטי המזקק את משמעות האות כהשראה אדריכלית</p>
+      {archImage && (
+        <div className="relative -mx-4 -mt-4 md:-mx-5 md:-mt-5 mb-3">
+          <img src={archImage} alt={`אדריכלות ${letter.hebrew_name}`} className="w-full h-48 object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/80 dark:from-dark-surface/80 to-transparent" />
+          <div className="absolute bottom-3 right-4">
+            <h3 className="text-lg font-bold text-text dark:text-dark-text">{letter.character}׳ — השראה אדריכלית</h3>
+          </div>
+          <button
+            onClick={() => { setArchImage(''); localStorage.removeItem(`arch-image-${letter.id}`) }}
+            className="absolute top-2 left-2 px-2 py-1 bg-danger/80 text-white text-xs rounded-lg hover:bg-danger"
+          >
+            הסר
+          </button>
+        </div>
+      )}
+
+      <div>
+        <p className="text-xs text-text-secondary dark:text-gray-400 mb-2">פרומפט למבנה מינימליסטי המזקק את משמעות האות כהשראה אדריכלית</p>
+        <div className="bg-white dark:bg-dark-bg rounded-xl p-4 text-sm leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[160px] overflow-y-auto" dir="ltr">
+          {archPrompt}
+        </div>
+      </div>
+
+      <div className="flex gap-2">
         <button
-          onClick={() => setShowHebrew(!showHebrew)}
-          className="text-xs px-2.5 py-1 rounded-lg border border-accent/30 dark:border-accent-light/30 text-accent dark:text-accent-light hover:bg-accent/10 dark:hover:bg-accent-light/20 transition-colors"
+          onClick={() => copy(archPrompt)}
+          className="flex-1 py-2 rounded-xl bg-accent dark:bg-accent-light text-white text-sm font-bold hover:opacity-90 transition-opacity"
         >
-          {showHebrew ? 'English' : 'עברית'}
+          {copied ? 'הועתק!' : 'העתק פרומפט'}
+        </button>
+        <label className="flex-1 py-2 rounded-xl bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-bold text-center cursor-pointer hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors">
+          העלה תמונה
+          <input type="file" accept="image/*" className="hidden" onChange={handleArchImageUpload} />
+        </label>
+      </div>
+
+      <div className="border-t border-border/50 dark:border-dark-border/50 pt-3">
+        <h4 className="text-sm font-bold text-text dark:text-dark-text mb-1">פוסט מסכם</h4>
+        <div className="bg-accent/5 dark:bg-accent-light/10 rounded-lg p-3 text-sm text-text dark:text-dark-text leading-relaxed border border-accent/20 dark:border-accent-light/20" dir="rtl">
+          {postText}
+        </div>
+        <button
+          onClick={() => copy(postText)}
+          className="mt-2 w-full py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+        >
+          העתק פוסט
         </button>
       </div>
+    </div>
+  )
+}
 
-      <div className="bg-white dark:bg-dark-bg rounded-xl p-4 text-sm leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[200px] overflow-y-auto" dir={showHebrew ? 'rtl' : 'ltr'}>
-        {prompt}
+function SectionArticle({ letter }) {
+  const [articleText, setArticleText] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(`article-${letter.id}`) || ''
+    }
+    return ''
+  })
+  const [copied, setCopied] = useState(false)
+
+  const save = (text) => {
+    setArticleText(text)
+    localStorage.setItem(`article-${letter.id}`, text)
+  }
+
+  const copy = () => {
+    navigator.clipboard.writeText(articleText)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="space-y-3">
+      <h3 className="text-base font-bold text-text dark:text-dark-text">מאמר על האות {letter.character}׳</h3>
+      <p className="text-xs text-text-secondary dark:text-gray-400">
+        כתבי את הפרשנות שלך על האות — מה גילית, מה השתנה בך, מה ההשראה
+      </p>
+      <textarea
+        value={articleText}
+        onChange={(e) => save(e.target.value)}
+        placeholder={`מה האות ${letter.character}׳ אומרת לך? מה הפרשנות האישית שלך?`}
+        className="w-full h-48 p-3 rounded-xl border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-sm text-text dark:text-dark-text leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30 placeholder:text-text-tertiary dark:placeholder:text-gray-600"
+        dir="rtl"
+      />
+      <div className="flex items-center justify-between text-xs text-text-tertiary dark:text-gray-500">
+        <span>{articleText.length > 0 ? `${articleText.length} תווים` : ''}</span>
+        <span>{articleText.length > 0 ? 'נשמר אוטומטית' : ''}</span>
       </div>
-
-      <button
-        onClick={copy}
-        className="w-full py-2.5 rounded-xl bg-accent dark:bg-accent-light text-white text-base font-bold hover:opacity-90 transition-opacity"
-      >
-        {copied ? 'הועתק!' : 'העתק פרומפט אדריכלי'}
-      </button>
+      {articleText.length > 0 && (
+        <button
+          onClick={copy}
+          className="w-full py-2 rounded-xl bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-medium hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+        >
+          {copied ? 'הועתק!' : 'העתק מאמר'}
+        </button>
+      )}
     </div>
   )
 }
@@ -496,20 +613,21 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
   const currentImage = letterImages.getImage(letter.id)
 
   const availableSections = SECTIONS.filter(s => {
-    if (!letter.hasData && s.id !== 'overview') return false
+    if (!letter.hasData && s.id !== 'overview' && s.id !== 'article') return false
     return true
   })
 
   const renderSection = () => {
-    if (!letter.hasData && activeSection !== 'overview') return null
+    if (!letter.hasData && activeSection !== 'overview' && activeSection !== 'article') return null
     switch (activeSection) {
-      case 'overview': return <SectionOverview letter={letter} letterImages={letterImages} />
+      case 'overview': return <SectionOverview letter={letter} />
       case 'dimensions': return <SectionDimensions letter={letter} />
       case 'words': return <SectionWords letterId={letter.id} character={letter.character} />
       case 'relationships': return <SectionRelationships letter={letter} letters={letters} onSelectLetter={onSelectLetter} />
       case 'skill': return <SectionSkill letter={letter} />
       case 'space': return <SectionSpace letter={letter} />
-      case 'prompt': return <SectionPrompt letter={letter} />
+      case 'prompt': return <SectionPrompt letter={letter} letterImages={letterImages} />
+      case 'article': return <SectionArticle letter={letter} />
       default: return null
     }
   }
