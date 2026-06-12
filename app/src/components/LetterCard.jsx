@@ -66,14 +66,11 @@ function SectionOverview({ letter }) {
   const [saved, setSaved] = useState(false)
 
   const generateImagePrompt = () => {
-    const role = letter.core?.archetypal_role || letter.hebrew_name
-    const oneLiner = letter.synthesis?.one_liner || ''
-    const spatialDesc = letter.spatial_model?.architectural_principle || ''
-    const visualMeta = letter.dimensions?.spatial?.visual_metaphor || ''
-    const colorPalette = letter.dimensions?.spatial?.color_palette || ''
-    const lightQuality = letter.dimensions?.spatial?.light_quality || ''
-
-    const prompt = `Create an evocative image for the Hebrew letter ${letter.character} (${letter.english_name}). Essence: ${role}. ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialDesc ? `Space: ${spatialDesc}.` : ''} ${visualMeta ? `Visual metaphor: ${visualMeta}.` : ''} ${colorPalette ? `Colors: ${colorPalette}.` : ''} ${lightQuality ? `Light: ${lightQuality}.` : ''} Style: Fine art photography, Mediterranean minimalism, cinematic light, 16:9, no text.`
+    if (letter.visual_prompt?.english) {
+      setGeneratedPrompt(letter.visual_prompt.english)
+      return
+    }
+    const prompt = `Create an evocative image for the Hebrew letter ${letter.character} (${letter.english_name}), letter number ${letter.id} of the Hebrew alphabet. Gematria value: ${letter.gematria}. This letter represents the archetype of ${letter.english_name.toLowerCase()} — a pure visual essence. Style: Fine art photography, Mediterranean minimalism, cinematic light, 16:9, no text, no Hebrew characters. Professional architecture photography. Documentary realism.`
     setGeneratedPrompt(prompt)
   }
 
@@ -465,15 +462,21 @@ function SectionPrompt({ letter, letterImages }) {
     return ''
   })
 
+  const LETTER_ARCH_DATA = {
+    1: { role: 'The Beginning — unity, origin of all code', principle: 'Entry point with maximum height, direct light, freedom of movement', space: 'Minimalist entrance hall, white, open', light: 'Mediterranean morning light, northern or eastern', materials: 'White stone, sandstone, light wood', experience: 'A person standing at the threshold, open-faced, waiting', metaphor: 'The sea at dawn — infinite possibilities' },
+    2: { role: 'Duality — container, choice, home', principle: 'Central division creating two equal spaces', space: 'Domestic room with central partition', light: 'Symmetrical lighting from both sides', materials: 'Gray and white in tension, smooth plaster', experience: 'Standing between two doors of equal size', metaphor: 'A crossroads with two equal paths' },
+    3: { role: 'Reward of effort — movement, growth, bridge', principle: 'Descending water channel, earned comfort', space: 'Descent chamber with deep seating', light: 'Warm, contained, amber light', materials: 'Warm stone, flowing water, soft textiles', experience: 'Sitting in deep repose after effort', metaphor: 'A spring flowing downward into a quiet pool' },
+  }
+
+  const data = LETTER_ARCH_DATA[letter.id]
+  const archPrompt = data
+    ? `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}). Archetypal role: ${data.role}. Architectural principle: ${data.principle}. Space type: ${data.space}. Light: ${data.light}. Materials: ${data.materials}. Human experience: ${data.experience}. Visual metaphor: ${data.metaphor}. Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text | No Hebrew characters.`
+    : `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}), letter number ${letter.id} of the Hebrew alphabet. This letter embodies a unique archetypal force expressed through space, light, and material. Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text | No Hebrew characters.`
+
   const role = letter.core?.archetypal_role || ''
   const oneLiner = letter.synthesis?.one_liner || ''
   const spatialPrinciple = letter.spatial_model?.architectural_principle || ''
-  const roomType = letter.spatial_model?.room_type || ''
-  const lightSource = letter.spatial_model?.light_source || ''
-  const materials = letter.spatial_model?.material_palette || ''
   const humanExp = letter.spatial_model?.human_experience || ''
-
-  const archPrompt = `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}). ${role ? `Archetypal role: ${role}.` : ''} ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialPrinciple ? `Architectural principle: ${spatialPrinciple}.` : ''} ${roomType ? `Space type: ${roomType}.` : ''} ${lightSource ? `Light: ${lightSource}.` : ''} ${materials ? `Materials: ${materials}.` : ''} ${humanExp ? `Human experience: ${humanExp}.` : ''} Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text.`
 
   const postText = `האות ${letter.character}׳ (${letter.hebrew_name}) — ${role || 'מהות'}. ${oneLiner ? `"${oneLiner}"` : ''} ${spatialPrinciple ? `העיקרון האדריכלי: ${spatialPrinciple}.` : ''} ${humanExp ? `החוויה: ${humanExp}.` : ''} מבנה מינימליסטי שמזקק את רוח האות למרחב מחייה.`
 
