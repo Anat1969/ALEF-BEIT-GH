@@ -32,32 +32,20 @@ function LandingPage({ onEnter }) {
     return () => clearTimeout(t)
   }, [])
 
+  const base = import.meta.env.BASE_URL
+
   return (
     <div className="fixed inset-0 z-[100] bg-dark-bg flex items-center justify-center overflow-hidden" dir="rtl">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {HEBREW_LETTERS.split('').map((ch, i) => (
-          <span
-            key={i}
-            className="absolute text-accent/8 font-light select-none"
-            style={{
-              fontSize: `${40 + Math.floor((i * 37) % 60)}px`,
-              left: `${(i * 4.5) % 95}%`,
-              top: `${(i * 7.3 + 10) % 90}%`,
-              animation: `floatLetter ${12 + (i % 6)}s ease-in-out infinite`,
-              animationDelay: `${i * 0.5}s`,
-            }}
-          >
-            {ch}
-          </span>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes floatLetter {
-          0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
-          50% { transform: translateY(-15px) rotate(2deg); opacity: 0.10; }
-        }
-      `}</style>
+      {/* Video background — fullscreen, no frame, semi-transparent */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+        src={`${base}landing-bg.mp4`}
+      />
+      <div className="absolute inset-0 bg-dark-bg/40 pointer-events-none" />
 
       <div className={`relative z-10 text-center px-6 transition-all duration-1500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="mb-6">
