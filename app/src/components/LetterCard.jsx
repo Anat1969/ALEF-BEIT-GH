@@ -653,55 +653,69 @@ function SectionArticle({ letter }) {
   }
 
   return (
-    <div className="min-h-[600px]" dir="rtl" onPaste={handlePaste}>
-      {/* Hero image */}
-      {heroImage ? (
-        <div className="relative w-full group">
-          <img src={heroImage} alt={`${letter.hebrew_name} — אדריכלות`} className="w-full h-[340px] object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="absolute bottom-0 right-0 left-0 p-8">
-            <div className="max-w-[700px] mx-auto">
-              <span className="text-[80px] leading-none font-light text-white/90 drop-shadow-lg">{letter.character}</span>
-              <h2 className="text-3xl font-bold text-white mt-1 drop-shadow-md">{letter.hebrew_name}</h2>
-              {role && <p className="text-lg text-white/80 mt-1 drop-shadow">{role}</p>}
-            </div>
-          </div>
-          <div className="absolute top-3 left-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <label className="px-3 py-1.5 bg-white/10 text-dark-text text-xs shadow-lg cursor-pointer hover:bg-white/20 backdrop-blur-sm">
-              החלף תמונה
-              <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
-            </label>
-            <button
-              onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
-              className="px-3 py-1.5 bg-danger/80 text-white text-xs shadow-lg hover:bg-danger"
-            >
-              הסר
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="w-full h-[200px] bg-gradient-to-bl from-accent/10 via-surface dark:via-dark-bg to-accent/5 dark:to-accent-light/10 flex flex-col items-center justify-center gap-3 border-2 border-dashed border-border/50 dark:border-dark-border/50">
-          <span className="text-[72px] leading-none text-accent/30 dark:text-accent-light/30">{letter.character}</span>
-          <label className="px-4 py-2 bg-accent dark:bg-accent-light text-white text-sm cursor-pointer hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
-            העלה תמונת אדריכלות
+    <div className="min-h-[600px] relative group" dir="rtl" onPaste={handlePaste}>
+      {/* Full background image */}
+      {heroImage && (
+        <>
+          <img
+            src={heroImage}
+            alt={`${letter.hebrew_name} — אדריכלות`}
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
+        </>
+      )}
+
+      {/* Image controls */}
+      {heroImage && (
+        <div className="absolute top-3 left-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <label className="px-3 py-1.5 bg-white/10 text-white text-xs shadow-lg cursor-pointer hover:bg-white/20 backdrop-blur-sm">
+            החלף תמונה
             <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
           </label>
-          <p className="text-xs text-text-tertiary dark:text-gray-500">או הדביקי תמונה (Ctrl+V)</p>
+          <button
+            onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
+            className="px-3 py-1.5 bg-danger/80 text-white text-xs shadow-lg hover:bg-danger"
+          >
+            הסר
+          </button>
         </div>
       )}
 
-      {/* Magazine content */}
-      <div className="max-w-[700px] mx-auto px-6 py-8">
-        {!heroImage && (
-          <div className="text-center mb-8">
-            <span className="text-[64px] leading-none font-light text-accent/20 dark:text-accent-light/20">{letter.character}</span>
-            <h2 className="text-2xl font-bold text-text dark:text-dark-text">{letter.hebrew_name}</h2>
-            {role && <p className="text-base text-accent dark:text-accent-light mt-1">{role}</p>}
-          </div>
-        )}
+      {/* Upload prompt when no image */}
+      {!heroImage && (
+        <div className="w-full py-10 flex flex-col items-center justify-center gap-3 border-b border-white/10">
+          <span className="text-[72px] leading-none text-accent-light/30">{letter.character}</span>
+          <label className="px-4 py-2 bg-accent-light text-white text-sm cursor-pointer hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
+            העלה תמונת אדריכלות
+            <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
+          </label>
+          <p className="text-xs text-gray-500">או הדביקי תמונה (Ctrl+V)</p>
+        </div>
+      )}
+
+      {/* Magazine content — on top of image */}
+      <div className="relative z-10 max-w-[700px] mx-auto px-6 py-8">
+        <div className="text-center mb-8">
+          <span className={`text-[80px] leading-none font-light drop-shadow-lg ${heroImage ? 'text-white/90' : 'text-accent-light/20'}`}>
+            {letter.character}
+          </span>
+          <h2 className={`text-3xl font-bold mt-1 drop-shadow-md ${heroImage ? 'text-white' : 'text-dark-text'}`}>
+            {letter.hebrew_name}
+          </h2>
+          {role && (
+            <p className={`text-lg mt-1 drop-shadow ${heroImage ? 'text-white/80' : 'text-accent-light'}`}>
+              {role}
+            </p>
+          )}
+        </div>
 
         {oneLiner && (
-          <blockquote className="text-xl font-light text-accent dark:text-accent-light italic leading-relaxed text-center my-6 px-4 border-r-4 border-accent/30 dark:border-accent-light/30">
+          <blockquote className={`text-xl font-light italic leading-relaxed text-center my-6 px-4 border-r-4 ${
+            heroImage
+              ? 'text-accent-light border-accent-light/40 drop-shadow-md'
+              : 'text-accent-light border-accent-light/30'
+          }`}>
             "{oneLiner}"
           </blockquote>
         )}
@@ -709,17 +723,17 @@ function SectionArticle({ letter }) {
         <div className="flex items-center justify-end gap-2 mb-4">
           <button
             onClick={() => setIsEditing(!isEditing)}
-            className={`px-3 py-1.5 text-xs transition-colors ${
+            className={`px-3 py-1.5 text-xs backdrop-blur-sm transition-colors ${
               isEditing
-                ? 'bg-accent dark:bg-accent-light text-white'
-                : 'bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10'
+                ? 'bg-accent-light text-white'
+                : 'bg-white/10 text-gray-300 hover:bg-white/20'
             }`}
           >
             {isEditing ? 'תצוגה' : 'עריכה'}
           </button>
           <button
             onClick={copy}
-            className="px-3 py-1.5 text-xs bg-surface dark:bg-dark-bg text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10 transition-colors"
+            className="px-3 py-1.5 text-xs bg-white/10 text-gray-300 hover:bg-white/20 backdrop-blur-sm transition-colors"
           >
             {copied ? 'הועתק!' : 'העתק'}
           </button>
@@ -729,23 +743,25 @@ function SectionArticle({ letter }) {
           <textarea
             value={currentText}
             onChange={(e) => save(e.target.value)}
-            className="w-full min-h-[400px] p-4 border border-border dark:border-dark-border bg-white dark:bg-dark-bg text-base text-text dark:text-dark-text leading-[1.9] resize-y focus:outline-none focus:ring-2 focus:ring-accent/30 dark:focus:ring-accent-light/30"
+            className="w-full min-h-[400px] p-4 border border-white/20 bg-black/50 backdrop-blur-sm text-base text-white leading-[1.9] resize-y focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             dir="rtl"
           />
         ) : (
-          <article className="prose-magazine">
+          <article>
             {currentText.split('\n').map((line, i) => {
               if (!line.trim()) return <div key={i} className="h-4" />
               if (line.startsWith('—') && line.endsWith('—'))
-                return <h3 key={i} className="text-center text-sm font-bold text-accent dark:text-accent-light tracking-widest uppercase my-6">{line.replace(/—/g, '').trim()}</h3>
+                return <h3 key={i} className="text-center text-sm font-bold text-accent-light tracking-widest uppercase my-6 drop-shadow">{line.replace(/—/g, '').trim()}</h3>
               if (line.startsWith('"') && line.endsWith('"'))
-                return <p key={i} className="text-lg italic text-accent dark:text-accent-light text-center leading-relaxed">{line}</p>
-              return <p key={i} className="text-base text-text dark:text-dark-text leading-[1.9] mb-1">{line}</p>
+                return <p key={i} className="text-lg italic text-accent-light text-center leading-relaxed drop-shadow">{line}</p>
+              return <p key={i} className={`text-base leading-[1.9] mb-1 ${heroImage ? 'text-white/90 drop-shadow' : 'text-dark-text'}`}>{line}</p>
             })}
           </article>
         )}
 
-        <div className="mt-8 pt-6 border-t border-border/30 dark:border-dark-border/30 flex items-center justify-between text-xs text-text-tertiary dark:text-gray-500">
+        <div className={`mt-8 pt-6 border-t flex items-center justify-between text-xs ${
+          heroImage ? 'border-white/20 text-white/50' : 'border-dark-border/30 text-gray-500'
+        }`}>
           <span>22 אותיות — מערכת חיה</span>
           <span>אות #{letter.id} מתוך 22</span>
         </div>
