@@ -18,6 +18,12 @@ const TABS = [
 
 const HEBREW_LETTERS = 'אבגדהוזחטיכלמנסעפצקרשת'
 
+const COLOR_MODES = [
+  { id: 'gold', label: 'זהב' },
+  { id: 'blue', label: 'כחול' },
+  { id: 'bw', label: 'שחור-לבן' },
+]
+
 function LandingPage({ onEnter }) {
   const [visible, setVisible] = useState(false)
 
@@ -28,7 +34,6 @@ function LandingPage({ onEnter }) {
 
   return (
     <div className="fixed inset-0 z-[100] bg-dark-bg flex items-center justify-center overflow-hidden" dir="rtl">
-      {/* Animated floating letters */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {HEBREW_LETTERS.split('').map((ch, i) => (
           <span
@@ -38,8 +43,8 @@ function LandingPage({ onEnter }) {
               fontSize: `${40 + Math.floor((i * 37) % 60)}px`,
               left: `${(i * 4.5) % 95}%`,
               top: `${(i * 7.3 + 10) % 90}%`,
-              animation: `floatLetter ${6 + (i % 4)}s ease-in-out infinite`,
-              animationDelay: `${i * 0.3}s`,
+              animation: `floatLetter ${12 + (i % 6)}s ease-in-out infinite`,
+              animationDelay: `${i * 0.5}s`,
             }}
           >
             {ch}
@@ -49,13 +54,12 @@ function LandingPage({ onEnter }) {
 
       <style>{`
         @keyframes floatLetter {
-          0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
-          50% { transform: translateY(-20px) rotate(3deg); opacity: 0.12; }
+          0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.05; }
+          50% { transform: translateY(-15px) rotate(2deg); opacity: 0.10; }
         }
       `}</style>
 
-      {/* Central content */}
-      <div className={`relative z-10 text-center px-6 transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <div className={`relative z-10 text-center px-6 transition-all duration-1500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="mb-6">
           <span className="text-[120px] leading-none font-extralight text-gold">א</span>
         </div>
@@ -71,7 +75,7 @@ function LandingPage({ onEnter }) {
 
         <button
           onClick={onEnter}
-          className="group relative px-10 py-4 bg-accent text-dark-bg font-bold text-lg tracking-wide hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 shimmer glow-gold"
+          className="px-10 py-4 bg-accent text-dark-bg font-bold text-lg tracking-wide hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20 transition-all duration-300 glow-gold"
         >
           כניסה למערכת
         </button>
@@ -90,11 +94,20 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard')
   const [selectedLetterId, setSelectedLetterId] = useState(null)
   const [showLanding, setShowLanding] = useState(true)
+  const [colorMode, setColorMode] = useState('gold')
   const letterImages = useLetterImages()
 
   useEffect(() => {
     document.documentElement.classList.add('dark')
   }, [])
+
+  useEffect(() => {
+    const el = document.documentElement
+    el.classList.remove('color-gold', 'color-blue', 'color-bw')
+    if (colorMode !== 'gold') {
+      el.classList.add(`color-${colorMode}`)
+    }
+  }, [colorMode])
 
   const handleSelectLetter = (id) => {
     setSelectedLetterId(id)
@@ -135,11 +148,30 @@ export default function App() {
       <div className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-transparent to-indigo-950/30 pointer-events-none" />
 
       <div className="relative z-10">
-        <header className="sticky top-0 z-50 glass h-14 flex items-center justify-between px-6 shimmer">
-          <h1 className="text-xl font-extrabold tracking-tight">
+        <header className="sticky top-0 z-50 glass h-14 flex items-center justify-between px-6">
+          <button
+            onClick={() => setShowLanding(true)}
+            className="text-xl font-extrabold tracking-tight hover:opacity-80 transition-opacity"
+          >
             <span className="text-gold">22 אותיות</span>
             <span className="text-gray-500 font-normal text-sm mr-2 opacity-60">מערכת חיה</span>
-          </h1>
+          </button>
+
+          <div className="flex gap-0.5">
+            {COLOR_MODES.map(mode => (
+              <button
+                key={mode.id}
+                onClick={() => setColorMode(mode.id)}
+                className={`px-2 py-1 text-[10px] transition-all ${
+                  colorMode === mode.id
+                    ? 'text-accent bg-white/10'
+                    : 'text-gray-500 hover:text-gray-300'
+                }`}
+              >
+                {mode.label}
+              </button>
+            ))}
+          </div>
         </header>
 
         <nav className="glass border-b border-white/10">

@@ -78,12 +78,13 @@
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
   }
 
-  /* Gold gradient text */
+  /* Gold gradient text with shadow */
   .text-gold {
     background: linear-gradient(135deg, #B8962E 0%, #D4AF37 25%, #F0D060 50%, #E8C547 75%, #D4AF37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 1px 3px rgba(212, 175, 55, 0.4));
   }
 
   /* Shimmer — light reflection sweep */
@@ -97,12 +98,18 @@
     inset: 0;
     background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.12) 48%, rgba(255, 255, 255, 0.20) 50%, rgba(255, 255, 255, 0.12) 52%, transparent 70%);
     background-size: 250% 100%;
-    animation: shimmerSweep 4s ease-in-out infinite;
+    animation: shimmerSweep 12s ease-in-out infinite;
     pointer-events: none;
   }
   @keyframes shimmerSweep {
     0% { background-position: 250% 0; }
     100% { background-position: -250% 0; }
+  }
+
+  /* Accent text shadow for readability */
+  .dark .text-accent,
+  .dark .text-accent-light {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
   }
 
   /* Gold glow */
@@ -137,5 +144,34 @@
   @keyframes pulseSubtle {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+  }
+
+  /* Color mode: Blue */
+  .color-blue {
+    --color-accent: #3B82F6;
+    --color-accent-light: #60A5FA;
+    --color-warning: #3B82F6;
+  }
+  .color-blue .glass-card:hover {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.25);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.08);
+  }
+  .color-blue .glow-gold {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.20), 0 0 45px rgba(59, 130, 246, 0.08);
+  }
+  .color-blue .text-gold {
+    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 25%, #60A5FA 50%, #93C5FD 75%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 1px 3px rgba(59, 130, 246, 0.4));
+  }
+
+  /* Color mode: Black & White */
+  .color-bw {
+    filter: grayscale(1);
+    --color-accent: #A0A0A0;
+    --color-accent-light: #C0C0C0;
   }
 }

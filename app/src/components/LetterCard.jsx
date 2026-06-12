@@ -517,7 +517,7 @@ function SectionPrompt({ letter, letterImages }) {
           </div>
           <button
             onClick={() => { setArchImage(''); localStorage.removeItem(`arch-image-${letter.id}`) }}
-            className="absolute top-2 left-2 px-2 py-1 bg-danger/80 text-white text-xs hover:bg-danger"
+            className="absolute top-2 left-2 px-2 py-1 bg-black/40 text-white/70 text-[10px] opacity-0 group-hover:opacity-60 hover:!opacity-100 hover:bg-black/60 transition-opacity backdrop-blur-sm"
           >
             הסר
           </button>
@@ -531,14 +531,14 @@ function SectionPrompt({ letter, letterImages }) {
         </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-1 opacity-60 hover:opacity-100 transition-opacity">
         <button
           onClick={() => copy(archPrompt)}
-          className="flex-1 py-2 bg-accent dark:bg-accent-light text-white text-sm font-bold hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
+          className="flex-1 py-1.5 text-xs text-gray-400 hover:text-accent-light hover:bg-white/5 transition-colors"
         >
           {copied ? 'הועתק!' : 'העתק פרומפט'}
         </button>
-        <label className="flex-1 py-2 bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light text-sm font-bold text-center cursor-pointer hover:bg-accent/20 dark:hover:bg-accent-light/25 hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
+        <label className="flex-1 py-1.5 text-xs text-gray-400 hover:text-accent-light hover:bg-white/5 text-center cursor-pointer transition-colors">
           העלה תמונה
           <input type="file" accept="image/*" className="hidden" onChange={handleArchImageUpload} />
         </label>
@@ -551,7 +551,7 @@ function SectionPrompt({ letter, letterImages }) {
         </div>
         <button
           onClick={() => copy(postText)}
-          className="mt-2 w-full py-1.5 text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+          className="mt-1 w-full py-1 text-[10px] text-gray-500 hover:text-accent-light hover:bg-white/5 transition-colors"
         >
           העתק פוסט
         </button>
@@ -575,12 +575,14 @@ function SectionArticle({ letter }) {
   })
   const [copied, setCopied] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [showText, setShowText] = useState(false)
 
   useEffect(() => {
     setHeroImage(localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`) || '')
     setArticleText(localStorage.getItem(`article-${letter.id}`) || '')
     setCopied(false)
     setIsEditing(false)
+    setShowText(false)
   }, [letter.id])
 
   const role = letter.core?.archetypal_role || ''
@@ -664,8 +666,6 @@ function SectionArticle({ letter }) {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const [showText, setShowText] = useState(false)
-
   return (
     <div className="min-h-[600px] relative group" dir="rtl" onPaste={handlePaste}>
       {/* Full background image — CLEAR, full opacity */}
@@ -677,16 +677,16 @@ function SectionArticle({ letter }) {
         />
       )}
 
-      {/* Image controls — hover only */}
+      {/* Image controls — subtle, hover only */}
       {heroImage && (
-        <div className="absolute top-3 left-3 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <label className="px-3 py-1.5 bg-black/50 text-white text-xs shadow-lg cursor-pointer hover:bg-black/70 backdrop-blur-sm">
-            החלף תמונה
+        <div className="absolute top-2 left-2 z-20 flex gap-1 opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-opacity">
+          <label className="px-2 py-1 bg-black/40 text-white/70 text-[10px] cursor-pointer hover:bg-black/60 backdrop-blur-sm">
+            החלף
             <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
           </label>
           <button
             onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
-            className="px-3 py-1.5 bg-danger/80 text-white text-xs shadow-lg hover:bg-danger"
+            className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60"
           >
             הסר
           </button>
@@ -697,11 +697,11 @@ function SectionArticle({ letter }) {
       {!heroImage && (
         <div className="w-full py-10 flex flex-col items-center justify-center gap-3 border-b border-white/10">
           <span className="text-[72px] leading-none text-accent-light/30">{letter.character}</span>
-          <label className="px-4 py-2 bg-accent-light text-white text-sm cursor-pointer hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all">
-            העלה תמונת אדריכלות
+          <label className="px-4 py-2 bg-white/10 text-gray-400 text-xs cursor-pointer hover:bg-white/15 transition-all">
+            העלה תמונה
             <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
           </label>
-          <p className="text-xs text-gray-500">או הדביקי תמונה (Ctrl+V)</p>
+          <p className="text-xs text-gray-600">Ctrl+V</p>
         </div>
       )}
 
@@ -715,7 +715,7 @@ function SectionArticle({ letter }) {
             </div>
             <button
               onClick={() => setShowText(true)}
-              className="px-4 py-2 bg-white/15 text-white text-sm backdrop-blur-sm hover:bg-white/25 transition-all shimmer"
+              className="px-3 py-1.5 bg-white/10 text-white/80 text-xs backdrop-blur-sm hover:bg-white/20 transition-all"
             >
               קרא עוד
             </button>
@@ -723,29 +723,29 @@ function SectionArticle({ letter }) {
         </div>
       )}
 
-      {/* Text overlay — shown on click */}
-      {showText && (
+      {/* Text overlay — shown on click, only when image exists */}
+      {heroImage && showText && (
         <div className="absolute inset-0 z-10 bg-gray-200/75 backdrop-blur-md overflow-y-auto">
           <div className="max-w-[700px] mx-auto px-6 py-8">
             <div className="flex items-center justify-between mb-6">
               <button
                 onClick={() => setShowText(false)}
-                className="px-4 py-2 bg-dark-bg/80 text-white text-sm hover:bg-dark-bg transition-colors"
+                className="px-3 py-1.5 text-xs text-gray-500 hover:text-gray-800 transition-colors"
               >
-                חזרה לתמונה
+                ← חזרה לתמונה
               </button>
-              <div className="flex gap-2">
+              <div className="flex gap-1 opacity-60 hover:opacity-100 transition-opacity">
                 <button
                   onClick={() => setIsEditing(!isEditing)}
-                  className={`px-3 py-1.5 text-xs transition-colors ${
-                    isEditing ? 'bg-accent text-white' : 'bg-dark-bg/60 text-gray-700 hover:bg-dark-bg/80 hover:text-white'
+                  className={`px-2 py-1 text-[10px] transition-colors ${
+                    isEditing ? 'bg-gray-400/30 text-gray-700' : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
                   {isEditing ? 'תצוגה' : 'עריכה'}
                 </button>
                 <button
                   onClick={copy}
-                  className="px-3 py-1.5 text-xs bg-dark-bg/60 text-gray-700 hover:bg-dark-bg/80 hover:text-white transition-colors"
+                  className="px-2 py-1 text-[10px] text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   {copied ? 'הועתק!' : 'העתק'}
                 </button>
@@ -806,16 +806,16 @@ function SectionArticle({ letter }) {
             </blockquote>
           )}
 
-          <div className="flex items-center justify-end gap-2 mb-4">
+          <div className="flex items-center justify-end gap-1 mb-4 opacity-40 hover:opacity-80 transition-opacity">
             <button
               onClick={() => setIsEditing(!isEditing)}
-              className={`px-3 py-1.5 text-xs transition-colors ${
-                isEditing ? 'bg-accent-light text-white' : 'bg-white/10 text-gray-300 hover:bg-white/20'
+              className={`px-2 py-1 text-[10px] transition-colors ${
+                isEditing ? 'bg-white/15 text-gray-300' : 'text-gray-500 hover:text-gray-300'
               }`}
             >
               {isEditing ? 'תצוגה' : 'עריכה'}
             </button>
-            <button onClick={copy} className="px-3 py-1.5 text-xs bg-white/10 text-gray-300 hover:bg-white/20 transition-colors">
+            <button onClick={copy} className="px-2 py-1 text-[10px] text-gray-500 hover:text-gray-300 transition-colors">
               {copied ? 'הועתק!' : 'העתק'}
             </button>
           </div>
@@ -886,10 +886,10 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
       {/* Letter navigation */}
       <div className="flex items-center justify-between mb-3">
         <button
-          onClick={() => onSelectLetter(nextId)}
-          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border hover:bg-surface dark:hover:bg-dark-surface hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
+          onClick={() => onSelectLetter(prevId)}
+          className="px-3 py-1.5 text-sm text-gray-500 hover:text-dark-text hover:bg-white/5 transition-all"
         >
-          הבאה →
+          הקודמת →
         </button>
         <div className="flex gap-0.5">
           {letters.map(l => (
@@ -909,10 +909,10 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
           ))}
         </div>
         <button
-          onClick={() => onSelectLetter(prevId)}
-          className="px-3 py-1.5 text-sm border border-border dark:border-dark-border hover:bg-surface dark:hover:bg-dark-surface hover:-translate-y-px hover:shadow-sm active:translate-y-0 transition-all"
+          onClick={() => onSelectLetter(nextId)}
+          className="px-3 py-1.5 text-sm text-gray-500 hover:text-dark-text hover:bg-white/5 transition-all"
         >
-          ← הקודמת
+          ← הבאה
         </button>
       </div>
 
@@ -952,8 +952,8 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                     alt={`תמונת ${letter.name}`}
                     className="w-full object-contain"
                   />
-                  <div className="absolute top-2 left-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <label className="px-3 py-1.5 bg-accent dark:bg-accent-light text-white text-sm shadow-lg hover:opacity-90 cursor-pointer">
+                  <div className="absolute top-2 left-2 flex gap-1 opacity-0 group-hover:opacity-50 hover:!opacity-100 transition-opacity">
+                    <label className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 cursor-pointer backdrop-blur-sm">
                       החלף
                       <input
                         type="file"
@@ -971,7 +971,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                     </label>
                     <button
                       onClick={() => letterImages.removeImage(letter.id)}
-                      className="px-3 py-1.5 bg-danger text-white text-sm shadow-lg hover:opacity-90"
+                      className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60 backdrop-blur-sm"
                     >
                       הסר
                     </button>
