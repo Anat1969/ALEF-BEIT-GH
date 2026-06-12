@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLetters } from '../hooks/useLetters'
 import ImageUploader from './ImageUploader'
 import RELATED_WORDS from '../data/relatedWords'
@@ -462,6 +462,11 @@ function SectionPrompt({ letter, letterImages }) {
     return ''
   })
 
+  useEffect(() => {
+    setArchImage(localStorage.getItem(`arch-image-${letter.id}`) || '')
+    setCopied(false)
+  }, [letter.id])
+
   const LETTER_ARCH_DATA = {
     1: { role: 'The Beginning — unity, origin of all code', principle: 'Entry point with maximum height, direct light, freedom of movement', space: 'Minimalist entrance hall, white, open', light: 'Mediterranean morning light, northern or eastern', materials: 'White stone, sandstone, light wood', experience: 'A person standing at the threshold, open-faced, waiting', metaphor: 'The sea at dawn — infinite possibilities' },
     2: { role: 'Duality — container, choice, home', principle: 'Central division creating two equal spaces', space: 'Domestic room with central partition', light: 'Symmetrical lighting from both sides', materials: 'Gray and white in tension, smooth plaster', experience: 'Standing between two doors of equal size', metaphor: 'A crossroads with two equal paths' },
@@ -570,6 +575,13 @@ function SectionArticle({ letter }) {
   })
   const [copied, setCopied] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+
+  useEffect(() => {
+    setHeroImage(localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`) || '')
+    setArticleText(localStorage.getItem(`article-${letter.id}`) || '')
+    setCopied(false)
+    setIsEditing(false)
+  }, [letter.id])
 
   const role = letter.core?.archetypal_role || ''
   const oneLiner = letter.synthesis?.one_liner || ''
