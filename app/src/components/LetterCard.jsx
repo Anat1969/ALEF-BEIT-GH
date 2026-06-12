@@ -42,11 +42,11 @@ const DIMENSION_CATEGORIES = [
 const SECTIONS = [
   { id: 'overview', label: 'סקירה' },
   { id: 'dimensions', label: 'מימדים' },
-  { id: 'words', label: 'מילים' },
+  { id: 'words', label: 'שפה' },
   { id: 'relationships', label: 'קשרים' },
   { id: 'skill', label: 'מיומנות' },
   { id: 'space', label: 'מודל מרחבי' },
-  { id: 'prompt', label: 'פרומפט' },
+  { id: 'prompt', label: 'אדריכלות' },
 ]
 
 function Detail({ label, value }) {
@@ -59,7 +59,38 @@ function Detail({ label, value }) {
   )
 }
 
-function SectionOverview({ letter }) {
+function SectionOverview({ letter, letterImages }) {
+  const [generatedPrompt, setGeneratedPrompt] = useState('')
+  const [copied, setCopied] = useState(false)
+  const [saved, setSaved] = useState(false)
+
+  const generateImagePrompt = () => {
+    const role = letter.core?.archetypal_role || letter.hebrew_name
+    const oneLiner = letter.synthesis?.one_liner || ''
+    const spatialDesc = letter.spatial_model?.architectural_principle || ''
+    const visualMeta = letter.dimensions?.spatial?.visual_metaphor || ''
+    const colorPalette = letter.dimensions?.spatial?.color_palette || ''
+    const lightQuality = letter.dimensions?.spatial?.light_quality || ''
+
+    const prompt = `Create an evocative image for the Hebrew letter ${letter.character} (${letter.english_name}). Essence: ${role}. ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialDesc ? `Space: ${spatialDesc}.` : ''} ${visualMeta ? `Visual metaphor: ${visualMeta}.` : ''} ${colorPalette ? `Colors: ${colorPalette}.` : ''} ${lightQuality ? `Light: ${lightQuality}.` : ''} Style: Fine art photography, Mediterranean minimalism, cinematic light, 16:9, no text.`
+    setGeneratedPrompt(prompt)
+  }
+
+  const copyPrompt = () => {
+    navigator.clipboard.writeText(generatedPrompt)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const pasteToFrame = () => {
+    if (generatedPrompt) {
+      const key = `overview-prompt-${letter.id}`
+      localStorage.setItem(key, generatedPrompt)
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    }
+  }
+
   return (
     <div className="space-y-4">
       <div className="text-center mb-2">
@@ -93,6 +124,45 @@ function SectionOverview({ letter }) {
           <p className="text-2xl font-bold text-text dark:text-dark-text">#{letter.id}</p>
         </div>
       </div>
+
+      {letter.hasData && (
+        <div className="border border-border/50 dark:border-dark-border/50 rounded-xl p-3 space-y-2">
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-text-tertiary dark:text-gray-500">יצירת פרומפט לתמונה</p>
+            <button
+              onClick={generateImagePrompt}
+              className="px-3 py-1.5 text-xs rounded-lg bg-accent dark:bg-accent-light text-white hover:opacity-90 transition-opacity"
+            >
+              צור פרומפט
+            </button>
+          </div>
+
+          {generatedPrompt && (
+            <>
+              <p className="text-[11px] text-accent dark:text-accent-light italic">
+                פרומפט ליצירת תמונה אמנותית המזקקת את מהות האות {letter.character}׳
+              </p>
+              <div className="bg-white dark:bg-dark-bg rounded-lg p-3 text-xs leading-relaxed text-text dark:text-dark-text font-mono border border-border dark:border-dark-border max-h-[120px] overflow-y-auto" dir="ltr">
+                {generatedPrompt}
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={copyPrompt}
+                  className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+                >
+                  {copied ? 'הועתק!' : 'העתק'}
+                </button>
+                <button
+                  onClick={pasteToFrame}
+                  className="flex-1 py-1.5 rounded-lg text-xs font-medium bg-accent/10 dark:bg-accent-light/15 text-accent dark:text-accent-light hover:bg-accent/20 dark:hover:bg-accent-light/25 transition-colors"
+                >
+                  {saved ? 'נשמר!' : 'שמור למסגרת'}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   )
 }
@@ -192,29 +262,63 @@ function SectionDimensions({ letter }) {
   )
 }
 
+const LANGUAGE_TABS = [
+  { id: 'roots', label: 'שורשים' },
+  { id: 'actions', label: 'פעולות' },
+  { id: 'words', label: 'מילים' },
+]
+
 function SectionWords({ letterId, character }) {
+  const [langTab, setLangTab] = useState('words')
   const data = RELATED_WORDS[letterId]
   if (!data) return (
     <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">רשימת מילים תתווסף בהמשך</p>
   )
 
+  const roots = (data.words || []).filter(w => w.word.length <= 3)
+  const actions = (data.words || []).filter(w => w.meaning && (w.meaning.includes('תנועה') || w.meaning.includes('פעולה') || w.meaning.includes('עשה') || w.meaning.includes('בנה') || w.meaning.includes('יצירה') || w.meaning.includes('שחרור') || w.meaning.includes('חיבור') || w.meaning.includes('בחירה')))
+  const allWords = data.words || []
+
+  const items = langTab === 'roots' ? roots : langTab === 'actions' ? actions : allWords
+
   return (
     <div>
-      <p className="text-xs text-text-secondary dark:text-gray-400 mb-3">
-        מילים שמתחילות ב-{character}׳ ומחזקות את המשמעות שלה
-      </p>
-      <div className="space-y-1.5">
-        {data.words.map((item, i) => (
-          <div key={i} className="flex gap-3 items-start p-2.5 rounded-lg bg-surface/50 dark:bg-dark-bg/50 border border-border/30 dark:border-dark-border/30">
-            <span className="text-lg font-bold text-accent dark:text-accent-light shrink-0 w-16 text-center">
-              {item.word}
-            </span>
-            <p className="text-xs text-text-secondary dark:text-gray-400 leading-relaxed pt-0.5">
-              {item.meaning}
-            </p>
-          </div>
+      <div className="flex gap-1.5 mb-3">
+        {LANGUAGE_TABS.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setLangTab(tab.id)}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+              langTab === tab.id
+                ? 'bg-accent dark:bg-accent-light text-white'
+                : 'bg-surface dark:bg-dark-surface text-text-secondary dark:text-gray-400 hover:bg-accent/10 dark:hover:bg-accent-light/10'
+            }`}
+          >
+            {tab.label}
+          </button>
         ))}
       </div>
+      <p className="text-xs text-text-secondary dark:text-gray-400 mb-3">
+        {langTab === 'roots' && `שורשים של ${character}׳ — יחידות משמעות בסיסיות`}
+        {langTab === 'actions' && `פעולות הקשורות ל-${character}׳ — ביטויי עשייה`}
+        {langTab === 'words' && `מילים שמתחילות ב-${character}׳ ומחזקות את המשמעות שלה`}
+      </p>
+      {items.length === 0 ? (
+        <p className="text-sm text-text-tertiary dark:text-gray-500 text-center py-4">אין פריטים בקטגוריה זו עדיין</p>
+      ) : (
+        <div className="space-y-1.5">
+          {items.map((item, i) => (
+            <div key={i} className="flex gap-3 items-start p-2.5 rounded-lg bg-surface/50 dark:bg-dark-bg/50 border border-border/30 dark:border-dark-border/30">
+              <span className="text-lg font-bold text-accent dark:text-accent-light shrink-0 w-16 text-center">
+                {item.word}
+              </span>
+              <p className="text-xs text-text-secondary dark:text-gray-400 leading-relaxed pt-0.5">
+                {item.meaning}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -332,9 +436,19 @@ function SectionPrompt({ letter }) {
   const [copied, setCopied] = useState(false)
   const [showHebrew, setShowHebrew] = useState(false)
 
-  if (!letter.visual_prompt) return <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">פרומפט יתווסף בהמשך</p>
+  const role = letter.core?.archetypal_role || ''
+  const oneLiner = letter.synthesis?.one_liner || ''
+  const spatialPrinciple = letter.spatial_model?.architectural_principle || ''
+  const roomType = letter.spatial_model?.room_type || ''
+  const lightSource = letter.spatial_model?.light_source || ''
+  const materials = letter.spatial_model?.material_palette || ''
+  const humanExp = letter.spatial_model?.human_experience || ''
 
-  const prompt = showHebrew ? letter.visual_prompt.hebrew : letter.visual_prompt.english
+  const archPromptHeb = `צור מבנה אדריכלי מינימליסטי המזקק את מהות האות ${letter.character}׳ (${letter.hebrew_name}). ${role ? `תפקיד ארכיטיפי: ${role}.` : ''} ${oneLiner ? `משמעות: "${oneLiner}".` : ''} ${spatialPrinciple ? `עיקרון אדריכלי: ${spatialPrinciple}.` : ''} ${roomType ? `סוג חלל: ${roomType}.` : ''} ${lightSource ? `אור: ${lightSource}.` : ''} ${materials ? `חומרים: ${materials}.` : ''} ${humanExp ? `חוויית אדם: ${humanExp}.` : ''} סגנון: מינימליזם ים-תיכוני, קווים נקיים, אור טבעי, השראה אדריכלית טהורה. ללא טקסט.`
+
+  const archPromptEng = `Design a minimalist architectural structure distilling the essence of the Hebrew letter ${letter.character} (${letter.english_name}). ${role ? `Archetypal role: ${role}.` : ''} ${oneLiner ? `Meaning: "${oneLiner}".` : ''} ${spatialPrinciple ? `Architectural principle: ${spatialPrinciple}.` : ''} ${roomType ? `Space type: ${roomType}.` : ''} ${lightSource ? `Light: ${lightSource}.` : ''} ${materials ? `Materials: ${materials}.` : ''} ${humanExp ? `Human experience: ${humanExp}.` : ''} Style: Mediterranean minimalism | Clean lines | Natural light | Pure architectural inspiration | Professional architecture photography | 16:9 | No text.`
+
+  const prompt = showHebrew ? archPromptHeb : archPromptEng
 
   const copy = () => {
     navigator.clipboard.writeText(prompt)
@@ -342,10 +456,12 @@ function SectionPrompt({ letter }) {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  if (!letter.hasData) return <p className="text-base text-text-tertiary dark:text-gray-500 text-center py-8">פרומפט אדריכלי יתווסף בהמשך</p>
+
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs text-text-secondary dark:text-gray-400">העתיקי והדביקי ב-Midjourney</p>
+        <p className="text-xs text-text-secondary dark:text-gray-400">פרומפט למבנה מינימליסטי המזקק את משמעות האות כהשראה אדריכלית</p>
         <button
           onClick={() => setShowHebrew(!showHebrew)}
           className="text-xs px-2.5 py-1 rounded-lg border border-accent/30 dark:border-accent-light/30 text-accent dark:text-accent-light hover:bg-accent/10 dark:hover:bg-accent-light/20 transition-colors"
@@ -358,17 +474,11 @@ function SectionPrompt({ letter }) {
         {prompt}
       </div>
 
-      {letter.visual_prompt.recommended_tool && (
-        <p className="text-xs text-text-tertiary dark:text-gray-500">
-          כלי מומלץ: <span className="font-bold text-accent dark:text-accent-light">{letter.visual_prompt.recommended_tool}</span>
-        </p>
-      )}
-
       <button
         onClick={copy}
         className="w-full py-2.5 rounded-xl bg-accent dark:bg-accent-light text-white text-base font-bold hover:opacity-90 transition-opacity"
       >
-        {copied ? 'הועתק!' : 'העתק פרומפט'}
+        {copied ? 'הועתק!' : 'העתק פרומפט אדריכלי'}
       </button>
     </div>
   )
@@ -393,7 +503,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
   const renderSection = () => {
     if (!letter.hasData && activeSection !== 'overview') return null
     switch (activeSection) {
-      case 'overview': return <SectionOverview letter={letter} />
+      case 'overview': return <SectionOverview letter={letter} letterImages={letterImages} />
       case 'dimensions': return <SectionDimensions letter={letter} />
       case 'words': return <SectionWords letterId={letter.id} character={letter.character} />
       case 'relationships': return <SectionRelationships letter={letter} letters={letters} onSelectLetter={onSelectLetter} />
@@ -419,7 +529,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
             <button
               key={l.id}
               onClick={() => onSelectLetter(l.id)}
-              className={`w-6 h-6 rounded text-xs font-medium transition-all ${
+              className={`w-8 h-8 rounded text-sm font-medium transition-all ${
                 l.id === letter.id
                   ? 'bg-accent dark:bg-accent-light text-white scale-110'
                   : l.hasData
