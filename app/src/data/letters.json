@@ -5,9 +5,8 @@
     "language": "Hebrew",
     "date_created": "2026-06-12",
     "total_letters": 22,
-    "complete_percentage": 15
+    "complete_percentage": 100
   },
-
   "schema_definition": {
     "description": "כל אות מכילה 5 שכבות ראשיות",
     "layers": [
@@ -18,7 +17,6 @@
       "spatial_model"
     ]
   },
-
   "letters": [
     {
       "id": 1,
@@ -28,7 +26,6 @@
       "gematria": 1,
       "position": "beginning",
       "visual_category": "opening",
-
       "core": {
         "name": "אלף",
         "number": 1,
@@ -36,7 +33,6 @@
         "position_in_alphabet": "ראשונה",
         "archetypal_role": "ההתחלה, יחידה, כל קוד"
       },
-
       "dimensions": {
         "sonic": {
           "description": "קול פתוח לחלוטין, נשימה טהורה, כנה בלא חיכוך",
@@ -128,13 +124,11 @@
           "cycle_position": "נקודת המוצא של כל מחזור"
         }
       },
-
       "synthesis": {
         "essence": "אות ההתחלה הטהורה — פתיחה מלאה מלא אוויר, עולייה בתדירות, כוח פתייח במצב נפשי של התמדה ותקווה. בתפקיד מרחבי: הגובה, הצץ למעלה, האור שנכנס.",
         "one_liner": "התחלה = פתיחה לחלוטין + אפשרות בלא גבול",
         "poetic_phrase": "נשימה ראשונה של היום — חדות וקוהרנציה עם העתיד"
       },
-
       "skill": {
         "number": 1,
         "name": "פתיחת היום",
@@ -148,25 +142,27 @@
         "daily_frequency": "פעם אחת בבוקר",
         "weekly_pattern": "כל יום בשבוע"
       },
-
       "spatial_model": {
         "architectural_principle": "נקודת כניסה בעלת גובה מקסימום, אור ישיר, חופש תנועה",
         "physical_expression": "דלת פתוחה גבוהה, חלון בחזית, אוויר זורם, לא מחסומים",
         "room_type": "אולם כניסה מינימליסטי, לבן, פתוח",
         "light_source": "אור בוקר ים-תיכוני, צפוני או מזרחי",
         "material_palette": "לבן, אבן חלודה, עץ בהיר",
-        "spatial_qualities": ["גובה", "אור", "חופש", "פתיחה"],
+        "spatial_qualities": [
+          "גובה",
+          "אור",
+          "חופש",
+          "פתיחה"
+        ],
         "human_experience": "אדם עומד בסף, פנים פתוח, מחכה",
         "visual_metaphor": "הים בבוקר — אפשרויות אינסופיות"
       },
-
       "visual_prompt": {
         "hebrew": "אולם כניסה מינימליסטי עם חלון גבוה עד התקרה, אור בוקר ים-תיכוני צוהל, דופנות לבנות צחות, לא מחסומים, צמחייה יחידה וקלה, אדם עומד בסף פנים פתוח, מביט אל החוץ",
         "english": "Minimal entrance hall with floor-to-ceiling window opening to Mediterranean landscape | White stone walls, pristine | Morning light flooding horizontally | Void of barriers except one threshold | Human figure standing at beginning, facing infinite expanse | Captures essence of ALEPH: Pure opening, infinite possibility, breath beginning everything | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean climate | Shot from low angle looking upward | #opening #hope #beginning #light #threshold",
         "prompt_version": "1.0",
         "recommended_tool": "Midjourney v6"
       },
-
       "metadata": {
         "status": "complete",
         "percentage_filled": 100,
@@ -174,7 +170,6 @@
         "last_updated": "2026-06-12"
       }
     },
-
     {
       "id": 2,
       "character": "ב",
@@ -183,7 +178,6 @@
       "gematria": 2,
       "position": "middle",
       "visual_category": "duality",
-
       "core": {
         "name": "בית",
         "number": 2,
@@ -191,7 +185,6 @@
         "position_in_alphabet": "שנייה",
         "archetypal_role": "דואליות, בחירה, בית (מקום)"
       },
-
       "dimensions": {
         "sonic": {
           "description": "קול חצי-פתוח, שפתיים סגורות חלקית, דיון בתוך הפה",
@@ -239,7 +232,11 @@
             "quality": "א׳ = אפשרות | ב׳ = בחירה בתוך אפשרות",
             "dynamic": "מצב הבא אחרי הפתיחה"
           },
-          "sonic_similar": ["כ", "ם", "ף"]
+          "sonic_similar": [
+            "כ",
+            "ם",
+            "ף"
+          ]
         },
         "spatial": {
           "description": "סימטריה, חלוקה למרכז, משקל שווה בין צדדים",
@@ -276,13 +273,11 @@
           "cycle_position": "הפיצול הראשון, מאחד לשניים"
         }
       },
-
       "synthesis": {
         "essence": "אות הדואליות החיה — בחירה בתוך שני קטבים. טנסיון בין הביטחון של הבית לבין הלא-ודאות של הבחירה. בתפקיד מרחבי: דלת סגורה-פתוחה, שני חדרים, משק הבית כדיאלוג.",
         "one_liner": "בחירה = דואליות חיה בתוך ביטחון",
         "poetic_phrase": "בית עם שתי דלתות — בחר אם לעזוב או להישאר"
       },
-
       "skill": {
         "number": 2,
         "name": "בחירה בדואל",
@@ -296,25 +291,27 @@
         "daily_frequency": "בכל רגע של בחירה",
         "weekly_pattern": "כל יום בשבוע"
       },
-
       "spatial_model": {
         "architectural_principle": "דלת מרכזית, שני חדרים סימטריים, משקל שווה",
         "physical_expression": "חדר עם מחיצה באמצע, שתי חלונות, תאורה משנית",
         "room_type": "סלון דואלי עם שתי כניסות",
         "light_source": "אור משני צדדים, לא יחיד",
         "material_palette": "אפור, עץ, מתכת",
-        "spatial_qualities": ["מרכז", "בחירה", "משקל שווה", "דיאלוג"],
+        "spatial_qualities": [
+          "מרכז",
+          "בחירה",
+          "משקל שווה",
+          "דיאלוג"
+        ],
         "human_experience": "אדם עומד בין שני חדרים, מחליט לאן לפנות",
         "visual_metaphor": "צומת עם שני שבילים שווים — אין תשובה נכונה, רק בחירה"
       },
-
       "visual_prompt": {
         "hebrew": "חדר ביתי מינימליסטי עם מחיצה מרכזית, שתי דלתות מנוגדות, תאורה משני צדדים בעוצמה שווה, אפור ולבן בטנסיון, אדם בעמידה בסף הבחירה בין שני כיוונים",
         "english": "Minimalist room with central dividing wall | Two opposing doors of equal size | Symmetrical lighting from both sides | Gray and white in perpetual tension | Human figure standing at threshold between two equal paths | Captures essence of BET: Duality held in balance, choice without collapse | Professional interior photography | Documentary realism | Aspect ratio 16:9 | No text | Bird's eye view from above | Mediterranean minimalism | #duality #choice #balance #threshold",
         "prompt_version": "1.0",
         "recommended_tool": "Midjourney v6"
       },
-
       "metadata": {
         "status": "complete",
         "percentage_filled": 100,
@@ -322,7 +319,6 @@
         "last_updated": "2026-06-12"
       }
     },
-
     {
       "id": 3,
       "character": "ג",
@@ -331,7 +327,6 @@
       "gematria": 3,
       "position": "middle",
       "visual_category": "flow",
-
       "core": {
         "name": "גימל",
         "number": 3,
@@ -339,7 +334,6 @@
         "position_in_alphabet": "שלישית",
         "archetypal_role": "זרימה, גמול, תגבור"
       },
-
       "dimensions": {
         "sonic": {
           "description": "קול אחורי-טחוני, זרימה למטה, כמו גרון שקוע",
@@ -387,8 +381,12 @@
             "quality": "ב׳ = בחירה | ג׳ = גמול על הבחירה",
             "dynamic": "תוצאה טבעית של הבחירה"
           },
-          "sonic_similar": ["כ (קול גרוני דומה)"],
-          "reinforces": ["ד (סף הבא אחרי הגמול)"]
+          "sonic_similar": [
+            "כ (קול גרוני דומה)"
+          ],
+          "reinforces": [
+            "ד (סף הבא אחרי הגמול)"
+          ]
         },
         "spatial": {
           "description": "ירידה, זרימה למטה, מוקד נמוך ואינטימי",
@@ -425,13 +423,11 @@
           "cycle_position": "סוף מחזור ראשון, לפני תחילת הבא"
         }
       },
-
       "synthesis": {
         "essence": "אות הזרימה למטה — גמול העמל, תגבור של המעשה. כוח הנפילה שמביאה תוצאה. בתפקיד מרחבי: אפיק זורם מהמקום הגבוה אל המקום הנמוך, שם הגמול.",
         "one_liner": "גמול = זרימה למטה של העמל להנאה",
         "poetic_phrase": "מה שחסום מעלה זורם למטה — גמול הוא תוצאה, לא רחמים"
       },
-
       "skill": {
         "number": 3,
         "name": "גמול העמל",
@@ -445,30 +441,2902 @@
         "daily_frequency": "אחרי כל השלמת משימה",
         "weekly_pattern": "כל יום בשבוע"
       },
-
       "spatial_model": {
         "architectural_principle": "אפיק זורם, מוקד נמוך, מקום של הנחמה",
         "physical_expression": "קומה נמוכה, חלון עם נוף, מקום ישיבה עמוק",
         "room_type": "פינת מנוחה בתוך הבית",
         "light_source": "אור עקיף, מוגן, חום",
         "material_palette": "עץ כהה, אבן חמה, טקסטיל רך",
-        "spatial_qualities": ["ירידה", "חום", "אינטימיות", "מנוחה"],
+        "spatial_qualities": [
+          "ירידה",
+          "חום",
+          "אינטימיות",
+          "מנוחה"
+        ],
         "human_experience": "אדם יושב במנוחה עמוקה, מקבל את הגמול",
         "visual_metaphor": "מעיין שזורם למטה ומתאסף בבריכה שקטה"
       },
-
       "visual_prompt": {
         "hebrew": "חדר ירידה מינימליסטי עם אפיק מים עדין, אור חם וקטום, מקום ישיבה עמוק, נוף רחוק דרך חלון קטן, אדם יושב במנוחה עמוקה",
         "english": "Minimalist descent chamber with gentle water channel flowing downward | Warm, contained light | Deep seating nook | Distant landscape visible through small window | Human figure in restful repose | Captures essence of GIMEL: Reward of effort flowing downward, comfort earned not given | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | Intimate scale | Mediterranean warmth | #reward #flow #comfort #descent",
         "prompt_version": "1.0",
         "recommended_tool": "Midjourney v6"
       },
-
       "metadata": {
         "status": "complete",
         "percentage_filled": 100,
         "images_collected": 0,
         "last_updated": "2026-06-12"
+      }
+    },
+    {
+      "id": 4,
+      "character": "ד",
+      "hebrew_name": "דלת",
+      "english_name": "Dalet",
+      "gematria": 4,
+      "position": "middle",
+      "visual_category": "crossing",
+      "core": {
+        "name": "דלת",
+        "number": 4,
+        "gematria_value": 4,
+        "position_in_alphabet": "רביעית",
+        "archetypal_role": "המעבר, ההפרדה שמחברת"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול דנטלי-שיניי קצר ופתאומי, עצירה מלאה עם שחרור צפוי",
+          "frequency_range": "אמצע-גבוה (alveolar consonant), ירידה מחדה",
+          "articulation": "שיניים חזקות עם שפת רכה, עצור מחדה",
+          "texture": "יבש, מנותק, כמו דקירה",
+          "breath_quality": "אוויר משתחרר בפתאומיות, לא רציף"
+        },
+        "mathematical": {
+          "description": "מספר זוגי, תחנה ביניים, 4 = קצוות",
+          "function": "4 = מעבר מוחלט, שתי קבוצות של שתיים",
+          "ratio": "4:22 = חומש שישי, רבע מחמישים אחוז",
+          "sequence_position": "רביעי, תחנה מחוזקת בדרך",
+          "pattern_role": "סימטריה של זוגות (2+2)"
+        },
+        "physical": {
+          "description": "דלת נפתחת ונסגרת, קו חד עם ענף, תנועה ירודה",
+          "organ_of_articulation": "שיניים עליונות עם שפת רכה (alveolar ridge)",
+          "body_posture": "כתפיים מוכנות לחציה, פנים נכנסות ויוצאות",
+          "movement_quality": "דחיפה וחזרה, מתנד בין מצבים",
+          "tension_state": "מתח בינוני, הפרדה חדה"
+        },
+        "energetic": {
+          "description": "מעבר מלא, מחסום לרגע, אחר כך זרימה",
+          "flow_direction": "קדימה-אחורה, מעבר דו-כיווני",
+          "intensity": "בינונית-גבוהה, עם דופק",
+          "rhythm": "מתנדנד, עצור-שחרור",
+          "expansion_type": "פתיחה ואחר כך סגירה"
+        },
+        "psychological": {
+          "description": "קבלת החלטה, מעבר לאזור חדש, אחריות בדרך",
+          "emotional_state": "דיסוננס נעים, עדות לקיום שני עולמות",
+          "consciousness_quality": "מודעות למה שאתה עוזב ולמה שאתה נכנס",
+          "will_expression": "בחירה קבועה להתקדם",
+          "archetypal_mood": "סף — תחום קדוש"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "כ",
+            "quality": "ד = מעבר ודלת | כ = הכלה והיקף",
+            "dynamic": "דלת פתוחה לעדות, בית סוגר להגנה",
+            "tension": "פתיחה מול הגנה"
+          },
+          "complementary": {
+            "letter": "ה",
+            "quality": "ד = מעבר קשוח | ה = הארה עדינה",
+            "dynamic": "דלת מוביל לחלל מואר"
+          },
+          "sonic_similar": [
+            "ת (דנטלי דומה, אך סיום)"
+          ],
+          "reinforces": [
+            "ג (סגירה תחתונה)",
+            "ד = מעבר עצמו"
+          ]
+        },
+        "spatial": {
+          "description": "דלת וסף, מעבר בין חללים, גובה בינוני, קו מתפוקד",
+          "angle": "90° אנכי עם שני ממדים (הפנים בזווית)",
+          "line_type": "קו אנכי עם ענף יוצא לימין",
+          "color_palette": "אפור בינוני, לבן של דלת, צל כחול חלש",
+          "position_in_space": "בסף, לא בתוך החדר",
+          "movement_through_space": "מהיר לחלוטין בכיוון החציה",
+          "architectural_principle": "סף קדוש, הפרדה בין תחומים",
+          "light_quality": "אור נפרץ דרך הפתח, זוג חלקים בתאורה שונה"
+        },
+        "visual": {
+          "description": "דלת פתוחה למחצה, קו חד, סצנה דו-צדדית",
+          "color_experience": "אפור כחול-אפור חום, ניגודיות בתאורה",
+          "light_impression": "בדיוק בשעת בין-ערביים, כשהחדר שמאחרי הדלת בתאורה שונה",
+          "visual_metaphor": "דלת של משכן או קדש, מעבר לנתונים אחרים"
+        },
+        "tactile": {
+          "description": "אפריקט דלת קר או חם, תחושת מעבר פיזי",
+          "temperature": "ניטרלי או קצת קר (מתכת דלת)",
+          "texture_feel": "חלק עם קו חדה (פח או עץ), שפתיים של הדלת",
+          "body_sensation": "אדם בסף — תחושה של טבילה בעולם אחר"
+        },
+        "physics": {
+          "description": "ממשק בין שתי מערכות, שחזור חץ דו-כיווני",
+          "principle": "עבודה = כוח × תזוזה, דלת היא מנגנון פשוט",
+          "analogy": "כמו קרן אור בממשק מדיה (refraction)",
+          "state": "מצב בין-משנה, שינוי פזה"
+        },
+        "temporal": {
+          "description": "רגע המעבר — לא עדיין בפנים, כבר לא בחוץ",
+          "time_quality": "קטע זמן קצר ועמוק",
+          "rhythm": "מכה אחת, אחר כך שקט",
+          "cycle_position": "נקודת החציה בין מחצית ראשונה לשנייה"
+        }
+      },
+      "synthesis": {
+        "essence": "דלת = מעבר קדוש בין שני עולמות. קול דנטלי מתנד בעצור-שחרור. מרחבית: סף, פתוח למחצה, זוג תאים בתאורה שונה. פסיכולוגית: הכרה בחציית גדול, החלטה שלא ניתן לחזור בה, אחריות.",
+        "one_liner": "מעבר = דלת שנפתחת בעדות לשני עולמות בו-זמנית",
+        "poetic_phrase": "הדלת לא משייכת למקום אחד — היא חיה בשניהם"
+      },
+      "skill": {
+        "number": 4,
+        "name": "חציית ערכיים",
+        "hebrew_title": "עדות מדורגת",
+        "description": "בשעת ההחלטה הקדולה, תעמוד בסף בלא קדיחה מודחקת לקדימה",
+        "action": "בשעה 14:00-15:00 (אחר הצהריים): עמוד בדלת של קלפה, אדום או החלטה גדולה. תראה את שני הצדדים כולם, אחר כך צא",
+        "trigger_time": "14:00-15:00",
+        "duration_minutes": 10,
+        "outcome": "הכרה בשתיות של העולם, אחריות מודעת בחציה",
+        "integration": "אחרי ג׳ (גמול), קודם ה׳ (הארה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "בעיקר בימי עבודה"
+      },
+      "spatial_model": {
+        "architectural_principle": "סף קדוש בעל שני כיוונים, מעבר מעניין שמחבר תחומים",
+        "physical_expression": "דלת פתוחה בזווית 45-90 מעלות, אור ישיר מהחדר השני חודר דרכה",
+        "room_type": "מעבר בין חדר וחדר, קיר מבדיל רק בדלת",
+        "light_source": "אור מיני-אפוקליפטי — שני מקורות אור בעוצמות שונות",
+        "material_palette": "עץ, מתכת ובטון, ניגודיות",
+        "spatial_qualities": [
+          "מעבר",
+          "סף",
+          "ניגודיות",
+          "אחריות"
+        ],
+        "human_experience": "אדם עומד בדלת, רגל כאן, רגל כאן",
+        "visual_metaphor": "הדלת של הנחמדי"
+      },
+      "visual_prompt": {
+        "hebrew": "דלת עץ או מתכת פתוחה בזווית, סף מדויק עם קו בצל, מעבר בין חדר לבן לחדר כהה, אור קרוע דרך הדלת, אדם אחד ברגל שמאל בחוץ רגל ימין בפנים",
+        "english": "Wooden or metal door open at 45-degree angle | Clear threshold line with shadow | Transition between white minimalist room and dark-lit space | Light piercing through doorway | One person's figure split: left leg outside, right leg inside | Captures threshold consciousness: standing between two states | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean climate building, morning light on one side | Shot from doorway perspective | #threshold #passage #duality #light #crossing",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 5,
+      "character": "ה",
+      "hebrew_name": "הא",
+      "english_name": "He",
+      "gematria": 5,
+      "position": "middle",
+      "visual_category": "revelation",
+      "core": {
+        "name": "הא",
+        "number": 5,
+        "gematria_value": 5,
+        "position_in_alphabet": "חמישית",
+        "archetypal_role": "ההארה, ההערה, הקריאה לתשומת לב"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול גרוני קל עם חיכוך עדין, כמו נשימה מודעת, לא צפה",
+          "frequency_range": "גבוה-בינוני (glottal fricative), אויר חופשי",
+          "articulation": "אף או גרון בעדינות, אוויר בלי בלוק",
+          "texture": "עדין, זוהר, רך עד לקריאה",
+          "breath_quality": "נשימה שנייה, מודעת אך קלה"
+        },
+        "mathematical": {
+          "description": "מספר מרכזי, 5 = יד, שיווי משקל, מחצית של 10",
+          "function": "5 = מרכז בין 1-9, פילוג הטבעי",
+          "ratio": "5:22 = מעט יותר מחמישית",
+          "sequence_position": "חמישי, נקודת מרכז ראשון",
+          "pattern_role": "שיווי משקל בעולם (חמש אצבעות = יד שלמה)"
+        },
+        "physical": {
+          "description": "יד פתוחה, אצבע מורמת, תנועה מודעת כלפי מעלה",
+          "organ_of_articulation": "גרון (glottis), קול זורם דרכו",
+          "body_posture": "יד מורמת במשחק הערה, כתף חופשית",
+          "movement_quality": "עדין וממושך, לא קטוע",
+          "tension_state": "שחרור אנרגיה, מתח נמוך"
+        },
+        "energetic": {
+          "description": "עלייה ירודה, הארה קלה, זוהר בלי חום",
+          "flow_direction": "אנכי כלפי מעלה, עדין",
+          "intensity": "נמוכה-בינונית, אך בעלת משוקלל",
+          "rhythm": "יציב, בלי דפקים",
+          "expansion_type": "הארה מפוזרת"
+        },
+        "psychological": {
+          "description": "קריאה לתשומת לב, הערה עדינה, בקשה ללקח בחשבון",
+          "emotional_state": "עדינות, כבוד, תודעה שדברים קיימים",
+          "consciousness_quality": "הכרה שניתה, אך לא חדה",
+          "will_expression": "רצון להדגיש ללא לחץ",
+          "archetypal_mood": "המלאך בעדינות גוללת"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ד",
+            "quality": "ה = הארה עדינה | ד = מעבר חד",
+            "dynamic": "דלת מובילה לחלל מואר בעדינות",
+            "tension": "קשיות מול רכות"
+          },
+          "complementary": {
+            "letter": "ו",
+            "quality": "ה = הארה בודדת | ו = חיבור",
+            "dynamic": "הארה נשמרת דרך חיבור"
+          },
+          "sonic_similar": [
+            "ע (קול גרוני קדום, כולל חזק)"
+          ],
+          "reinforces": [
+            "א (פתיחה ראשונה)"
+          ]
+        },
+        "spatial": {
+          "description": "אור זורם מסוננים, חלון סינופטי, גובה בינוני-נמוך",
+          "angle": "45° עדין כלפי מעלה",
+          "line_type": "קו תאור עדין, חלום יותר מקו קשוח",
+          "color_palette": "לבן חם, צהוב-אופוקי, שקיפות",
+          "position_in_space": "בחצי-צל, בקצה הפתח",
+          "movement_through_space": "זורם באיטיות, ממלא חלל",
+          "architectural_principle": "אור מסונן דרך טול או זכוכית חלבית",
+          "light_quality": "אור אחר-הצהריים, רך וסינופטי"
+        },
+        "visual": {
+          "description": "זוהר עדין, לא בהוק, אך בחוש עמוק",
+          "color_experience": "צהוב-כתום מודכא, זהו חום תעלוב",
+          "light_impression": "אור דרך וילונות מחופפים",
+          "visual_metaphor": "נר מרחוק, הארה שלא מעקרת"
+        },
+        "tactile": {
+          "description": "רוח חמימה וחניקה, כמו נשימה של אדם קרוב",
+          "temperature": "חמים מעט, כמו בעצם גוף",
+          "texture_feel": "משי טל, או אויר עם אדים",
+          "body_sensation": "הרגשת צפיפות אויר, לא כבדה"
+        },
+        "physics": {
+          "description": "זרימה חופשית של אויר, הם עדיין בתנועה",
+          "principle": "דיפוזיה של אור או כימיקל, פילוח הדרגתי",
+          "analogy": "כמו עשן גדול שלא מתפזר, אלא זורם",
+          "state": "שוב-ליציאה בחופי, תנועה חופשית"
+        },
+        "temporal": {
+          "description": "הרגע שאחרי — לאחר המעבר, כשאתה מכיר את הקיום",
+          "time_quality": "אחרון של אחריות מתעד",
+          "rhythm": "רציף, בלי הפסקות",
+          "cycle_position": "שלב השלמה לאחר החציה"
+        }
+      },
+      "synthesis": {
+        "essence": "הא = הארה עדינה ועדות. קול גרוני בנשימה מודעת. מרחבית: אור מסונן, זוהר בלי בעיה. פסיכולוגית: קריאה ללב לתשומת לב, הדגשה של קיום חדש, הודעה חמימה.",
+        "one_liner": "הארה = קריאה עדינה שדברים קיימים ושלמים",
+        "poetic_phrase": "ההערה של הרוח — שדברים יש, אם זה מעט בלבד"
+      },
+      "skill": {
+        "number": 5,
+        "name": "הקשבה פעילה",
+        "hebrew_title": "שמיעת מה שקיים",
+        "description": "בשעה 15:00-16:00, שמע את הסיבות הקטנות של הקיום סביבך — חום של הקיר, צבע של עלה, קול מרחוק",
+        "action": "תשב בחלק שמואר של הבית/גינה בשעה שלחריום, וקבל את הקיום של דברים קטנים, בלי להחליט או לשנות",
+        "trigger_time": "15:00-16:00",
+        "duration_minutes": 12,
+        "outcome": "תודעה עמוקה שדברים קיימים בעצם שלהם, זוהר פנימי",
+        "integration": "אחרי ד׳ (דלת), קודם ו׳ (חיבור)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "אור מסונן במרחק קצר מהקיר, זוהר דק ופחות חזק",
+        "physical_expression": "חלון עם וילונות שקופים חלקית, אור נכנס בתווך",
+        "room_type": "כניסה או חדר קטן עם אור מועדף",
+        "light_source": "שמש בזווית 45 מעלות, דרך דברים חלקיים",
+        "material_palette": "בד לבן, זכוכית מנומרת, אבן חומה",
+        "spatial_qualities": [
+          "הארה",
+          "עדינות",
+          "שקיפות",
+          "חום"
+        ],
+        "human_experience": "אדם יושב בשקט, מושכע להארה",
+        "visual_metaphor": "מקדש של אור רך"
+      },
+      "visual_prompt": {
+        "hebrew": "חלון עם וילונות שקופים חלקית, אור צהוב-כתום זורם דרכם, קיר לבן מואר בעדינות, אבק או אדים בחלל, אדם אחד יושב ראשו מורם, מקד אל ההארה",
+        "english": "Window with partially translucent curtains | Soft golden-amber light filtering through | White wall illuminated with gentleness | Dust motes or vapor suspended in air | Single figure sitting, face tilted toward light | Captures essence of HE: Subtle awareness, things existing by their nature | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean afternoon light, 45-degree angle | Shot from interior shadow toward light source | #revelation #softness #awareness #light #existence",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 6,
+      "character": "ו",
+      "hebrew_name": "וו",
+      "english_name": "Vav",
+      "gematria": 6,
+      "position": "middle",
+      "visual_category": "connection",
+      "core": {
+        "name": "וו",
+        "number": 6,
+        "gematria_value": 6,
+        "position_in_alphabet": "שישית",
+        "archetypal_role": "החיבור, הגשר, הקשר שקטן אך עמוק"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול עתקיקי זעיר, כמו זמזום חלוש, קול ביניים בין שתי תנועות",
+          "frequency_range": "אמצע (approachable semivowel), כמעט אוויר",
+          "articulation": "שפתיים שלוב רווחות או שוא, אוויר מינימום",
+          "texture": "לא-מובחן כמעט, קל ורכישה",
+          "breath_quality": "אוויר רציף מבלי לשבור זרם"
+        },
+        "mathematical": {
+          "description": "6 = שני משולשים, סימטריה, שיווי משקל מושלם (1+5=6)",
+          "function": "6 = חיבור של הצמדים (2+4 או 3+3), דיאדה עם תוספות",
+          "ratio": "6:22 = תלתן מעט יותר (27%)",
+          "sequence_position": "שישי, מרכז משני",
+          "pattern_role": "סימטריה בן לחסידות (יד שמאל ויד ימין)"
+        },
+        "physical": {
+          "description": "קו דק או גשר דק, שתי נקודות מחוברות, מינימום מבנה",
+          "organ_of_articulation": "שפתיים ולא-שיניים (approximant), קול זרם בעדינות",
+          "body_posture": "שתי ידיים בחיבור עדין, לא מדוקדק",
+          "movement_quality": "זרימה, לא קבלות, בתפר",
+          "tension_state": "זרם שחרור, שום מתח עיקרי"
+        },
+        "energetic": {
+          "description": "זרימה קלה בין שני קטבים, קשר רך, חיבור שלא מפרק",
+          "flow_direction": "אופקי, בין שתי נקודות",
+          "intensity": "נמוכה, זרם קל",
+          "rhythm": "רציף וקבוע, בלי פעימות",
+          "expansion_type": "קשר בלא קנה"
+        },
+        "psychological": {
+          "description": "רחוקות בעדינות, שיתוף פעולה שלא מוביל לאובדן עצמיות",
+          "emotional_state": "חביבות, תחושת חברות ללא דיסוננס",
+          "consciousness_quality": "מודעות שיתופית, לא בודדת",
+          "will_expression": "רצון לחבר בלא כוח",
+          "archetypal_mood": "הם זה קו רך"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ח",
+            "quality": "ו = חיבור קל | ח = מחסום קשוח",
+            "dynamic": "גשר מול מחיצה",
+            "tension": "קשר מול הפרדה"
+          },
+          "complementary": {
+            "letter": "ה",
+            "quality": "ה = הארה | ו = החזקה של הארה דרך קשר",
+            "dynamic": "הארה שמעבירה חלק מקבוצה לשנייה"
+          },
+          "sonic_similar": [
+            "י (קול דומה, פחות עמוק)"
+          ],
+          "reinforces": [
+            "כ (הכלה דרך קשר)"
+          ]
+        },
+        "spatial": {
+          "description": "קו דק קוטה בשני נקודות, מינימום מבנה, קשר ברור",
+          "angle": "אופקי או עדין שופע",
+          "line_type": "קו דק מאוד, חוט כמעט",
+          "color_palette": "אפור פחות, תכל״כ עדין, זהוב דק",
+          "position_in_space": "נמוך במרחב, קרוב לקרקע",
+          "movement_through_space": "זרימה אופקית, קלה",
+          "architectural_principle": "גשר מינימום, קו שנחתך בתוך רווח",
+          "light_quality": "אור ציבור מוודה, לא מודגש"
+        },
+        "visual": {
+          "description": "גשר דק בתוך רווח גדול, קו בודד שמחבר",
+          "color_experience": "אפור כסף מאוד או זהוב אפוקי",
+          "light_impression": "קו צל דק שכמעט אינו רגיל",
+          "visual_metaphor": "חוט קדוק בתוך אויר"
+        },
+        "tactile": {
+          "description": "חוט דק, קל מאוד לגם, כמו קשר פרוסט",
+          "temperature": "קור עדין, כמו פח עתיק",
+          "texture_feel": "חלק ומינימום, כמו משק",
+          "body_sensation": "יד קלילה שקשורה בחוט"
+        },
+        "physics": {
+          "description": "קו ישיר בתוך חלל, מתח מינימום, קשר מכני",
+          "principle": "כמו חוט מתחת לנקודה, מעביר כוח בלי רוב",
+          "analogy": "כמו קישור בין אטומים, בלא מסה",
+          "state": "מצב פעיל אך מינימום"
+        },
+        "temporal": {
+          "description": "רגע ההתחברות — כשדברים מפסיקים להיות אחד אחד וזה תמונת חברה",
+          "time_quality": "רגע ההיגיון שלם",
+          "rhythm": "קשר ניצחי, בתוך כל זמן",
+          "cycle_position": "קשר ממשיך דרך משך הזמן"
+        }
+      },
+      "synthesis": {
+        "essence": "וו = חיבור קל בעדינות. קול עתקיקי זמזומי. מרחבית: קו דק או גשר מינימום בין שתי נקודות. פסיכולוגית: קשר שלא מפרק, שיתוף פעולה ללא אובדן עצמיות, חביבות עמוקה.",
+        "one_liner": "חיבור = קו דק שמחבר בלא לשבור",
+        "poetic_phrase": "הקו הדק — שדברים נשארים בעצמם אך קשורים"
+      },
+      "skill": {
+        "number": 6,
+        "name": "חברות דקה",
+        "hebrew_title": "קשר בלא דיסוננס",
+        "description": "בשעה 16:00-17:00, חנוק עם משהו או מישהו שלא דורש הקרבה, אך שומר על קשר עמוק",
+        "action": "שאל את חברך או בן משפחתך: מה צריך? אתה נימצא אם צריך. לא יותר מדי — רק קו דק של חיבור",
+        "trigger_time": "16:00-17:00",
+        "duration_minutes": 8,
+        "outcome": "קשר שנשמר בלא דיסוננס, צפיפות של קרב בלא אובדן",
+        "integration": "אחרי ה׳ (הארה), קודם ז׳ (כלים/פעולה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "קו או גשר דק מאוד בתוך רווח גדול, קשר מינימום",
+        "physical_expression": "חוט או קו אדריכלי בודד בתוך תא ריק",
+        "room_type": "מעבר צר בין שני חללים גדולים",
+        "light_source": "אור ציבור, לא מודגש, קו בצל תחת",
+        "material_palette": "מתכת דקה או חוט עדין, שקיפות",
+        "spatial_qualities": [
+          "קשר",
+          "עדינות",
+          "מינימום",
+          "חברות"
+        ],
+        "human_experience": "שתי דמויות בקצה שני חללים מחוברות בקו דק",
+        "visual_metaphor": "חוט של קניה בתוך אויר"
+      },
+      "visual_prompt": {
+        "hebrew": "שני חללים גדולים מופרדים בקו אדריכלי דק אחד, חוט או קו מתכת זהב דק מחברים, אור ציבור, שתי דמויות בקצה קוטר של החללים בחיבור דק",
+        "english": "Two large airy spaces separated by single thin architectural line | Delicate golden thread or metal line connecting them barely | Ambient light, understated | Two figures at edges of each space, connected by thin thread | Captures essence of VAV: Delicate connection that preserves autonomy | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean interior, warm neutral palette | Shot from corner where thread becomes visible | #connection #delicate #autonomy #relationship #thread",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 7,
+      "character": "ז",
+      "hebrew_name": "זין",
+      "english_name": "Zayin",
+      "gematria": 7,
+      "position": "middle",
+      "visual_category": "action",
+      "core": {
+        "name": "זין",
+        "number": 7,
+        "gematria_value": 7,
+        "position_in_alphabet": "שביעית",
+        "archetypal_role": "הפעולה, הכלי, השימוש מכוון"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שיניי-מוזלג חזק וחודר, זז וזורם בכוח מכוון, קול בפעולה",
+          "frequency_range": "גבוה חדש (fricative), חדה ופחות משקעת",
+          "articulation": "שיניים עם שפה מתחת, רוח חודרת בחוזקה",
+          "texture": "זורם קצביות, דחוק, מתוקתק",
+          "breath_quality": "אוויר בתנועה מודעת, לא רווח"
+        },
+        "mathematical": {
+          "description": "7 = מספר פרימה, שבוע, שלמות של מחזור, עבודה השבוע",
+          "function": "7 = סך הנקוביות בקובייה (חיד כל צד), חזרה על דפוס מוקדם",
+          "ratio": "7:22 = כמעט שליש (32%)",
+          "sequence_position": "שביעי, קו עבודה הראשון",
+          "pattern_role": "סוגר מחזור של עבודה (ימי השבוע)"
+        },
+        "physical": {
+          "description": "כלי תופס, חנית או זיין קרב, יד תופסת חוזקה",
+          "organ_of_articulation": "שיניים עם קול מנותק עדי",
+          "body_posture": "יד אחיזה חזקה, בכן מוכן, מעורבות פעילה",
+          "movement_quality": "זריז, תוקבי, ברור כיווני",
+          "tension_state": "מתח פעיל, אנרגיה מועברת"
+        },
+        "energetic": {
+          "description": "פעולה ישירה, כוח מכוון, ביצוע מהיר",
+          "flow_direction": "קדימה וחוסם, בעל כיוון ברור",
+          "intensity": "גבוהה, מוקדשת",
+          "rhythm": "מהיר, דופק של פעילות",
+          "expansion_type": "חדירה, הצלחה מכוונת"
+        },
+        "psychological": {
+          "description": "ביצוע, כישוריות, שליטה בכלים, ידע יישומי",
+          "emotional_state": "דחוף, ביטחון בעוצמה, גאווה בהבחנה",
+          "consciousness_quality": "מודעות של מטרה תחת שליטה",
+          "will_expression": "רצון חזק לעשות, לשנות, להצליח",
+          "archetypal_mood": "המלוחם — כלי בידו יעשה"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ש",
+            "quality": "ז = כלי בפעולה מכוונת | ש = שינוי תוך־משמעותי",
+            "dynamic": "כלי ליד מול גמול של רוח",
+            "tension": "פעולה מכוונת מול שינוי עצמי"
+          },
+          "complementary": {
+            "letter": "ו",
+            "quality": "ו = חיבור | ז = שימוש של החיבור לעשות",
+            "dynamic": "החיבור מאפשר פעולה בעזרה"
+          },
+          "sonic_similar": [
+            "צ (שיניי דומה, אך עם סגירה)"
+          ],
+          "reinforces": [
+            "פ (ערך כלים)"
+          ]
+        },
+        "spatial": {
+          "description": "כלי בעמידה, קו זקוף עם חדות, בעמדת התקפה",
+          "angle": "90° או חריף יותר, קו אנכי קשוח",
+          "line_type": "קו זקוף חד, דומה לחנית",
+          "color_palette": "אפור קר, כסף חזק, שחור של פלדה",
+          "position_in_space": "קדימה, ממוקד, בכן עבודה",
+          "movement_through_space": "מהיר וישיר, יעד ברור",
+          "architectural_principle": "עמוד חזק או ספר בדיוק קריטי",
+          "light_quality": "אור קר ובקרובית, לא רך"
+        },
+        "visual": {
+          "description": "כלי חדה, מתכת כחולה, קווים ברורים וחידתיים",
+          "color_experience": "כסף, פלדה, קר וצפוי",
+          "light_impression": "אור נורמני ישיר, לא רך",
+          "visual_metaphor": "חנית על קיר או יד תופסת כלי"
+        },
+        "tactile": {
+          "description": "כלי חד בידו, מתכת קרה, אחיזה חזקה",
+          "temperature": "קור, כמו פלדה בבוקר",
+          "texture_feel": "גס ברשת או חלק חדה",
+          "body_sensation": "כוח באצבעות, משימה ברורה"
+        },
+        "physics": {
+          "description": "כלי משמש כוח, מכניקה פשוטה, מעביר אנרגיה",
+          "principle": "עבודה = כוח × מרחק, כלי מגביר כוח",
+          "analogy": "כמו מנוף או חנית, מאריך ידו",
+          "state": "מצב פעיל, טרנספורמטיבי"
+        },
+        "temporal": {
+          "description": "רגע ההתחברות לעבודה — כשמתחילים לעשות, מחזורי השבוע",
+          "time_quality": "זמן של ביצוע מהיר",
+          "rhythm": "קצבי ומשימתי",
+          "cycle_position": "זמן של עבודה בתכנית"
+        }
+      },
+      "synthesis": {
+        "essence": "זין = פעולה מכוונת דרך כלים. קול שיניי-מוזלג חדה וזורם. מרחבית: כלי בעמידה קשוחה, קו חריף, אור קר. פסיכולוגית: ביצוע, כישוריות, שליטה בחומר, ידע יישומי שמשנה.",
+        "one_liner": "פעולה = כלי בידו שמשנה במהירות",
+        "poetic_phrase": "הכלי מחד — בשביל לעשות צריך לדעת לעשות"
+      },
+      "skill": {
+        "number": 7,
+        "name": "ביצוע של מיומנות",
+        "hebrew_title": "תפקוד במדויקות",
+        "description": "בשעה 17:00-18:00, עשה משהו בקונקרטי שדורש מיומנות — בשיש, תופר, עיבוד עץ, קוד, דבר ידיים",
+        "action": "תוך שעה אחת: בחר כלי אחד, תרגול אותו במדויקות. הרגש את הכלי לא כחפץ אלא כהרחבה של ידך",
+        "trigger_time": "17:00-18:00",
+        "duration_minutes": 60,
+        "outcome": "ביטחון בקושי המיומנות, קשר עמוק לכלי, ידע גופני",
+        "integration": "אחרי ו׳ (חיבור), קודם ח׳ (בחיזוק)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע (או 3-4 פעמים בשבוע)"
+      },
+      "spatial_model": {
+        "architectural_principle": "עמוד בדיוק קוי או כלי ממוקד בחלל עבודה",
+        "physical_expression": "סדן מקוים, אור קר ומודגש, כלים על שולחן",
+        "room_type": "סדן או מוקד עבודה, ריכוז ומשימה",
+        "light_source": "אור צפוני קר או אור עבודה קשוח",
+        "material_palette": "מתכת, עץ אטום, כלים",
+        "spatial_qualities": [
+          "פעולה",
+          "דיוק",
+          "ריכוז",
+          "מוקד"
+        ],
+        "human_experience": "יד תופסת כלי, עבודה ממוקדת",
+        "visual_metaphor": "סדן של מנהל מלחמה"
+      },
+      "visual_prompt": {
+        "hebrew": "סדן עבודה מקוי, אור צפוני קר ישיר, יד תופסת כלי חד או כלי עבודה, שולחן עם דיוק משימה, חומר בתהליך עבודה, חריטה או עיצוב או תפרים",
+        "english": "Organized workshop in sharp northern light | Hand gripping tool or implement with precision | Work table with focused task underway | Material in process: carving, machining, stitching, or coding | Clear edges, purposeful geometry | Captures essence of ZAYIN: Skill embodied, tool as extension of will | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Minimalist workspace, cool lighting | Shot from eye level, tool centered | #skill #precision #action #craftsmanship #focus",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 8,
+      "character": "ח",
+      "hebrew_name": "חית",
+      "english_name": "Het",
+      "gematria": 8,
+      "position": "middle",
+      "visual_category": "enclosure",
+      "core": {
+        "name": "חית",
+        "number": 8,
+        "gematria_value": 8,
+        "position_in_alphabet": "שמינית",
+        "archetypal_role": "המחיצה, החזקת המרחב, הגבול שמגן"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול חלקי גרוני עמוק, בחיכוך פנימי, חם וסגור",
+          "frequency_range": "נמוך-בינוני (pharyngeal fricative), חיכוך עמוק",
+          "articulation": "גרון עמוק עם חיכוך, קול חם",
+          "texture": "חוספי, עדיף, כמו אש חנוקה",
+          "breath_quality": "אוויר מחזק בתוך הגרון, לא חיצוני"
+        },
+        "mathematical": {
+          "description": "8 = כפול של 4, מעוקב (2³), מחזור שלם בדיוק",
+          "function": "8 = סגירה מלאה, קובייה עם 8 קדקודים",
+          "ratio": "8:22 = חמישית מחוקרת",
+          "sequence_position": "שמיני, נקודת סגירה ראשונה",
+          "pattern_role": "כפלים וחזרות (2+2+2+2)"
+        },
+        "physical": {
+          "description": "קיר סגור, חלל מוגן בתוך הגרון, תנועה סגורה",
+          "organ_of_articulation": "גרון עמוק (pharynx) בחיכוך",
+          "body_posture": "כתפיים חוזרות פנימה, שומר על חום",
+          "movement_quality": "סגור ומוגן, בלא יציאה חיצונית",
+          "tension_state": "מתח מוגן, אנרגיה מאוחסנת"
+        },
+        "energetic": {
+          "description": "אנרגיה סגורה וממוקדת, צבירה פנימית",
+          "flow_direction": "פנימה ותוך-גרוני, בלא תזוקה חיצונית",
+          "intensity": "בינונית-גבוהה, אך מרוסנת",
+          "rhythm": "עצור ושמור, בלא קצב חיצוני",
+          "expansion_type": "דחיסה פנימית"
+        },
+        "psychological": {
+          "description": "הגנה, שמירת מרחב פנימי, גבול ברור",
+          "emotional_state": "שמירה, זהירות, הגנת עולם פנימי",
+          "consciousness_quality": "מודעות אל פנים, לא אל חוץ",
+          "will_expression": "רצון להגן, לשמור, להיות בטוח",
+          "archetypal_mood": "המלח בחנות הסודות"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "א",
+            "quality": "ח = סגירה מלאה | א = פתיחה מלאה",
+            "dynamic": "מחזור שלם של הנשימה",
+            "tension": "סגירה מול פתיחה"
+          },
+          "complementary": {
+            "letter": "ט",
+            "quality": "ח = סגירה מעל | ט = סגירה מתחת",
+            "dynamic": "סגירה מכל צד"
+          },
+          "sonic_similar": [
+            "ע (גרוני דומה, אך יותר פתוח)"
+          ],
+          "reinforces": [
+            "כ (מכילה דרך הגנה)"
+          ]
+        },
+        "spatial": {
+          "description": "מרחב סגור לחלוטין, קיר כל סביב, ללא יציאה",
+          "angle": "מעגל סגור או ריבוע סגור, שום פתח",
+          "line_type": "קו סגור מלא, מחזור ללא שברים",
+          "color_palette": "אדום-חום עמוק, אפור עמוק, שחור של אדמה",
+          "position_in_space": "במרכז, מוגן מכל צד",
+          "movement_through_space": "אין, סגור לחלוטין",
+          "architectural_principle": "חדר סגור לחלוטין, ללא חלונות",
+          "light_quality": "אור פנימי בלבד, לא חיצוני"
+        },
+        "visual": {
+          "description": "מרחק סגור בחום בהיר, אדום דוהה",
+          "color_experience": "אדום-חום עמוק, כמו אש בלא להבה",
+          "light_impression": "אור אדום מוכבד, אדם בחנות סגורה",
+          "visual_metaphor": "חדר קדוש סגור לגמרי"
+        },
+        "tactile": {
+          "description": "חום עדין אך קבוע, אדמה או חול חם",
+          "temperature": "חם, כמו חום גופה",
+          "texture_feel": "גס, כמו בטיח או אדמה ישנה",
+          "body_sensation": "הרגשת בטחון בתוך מרחב סגור"
+        },
+        "physics": {
+          "description": "אנרגיה סגורה, שווי משקל תרמי, לא זרימה",
+          "principle": "חוק הגזים באזור סגור, לחץ קבוע",
+          "analogy": "כמו תנור סגור שמחזיק חום",
+          "state": "שיווי משקל סטטי"
+        },
+        "temporal": {
+          "description": "רגע של הישמרות — זמן שלא עובר החוצה",
+          "time_quality": "זמן סטטי, אין צעדה",
+          "rhythm": "זמן מעגלי בתוך עצמו",
+          "cycle_position": "עצירה באמצע המחזור"
+        }
+      },
+      "synthesis": {
+        "essence": "חית = סגירה וגנה. קול גרוני עמוק בחיכוך פנימי. מרחבית: מרחב סגור לחלוטין, ללא יציאה, אור פנימי בלבד. פסיכולוגית: הגנה על עולם פנימי, שמירת סוד, בטחון בתוך המחסן.",
+        "one_liner": "סגירה = גבול שמגן על כל מה שבתוך",
+        "poetic_phrase": "החדר הסגור — שם הסודות שלך יעמדו עד הנצח"
+      },
+      "skill": {
+        "number": 8,
+        "name": "שמירת סוד פנימי",
+        "hebrew_title": "מרחב בטוח",
+        "description": "בשעה 18:00-19:00, שמור על מרחב בתוך עצמך שאף אחד לא יוכל לנגוע בו",
+        "action": "בחר משהו בלבך (רעיון, סוד, חלום) ולא תגיד אותו. שמור את הסוד בתוך החזה — זה שלך, בטוח, סגור",
+        "trigger_time": "18:00-19:00",
+        "duration_minutes": 15,
+        "outcome": "תחושה של בטחון פנימי, חוזק שלא תלוי בחוץ",
+        "integration": "אחרי ז׳ (כלים), קודם ט׳ (מצפון)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "חדר סגור לחלוטין, קירות עבים, אור רק מעל",
+        "physical_expression": "בונקר או מרתף, קירות אדמה, ללא חלונות",
+        "room_type": "חדר גן או מחסן כנובה",
+        "light_source": "אור מנורה יחידה מעל, או אור אדום-חום",
+        "material_palette": "אדמה, אבן עבה, עץ משומר",
+        "spatial_qualities": [
+          "סגירה",
+          "הגנה",
+          "בטחון",
+          "סוד"
+        ],
+        "human_experience": "אדם יושב בחדר סגור, צמוד לחום פנימי",
+        "visual_metaphor": "המצודה של הנשמה"
+      },
+      "visual_prompt": {
+        "hebrew": "חדר סגור בתוך הר או בונקר, קירות אדמה או אבן עבה מאוד, מנורה יחידה או אור אדום-חום מעל, ללא חלונות, אדם יושב באמצע בשקט מלא, חום אדום רך",
+        "english": "Room sealed entirely within stone or earth | Thick walls, fortress-like | Single lamp or warm red light from above | No windows, complete enclosure | Figure sitting in center in absolute silence | Captures essence of HET: Protection, inner sanctum, secrets held | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Underground bunker or deep mountain room, warm light only from above | Shot from inside looking toward center | #enclosure #protection #safety #silence #secret",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 9,
+      "character": "ט",
+      "hebrew_name": "טית",
+      "english_name": "Tet",
+      "gematria": 9,
+      "position": "middle",
+      "visual_category": "completion",
+      "core": {
+        "name": "טית",
+        "number": 9,
+        "gematria_value": 9,
+        "position_in_alphabet": "תשיעית",
+        "archetypal_role": "השלמה, הטיב, המצפון של כל פעולה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול דנטלי-זעיר סגור, עצירה עם טוב-לב, קול של הערכה",
+          "frequency_range": "בינוני (dental stop with quality) עם מרקם",
+          "articulation": "שיניים עם שפה קדימה, עצור רך",
+          "texture": "עדין אך קצביות, טוב-לב",
+          "breath_quality": "שחרור שקט, לא פתאומי"
+        },
+        "mathematical": {
+          "description": "9 = סוף הספרות חד-ספרתיות, עיגול שלם (3×3)",
+          "function": "9 = השלמה טבעית של מחזור (1-9)",
+          "ratio": "9:22 = קצת יותר מחמישית",
+          "sequence_position": "תשיעי, סף אחרון של תשע",
+          "pattern_role": "כפלים של 3 (3+3+3 = השלמה עמוקה)"
+        },
+        "physical": {
+          "description": "מדרגה אחרונה, קבלה עם טוב-לב, אזה שלם",
+          "organ_of_articulation": "שיניים עם קול אחורי קצר",
+          "body_posture": "גוף מיושר, מדודים, רגוע",
+          "movement_quality": "תנועה עצומה בטוב-לב, סיום חן",
+          "tension_state": "משחרור עמוק, בטחון בחן"
+        },
+        "energetic": {
+          "description": "אנרגיה שלמה וטובה, חן של השלמה",
+          "flow_direction": "עלייה נמוכה ולאחר כך משקעת של טוב",
+          "intensity": "בינונית, אך עם טוב-לב עמוק",
+          "rhythm": "קצב עולם הטוב, זמינה לכל",
+          "expansion_type": "השלמה בטוב-לב"
+        },
+        "psychological": {
+          "description": "מצפון טוב, הערכה עמוקה, שלמות בטוב-לב",
+          "emotional_state": "שום רגע גאון, אלא צנוע טוב",
+          "consciousness_quality": "מודעות של כל מה שטוב בחיים",
+          "will_expression": "רצון לעשות טוב בלא תהילה",
+          "archetypal_mood": "המשפט של הטוב"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ח",
+            "quality": "ט = טוב וחן | ח = סגור ומוגן",
+            "dynamic": "סגירה מתחת טוב-לב",
+            "tension": "הגנה מול הערכה"
+          },
+          "complementary": {
+            "letter": "חית",
+            "quality": "ח = סגירה מעל | ט = השלמה מתחת",
+            "dynamic": "סגירה מושלמת בטוב-לב"
+          },
+          "sonic_similar": [
+            "ד (דנטלי דומה, אך חד יותר)"
+          ],
+          "reinforces": [
+            "י (עדינות הטוב)"
+          ]
+        },
+        "spatial": {
+          "description": "מדרגה אחרונה, קבלה בטוב-לב, השלמה חן",
+          "angle": "עגול למחצה, תחת קסת",
+          "line_type": "קו מעוגל למטה, קסת של טוב",
+          "color_palette": "ירוק מדכא, צהוב טוב, זהוב עדין",
+          "position_in_space": "במחצה תחתונה של מרחב, קבלה",
+          "movement_through_space": "כניסה אנכית לתחתון, קבלה",
+          "architectural_principle": "מדרגה או פרתל בטוב-לב, קבלה למטה",
+          "light_quality": "אור חם מתחת, טוב של השלמה"
+        },
+        "visual": {
+          "description": "מדרגה אחרונה או קסת קבלה, ירוק ישן או זהוב עדין",
+          "color_experience": "ירוק כהה עם זהוב, טוב ישן",
+          "light_impression": "אור מתחת המדרגה, כמו בית",
+          "visual_metaphor": "אדני הקבלה של הטוב"
+        },
+        "tactile": {
+          "description": "אבן חמה מתחת לרגל, קבלה של קרקע",
+          "temperature": "חם מתחת, כמו קרקע בשמש",
+          "texture_feel": "חלק אך יציב, כמו סלע מעבד",
+          "body_sensation": "תחושה של קבלה וטוב, שלום"
+        },
+        "physics": {
+          "description": "כוח אל תחתון, קבלה של משקל, שיווי משקל עמוק",
+          "principle": "כוח הקבלה, הנושא של כל מה שמעל",
+          "analogy": "כמו קרקע שנושאת הר",
+          "state": "שיווי משקל של קבלה"
+        },
+        "temporal": {
+          "description": "רגע של השלמה — כשמגיעים לסוף טוב",
+          "time_quality": "זמן של סיום בטוב-לב",
+          "rhythm": "קצב של קבלה עמוקה",
+          "cycle_position": "סוף המחזור ברחמים"
+        }
+      },
+      "synthesis": {
+        "essence": "טית = השלמה בטוב-לב. קול דנטלי רך של הערכה. מרחבית: מדרגה אחרונה או קסת קבלה, אור חם מתחת. פסיכולוגית: מצפון טוב, הערכה עמוקה, שלמות בטוב-לב, קבלה של כל דבר.",
+        "one_liner": "השלמה = קבלה בטוב-לב של כל מה שעולה",
+        "poetic_phrase": "הדרגה השלמה — הטוב מתגדל ממתחתיו"
+      },
+      "skill": {
+        "number": 9,
+        "name": "הערכה עמוקה",
+        "hebrew_title": "שמחת הטוב",
+        "description": "בשעה 19:00-20:00, הבחן בשלוש פעולות טובות שעשית היום, ללא גאון, עם הודיה עמוקה",
+        "action": "שב לשקט. שלוש פעולות קטנות שעשית: עזרת למישהו, שמעת בעדינות, עמדת בעקרון. הוקר כל אחת בהודיה שקטה",
+        "trigger_time": "19:00-20:00",
+        "duration_minutes": 10,
+        "outcome": "תחושה של טוב שגדול ממך, הדר של הודיה עמוקה",
+        "integration": "אחרי ח׳ (סגירה), קודם י׳ (עדינות)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "מדרגה או קרן קבלה בטוב-לב, פרסום תחתון",
+        "physical_expression": "סלע גדול או קרן שנושאת, אור מתחתיה",
+        "room_type": "קבלה או חצר קטנה, מישהו בהמתנה",
+        "light_source": "אור חם מתחת, כמו בוקר",
+        "material_palette": "אבן ישנה, ירוק שמתגדל, זהוב",
+        "spatial_qualities": [
+          "קבלה",
+          "טוב",
+          "השלמה",
+          "הדר"
+        ],
+        "human_experience": "אדם בוקע מתחת הדרגה לאור טוב",
+        "visual_metaphor": "קרן הקבלה של הטוב"
+      },
+      "visual_prompt": {
+        "hebrew": "מדרגה גדולה בסלע, קרן קבלה, אור חם ירוק-זהוב מתחתיה, אדם עומד עליה בהודיה, פרחים או צמחייה זוהרת סביב, תחושה של טוב והדר",
+        "english": "Large stone step or platform below ground | Beam of warm golden-green light from beneath | Figure standing above in gratitude | Flora glowing softly around it | Emanation of goodness and appreciation | Captures essence of TET: Completion with grace, gratitude for the good | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Underground passage opening to light, Mediterranean flora | Shot from below looking up at figure | #completion #gratitude #goodness #appreciation #grace",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 10,
+      "character": "י",
+      "hebrew_name": "יוד",
+      "english_name": "Yod",
+      "gematria": 10,
+      "position": "middle",
+      "visual_category": "essence",
+      "core": {
+        "name": "יוד",
+        "number": 10,
+        "gematria_value": 10,
+        "position_in_alphabet": "עשירית",
+        "archetypal_role": "הנקודה, הגרעין, העיקר של כל דבר"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול עתקיקי זעיר, בקור אחד, כמו נקודה של קול",
+          "frequency_range": "גבוה מאוד (palatal approximant), קול דק",
+          "articulation": "חך רך בעדינות, קול אוויר דק",
+          "texture": "עדין מאד, כמעט לא שנוי, קול טהור",
+          "breath_quality": "אוויר בדיוק מינימום"
+        },
+        "mathematical": {
+          "description": "10 = שיווי משקל מספרי, עשר הספרות, אחדות וריקנות",
+          "function": "10 = מחזור שלם (0-9), חזרה לתחילה בעוצמה חדשה",
+          "ratio": "10:22 = קרוב לחצי לפחות",
+          "sequence_position": "עשירי, קו העברה לעשרות",
+          "pattern_role": "הנקודה שמחזירה הכל לתחילה"
+        },
+        "physical": {
+          "description": "נקודה בודדת, גרעין של כל דבר, זעיר אך יסודי",
+          "organ_of_articulation": "חך רך בעדינות מינימום",
+          "body_posture": "עמדה זקופה, נוקודת עיניים, ריכוז",
+          "movement_quality": "אין תנועה, רק קיום בנקודה",
+          "tension_state": "אפס מתח, שלמות בנקודה"
+        },
+        "energetic": {
+          "description": "אנרגיה צפופה בנקודה, כוח בלא הרחבה",
+          "flow_direction": "צפופה לחלוטין, לא זורחת",
+          "intensity": "גבוהה מאוד בנקודה, אך מינימה בנפח",
+          "rhythm": "אפס, בנקודה אין קצב",
+          "expansion_type": "אפס, צפיפות בודדת"
+        },
+        "psychological": {
+          "description": "הבנה עמוקה של הגרעין, פשטות טהורה, בהירות",
+          "emotional_state": "שקט עמוק, סיפוק בתוך הנקודה",
+          "consciousness_quality": "מודעות מרוכזת לגמרי בנקודה",
+          "will_expression": "רצון להמצא בעיקר בלבד",
+          "archetypal_mood": "הנקודה של האמת"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ש",
+            "quality": "י = נקודה צפופה | ש = שלוש דרגות",
+            "dynamic": "הנקודה מתפתחת לשלשות",
+            "tension": "צפיפות מול התפשטות"
+          },
+          "complementary": {
+            "letter": "ט",
+            "quality": "ט = השלמה | י = הגרעין של השלמה",
+            "dynamic": "הנקודה בתוך ההשלמה"
+          },
+          "sonic_similar": [
+            "ו (עתקיקי דומה, אך פחות מרוכז)"
+          ],
+          "reinforces": [
+            "א (נקודת ההתחלה)"
+          ]
+        },
+        "spatial": {
+          "description": "נקודה בודדת בתוך מרחב ריק, גרעין בלא סביבה",
+          "angle": "נקודה, אפס זווית",
+          "line_type": "נקודה בודדת, אפס קו",
+          "color_palette": "לבן צח, או שחור בודד, או קסם של צבע",
+          "position_in_space": "מרכז מוחלט, בלא קשר לקצוות",
+          "movement_through_space": "אפס, נקודה סטטית לגמרי",
+          "architectural_principle": "נקודת אור בודדת בתוך חשכה",
+          "light_quality": "אור דק בודד, כמו כוכב"
+        },
+        "visual": {
+          "description": "נקודה בודדת זוהרת, שהיא כל העולם",
+          "color_experience": "צח או שחור, או צבע בודד בעוצמה",
+          "light_impression": "כוכב בודד בלילה",
+          "visual_metaphor": "הנקודה של כל דבר"
+        },
+        "tactile": {
+          "description": "נקודה זעירה, כמעט לא מרגישה",
+          "temperature": "תקין עם הגוף, אפס הבחנה",
+          "texture_feel": "חלק לחלוטין, דק כמו אבק",
+          "body_sensation": "אפס, רק קיום בנקודה"
+        },
+        "physics": {
+          "description": "צפיפות אפסית, נקודה מתמטית, בלא גודל פיזי",
+          "principle": "כמו נקודה בגיאומטריה, בסיס של כל צורה",
+          "analogy": "כמו כוכב, זה שקטן אך יסודי",
+          "state": "מצב בודד ושלם בעצמו"
+        },
+        "temporal": {
+          "description": "רגע אחד, הרגע הזה, אפס זמן",
+          "time_quality": "נקודה בזמן, לא משך",
+          "rhythm": "אפס קצב, רגע בודד",
+          "cycle_position": "הגרעין שממנו גדל כל המחזור"
+        }
+      },
+      "synthesis": {
+        "essence": "יוד = נקודה של כל דבר. קול עתקיקי זעיר של עדינות טהורה. מרחבית: נקודה בודדת בתוך מרחב ריק, גרעין בלא סביבה. פסיכולוגית: הבנה עמוקה של הגרעין, פשטות טהורה, בהירות בנקודה בודדת.",
+        "one_liner": "הנקודה = גרעין של כל עולם, זעיר אך מלא",
+        "poetic_phrase": "הנקודה של השתיקה — כל דבר בא ממנה וחוזר אליה"
+      },
+      "skill": {
+        "number": 10,
+        "name": "מדיטציה על הגרעין",
+        "hebrew_title": "שקט של הנקודה",
+        "description": "בשעה 20:00-21:00, התבונן בנקודה בודדת — כוכב, דיה של אור, זרע — וראה את כל העולם בה",
+        "action": "שב בשקט. בחר נקודה — כוכב בחלון, טיפה מים, גרעין. תרים את הבט אליה בתוך 10 דקות. מה יש בנקודה? כל עולם.",
+        "trigger_time": "20:00-21:00",
+        "duration_minutes": 12,
+        "outcome": "תחושה עמוקה של שלמות בעניין הזעום, בהירות בנקודה",
+        "integration": "אחרי ט׳ (השלמה), קודם כ׳ (הכלה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "נקודה בודדת של אור בתוך מרחב ריק גדול",
+        "physical_expression": "חלל מינימליסטי עם נקודת אור בודדת",
+        "room_type": "חדר אפל עם נקודת אור",
+        "light_source": "נקודה בודדת של אור, כמו כוכב או דיה",
+        "material_palette": "שחור מוחלט עם נקודה לבנה או צהובה",
+        "spatial_qualities": [
+          "נקודה",
+          "שקט",
+          "בהירות",
+          "עיקר"
+        ],
+        "human_experience": "אדם בוהה בנקודה בודדת בתוך חשכה",
+        "visual_metaphor": "הנקודה של כל דבר"
+      },
+      "visual_prompt": {
+        "hebrew": "חדר אפל לחלוטין, נקודת אור בודדת בדיוק המרכז — כוכב דרך חלון או טיפת אור, אדם יושב מול הנקודה בהתבוננות עמוקה, אפילה קדוש",
+        "english": "Completely dark room | Single point of light in exact center — star through window or single drop of light | Figure sitting facing the point in deep contemplation | Sacred silence | Captures essence of YOD: The point that contains all worlds | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Minimalist dark room, single light source centered | Shot from behind figure toward point of light | #point #essence #contemplation #silence #wholeness",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 20,
+      "character": "כ",
+      "hebrew_name": "כף",
+      "english_name": "Kaph",
+      "gematria": 20,
+      "position": "middle",
+      "visual_category": "containment",
+      "core": {
+        "name": "כף",
+        "number": 20,
+        "gematria_value": 20,
+        "position_in_alphabet": "עשרים (כ נומית יא)",
+        "archetypal_role": "הכלי הנושא, הכף שמחזיקה, ההכלה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול חך עמוק-רך, כמו כף שמחזיקה, קול של קיבול",
+          "frequency_range": "בינוני-נמוך (velar consonant), קול רקע",
+          "articulation": "חך רך קדימה, כמו כף מעוקלת",
+          "texture": "חם וספון, כמו כף בידיים",
+          "breath_quality": "אוויר מוחזק בעדינות בתוך כף"
+        },
+        "mathematical": {
+          "description": "20 = כפול של 10, עשרות, קנה מידה חדשה, הכלה של עשור",
+          "function": "20 = פי שתיים של עשור, התפשטות בשלמות",
+          "ratio": "20:22 = כמעט שלם (91%)",
+          "sequence_position": "עשרים, רמה נוספת של שלמות",
+          "pattern_role": "קנה מידה גדול יותר, כלל עבודה"
+        },
+        "physical": {
+          "description": "כף פתוחה ומעוקלת, מחזיקה ללא לחץ, יד מקבלת",
+          "organ_of_articulation": "חך רך עם קול קיבול",
+          "body_posture": "יד פתוחה וגלויה, מקבלת, עמדה של הנתינה",
+          "movement_quality": "תנועה מעוקלת, הכלה בעדינות",
+          "tension_state": "שום מתח, קיבול שלם"
+        },
+        "energetic": {
+          "description": "קבלה ו הכלה, אנרגיה מעוקלת שתופסת",
+          "flow_direction": "אלי תוך הכף, ספון מהחוץ",
+          "intensity": "בינונית, אך מעוקלת בעדינות",
+          "rhythm": "קצב קיבול, לא משגעת",
+          "expansion_type": "הכלה בתוך צורה"
+        },
+        "psychological": {
+          "description": "גנרוזיות, קבלה, כישרון לקבל ולתת",
+          "emotional_state": "חמלה, קשר עמוק, רצון לטעם ולתת",
+          "consciousness_quality": "מודעות של קבלה ונתינה בו זמנית",
+          "will_expression": "רצון לקבל ולהחזיק בעדינות",
+          "archetypal_mood": "הכף של הנתינה והקבלה"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "י",
+            "quality": "כ = כלל גדול המכיל | י = נקודה בודדת",
+            "dynamic": "הכף מחזיקה את הנקודה",
+            "tension": "הכלה מול ייחוד"
+          },
+          "complementary": {
+            "letter": "ו",
+            "quality": "ו = חיבור קל | כ = חיבור שמחזיק",
+            "dynamic": "הכף מחזיקה את הקשר"
+          },
+          "sonic_similar": [
+            "ק (חך דומה, אך קשוח יותר)"
+          ],
+          "reinforces": [
+            "ח (הגנה דרך הכלה)"
+          ]
+        },
+        "spatial": {
+          "description": "מרחק מעוקל המעטף, חלל המכיל בעדינות",
+          "angle": "עקום, כף מעוקלת",
+          "line_type": "קו מעוקל סגור למחצה, כמו כף",
+          "color_palette": "חום חם, זהוב, ירוק עדין",
+          "position_in_space": "מעטף מרכזי, מחזיק בתוך",
+          "movement_through_space": "תנועה מעוקלת להכלה, ספון",
+          "architectural_principle": "חדר מעוקל המחזיק, קשת או כיפה",
+          "light_quality": "אור חם מוחזק בתוך, כמו בכף"
+        },
+        "visual": {
+          "description": "כף מעוקלת מלאה בדברים טובים, אור חם",
+          "color_experience": "חום עדין, זהוב, ירוק בהיר",
+          "light_impression": "אור חם שממלא כף",
+          "visual_metaphor": "הכף של הלל"
+        },
+        "tactile": {
+          "description": "כף רכה המחזיקה, חום של לב",
+          "temperature": "חם ונוח, כמו כף",
+          "texture_feel": "רך, כמו עור או בד רך",
+          "body_sensation": "הרגשה של בטחון וקבלה"
+        },
+        "physics": {
+          "description": "כוח ההכלה, כף מחזיקה משקל",
+          "principle": "מעקום מחזיק יתר על משקל ישר",
+          "analogy": "כמו כף של משקל, טוענת ביעילות",
+          "state": "שיווי משקל של הכלה"
+        },
+        "temporal": {
+          "description": "רגע של קבלה — כשמחזיקים בידיים את רגע טוב",
+          "time_quality": "זמן המוחזק ומשומר",
+          "rhythm": "קצב של קבלה ותמימות",
+          "cycle_position": "סוגר של קבלה בכף"
+        }
+      },
+      "synthesis": {
+        "essence": "כף = הכלה וקבלה. קול חך רך וספון, כמו כף המחזיקה. מרחבית: חדר מעוקל המעטף, אור חם מוחזק בתוך. פסיכולוגית: גנרוזיות, קבלה, כישרון לקבל ולתת בעדינות, קשר עמוק מעבר למילים.",
+        "one_liner": "הכלה = כף פתוחה שמחזיקה כל דבר בעדינות",
+        "poetic_phrase": "הכף של ה׳ — בה מוחזקים אנו כל ימינו"
+      },
+      "skill": {
+        "number": 20,
+        "name": "קבלה אמיתית",
+        "hebrew_title": "יד פתוחה",
+        "description": "בשעה 21:00-22:00, תן משהו טוב למישהו בלא ציפייה להחזרה, בידיים פתוחות וחם",
+        "action": "תן מתנה קטנה, כלב, אזנים או זמן — בידיים פתוחות, לב חם, לא לרוב. פשוט תן.",
+        "trigger_time": "21:00-22:00",
+        "duration_minutes": 15,
+        "outcome": "תחושה עמוקה של חמלה, קשר שנשמר בלא דבקות",
+        "integration": "אחרי י׳ (נקודה), קודם ל׳ (קרנות)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע (או 3-4 פעמים)"
+      },
+      "spatial_model": {
+        "architectural_principle": "חלל מעוקל או קשת המחזיקה, כף אדריכלית",
+        "physical_expression": "כיפה או קשת חמה המעטפת מרחק",
+        "room_type": "חדר מעוקל עם קבלה מרכזית",
+        "light_source": "אור חם מוחזק בתוך הקשת",
+        "material_palette": "עץ חום, אבן חמה, בד חם",
+        "spatial_qualities": [
+          "הכלה",
+          "קבלה",
+          "חום",
+          "גנרוזיות"
+        ],
+        "human_experience": "אדם בתוך כף גדולה, מוחזק בחום",
+        "visual_metaphor": "הכף של הלל"
+      },
+      "visual_prompt": {
+        "hebrew": "חלל מעוקל גדול כמו כף, קיר חום וחומדה, אור זהוב החם מוחזק בתוך הקשת, מישהו נותן משהו לאדם אחר בידיים פתוחות, תחושה של קבלה וחום חיבור",
+        "english": "Large curved space like a palm | Warm ochre-brown walls forming a shell | Golden warm light held within the arch | Figure giving something to another with open palms | Sense of acceptance and warmth of connection | Captures essence of KAPH: Generosity, true acceptance, holding with gentleness | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean vernacular architecture, warm evening light | Shot from inside the curve looking outward | #acceptance #generosity #warmth #holding #connection",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 30,
+      "character": "ל",
+      "hebrew_name": "למד",
+      "english_name": "Lamed",
+      "gematria": 30,
+      "position": "middle",
+      "visual_category": "ascension",
+      "core": {
+        "name": "למד",
+        "number": 30,
+        "gematria_value": 30,
+        "position_in_alphabet": "שלוש עשרה",
+        "archetypal_role": "ההוראה, העלייה, הדרך כלפי מעלה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שפתי חזק, קל וזורם כלפי מעלה, נשימה העולה",
+          "frequency_range": "בינוני (labiodental fricative), זרימה עולה",
+          "articulation": "שפה תחתונה עם שיניים עליונות, זרימה כלפי מעלה",
+          "texture": "חזק אך נזיל, זורם בקלות",
+          "breath_quality": "אוויר חזק הזורם כלפי מעלה וקדימה"
+        },
+        "mathematical": {
+          "description": "30 = שלוש עשרות, טריפל של 10, עלייה לרמה שלישית",
+          "function": "30 = 3×10, מטבעת של שלוש קטגוריות",
+          "ratio": "30:22 = יותר מהשלם (136%)",
+          "sequence_position": "שלוש עשרה, חצי דרך במעלה",
+          "pattern_role": "עלייה לעשרות חדשות"
+        },
+        "physical": {
+          "description": "עמוד ישר וגבוה, עלייה זקופה, קו אנכי חזק",
+          "organ_of_articulation": "שפה וגרון בעלייה",
+          "body_posture": "עמידה זקופה, כתפיים למעלה, הסתכלות כלפי מעלה",
+          "movement_quality": "עלייה חזקה, מסודרת, לא מתנדנדת",
+          "tension_state": "מתח חזק של עלייה"
+        },
+        "energetic": {
+          "description": "זרימה כלפי מעלה, אנרגיה עולה ומטרתית",
+          "flow_direction": "כלפי מעלה, אנכי ישר",
+          "intensity": "גבוהה, מכוונת",
+          "rhythm": "קצב קבוע של עלייה",
+          "expansion_type": "עלייה רציפה"
+        },
+        "psychological": {
+          "description": "לימוד, שיפור, השגת מטרות גבוהות",
+          "emotional_state": "שאיפה, תקווה בעלייה, התנשאות של רוח",
+          "consciousness_quality": "מודעות מתגברת, עלייה בהבנה",
+          "will_expression": "רצון חזק להשיג, לעלות",
+          "archetypal_mood": "המורה — זה שעולה כדי להוביל"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "מ",
+            "quality": "ל = עלייה כלפי מעלה | מ = ירידה אל תוך",
+            "dynamic": "עלייה יוצרת יורד",
+            "tension": "הפך אנכי"
+          },
+          "complementary": {
+            "letter": "כ",
+            "quality": "כ = הכלה | ל = עלייה דרך הכלה",
+            "dynamic": "הכלה מעלה"
+          },
+          "sonic_similar": [
+            "ף (שפתי דומה, אך סוגר)"
+          ],
+          "reinforces": [
+            "ד (דרך העלייה)"
+          ]
+        },
+        "spatial": {
+          "description": "עמוד ישר וגבוה, מטפס או סולם, עלייה ברורה",
+          "angle": "90° אנכי לחלוטין, קו העלייה",
+          "line_type": "קו ישר אנכי חזק, בלא סטייה",
+          "color_palette": "אדום-כתום של אש כלפי מעלה, צהוב בגובה",
+          "position_in_space": "במרכז, מטפס בתוך מרחב",
+          "movement_through_space": "עלייה אנכית מהירה",
+          "architectural_principle": "מטפס, אמת, או קיר אנכי גבוה",
+          "light_quality": "אור שמעלה, אור בשמיים"
+        },
+        "visual": {
+          "description": "עלייה חזקה כלפי מעלה, אדום-כתום בעלייה",
+          "color_experience": "אדום עולה לצהוב בגובה",
+          "light_impression": "אור השמיים בעלייה",
+          "visual_metaphor": "מטפס אל השמיים"
+        },
+        "tactile": {
+          "description": "חוזקת אבנים או עץ קשה, עלייה בכוח",
+          "temperature": "חום של אש, אנרגיה כלפי מעלה",
+          "texture_feel": "גס ויציב, כמו סלע לטיפוס",
+          "body_sensation": "כוח בעקבים, עלייה ברורה"
+        },
+        "physics": {
+          "description": "כוח עולה נגד כובד, עבודה כלפי מעלה",
+          "principle": "עבודה = כוח × גובה, עלייה דורשת אנרגיה",
+          "analogy": "כמו טיפוס בהר",
+          "state": "מצב פעיל של התגברות"
+        },
+        "temporal": {
+          "description": "זמן של עלייה — דקה אחר דקה כלפי מעלה",
+          "time_quality": "זמן מכוון, פרוגרסיבי",
+          "rhythm": "קצב קבוע של קדימה",
+          "cycle_position": "התחלה של עלייה לתשע עשרה"
+        }
+      },
+      "synthesis": {
+        "essence": "למד = עלייה וההוראה. קול שפתי זורם כלפי מעלה. מרחבית: עמוד ישר וגבוה, מטפס או סולם, אור השמיים. פסיכולוגית: לימוד, שיפור, השגה, תקווה בעלייה, צוקר של רוח.",
+        "one_liner": "עלייה = קו ישר כלפי מעלה שמביא להבנה גבוהה",
+        "poetic_phrase": "הדרך למעלה — כל צעד הוא למד של רוח"
+      },
+      "skill": {
+        "number": 30,
+        "name": "לימוד עמוק",
+        "hebrew_title": "תורה של הנעלה",
+        "description": "בשעה 21:00-22:00, למד משהו חדש שמעלה את ההבנה שלך, לא מידע אלא חכמה",
+        "action": "קח ספר או מורה, וקרא משהו שיוציא אותך מהמקום שאתה בו. למד בעמידה זקופה, עם מבט כלפי מעלה בסוף.",
+        "trigger_time": "21:00-22:00",
+        "duration_minutes": 45,
+        "outcome": "הרגשה של עלייה בהבנה, התנשאות של רוח",
+        "integration": "אחרי כ׳ (הכלה), קודם מ׳ (מרחק/ירידה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "4-5 פעמים בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "סולם או מטפס חזק, עמוד אנכי גבוה, אור בגובה",
+        "physical_expression": "מטפס אבן או עץ קשה, אנכי לחלוטין",
+        "room_type": "חדר גבוה עם מטפס או מסדרון עולה",
+        "light_source": "אור בשמיים, אור בגובה",
+        "material_palette": "אבן אדומה, עץ קשה, מתכת",
+        "spatial_qualities": [
+          "עלייה",
+          "גובה",
+          "חוזקה",
+          "בהירות"
+        ],
+        "human_experience": "אדם טוען על מטפס בעקביות",
+        "visual_metaphor": "הדרך למעלה"
+      },
+      "visual_prompt": {
+        "hebrew": "סולם או מטפס אבן גבוה מאוד, קו אנכי ברור, אדם טוען בעקביות, אור שמיים בגובה, נוף רחב וגבוה, תחושה של הצלחה בעלייה",
+        "english": "Tall stone staircase or climbing wall | Vertical line absolutely clear | Figure climbing steadily | Sky light at height | Wide open landscape from top | Sense of achievement in ascension | Captures essence of LAMED: Teaching, ascent, reaching higher understanding | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean mountain stone, morning light from above | Shot from below looking up at climber | #ascent #teaching #achievement #clarity #height",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 40,
+      "character": "מ",
+      "hebrew_name": "מם",
+      "english_name": "Mem",
+      "gematria": 40,
+      "position": "middle",
+      "visual_category": "flow",
+      "core": {
+        "name": "מם",
+        "number": 40,
+        "gematria_value": 40,
+        "position_in_alphabet": "ארבע עשרה",
+        "archetypal_role": "המים, הזרימה, המותר למטה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שפתי סגור, דלדול, קול שורד כלפי פנים, נוזל",
+          "frequency_range": "בינוני-נמוך (bilabial nasal), קול פנימי",
+          "articulation": "שתי שפתיים סגורות עם זרימה אנפית",
+          "texture": "רך, זורם, נוזלי כמו מיים",
+          "breath_quality": "אוויר זורם דרך האף, שקט אך תמידי"
+        },
+        "mathematical": {
+          "description": "40 = ארבע עשרות, מעגל שלם (4×10), תשע עשרה ימים",
+          "function": "40 = סוף עשרות וסוף משימה (40 ימים במדבר)",
+          "ratio": "40:22 = קצת יותר מדוקסה",
+          "sequence_position": "ארבע עשרה, קו הירידה",
+          "pattern_role": "חזרה וסגירה של עשור"
+        },
+        "physical": {
+          "description": "זרימה למטה, עקומה של מים, ירידה נוזלית",
+          "organ_of_articulation": "שפתיים וחנויות אנפית",
+          "body_posture": "גוף רך וניתן, שסוף לירידה",
+          "movement_quality": "זרימה עדינה, זורמת, לא עצורה",
+          "tension_state": "אין מתח, זרימה טבעית"
+        },
+        "energetic": {
+          "description": "אנרגיה זורמת כלפי מטה, התפזרות, התמוססות",
+          "flow_direction": "כלפי מטה, עקומה, פרישה",
+          "intensity": "בינונית, אך רציפה",
+          "rhythm": "קצב של זרימה קבועה",
+          "expansion_type": "התפזרות למטה"
+        },
+        "psychological": {
+          "description": "זרימה הנפשית, שחרור, ויתור על בקרה",
+          "emotional_state": "עדינות, זרימה, קיבול בקלות",
+          "consciousness_quality": "מודעות של זרימה, לא של בקרה",
+          "will_expression": "רצון לשחרר, לתת למים להזרום",
+          "archetypal_mood": "המימים — הם שנוזלים בתוך הכל"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ל",
+            "quality": "מ = ירידה וזרימה | ל = עלייה וקשיחות",
+            "dynamic": "מה שעולה חייב ליפול",
+            "tension": "עלייה מול ירידה"
+          },
+          "complementary": {
+            "letter": "נ",
+            "quality": "מ = זרימה אל תוך | נ = זרימה מתוך",
+            "dynamic": "מים שזורמים להן"
+          },
+          "sonic_similar": [
+            "ן (קול דומה, סגור מלא)"
+          ],
+          "reinforces": [
+            "ח (סגירה של זרימה)"
+          ]
+        },
+        "spatial": {
+          "description": "זרימה למטה, נהר או מעיין, ירידה נוזלית",
+          "angle": "עקומה של זרימה, לא ישר",
+          "line_type": "קו עקום למטה, כמו זרם",
+          "color_palette": "כחול-ירוק של מיים, שקיפות",
+          "position_in_space": "מוזרימה מלמעלה אל תוך",
+          "movement_through_space": "זרימה רציפה כלפי מטה",
+          "architectural_principle": "אקוודוק או ערוץ מים, ירידה רטובה",
+          "light_quality": "אור שקוף דרך מיים"
+        },
+        "visual": {
+          "description": "מיים זורמים למטה, כחול-ירוק, שקיפות",
+          "color_experience": "כחול מים, ירוק של חיים",
+          "light_impression": "אור שקוף דרך מיים",
+          "visual_metaphor": "נהר מתחת להר"
+        },
+        "tactile": {
+          "description": "מיים קרים זורמים, רטיבות, קלילות",
+          "temperature": "קר וטרי, כמו אביב",
+          "texture_feel": "חלק ונוזלי, אין מרקם קשוח",
+          "body_sensation": "הרגשה של קלילות וזרימה"
+        },
+        "physics": {
+          "description": "כוח הזרימה, מים במורד, אנרגיה משוחררת",
+          "principle": "כוח הכובד משחרר אנרגיה בירידה",
+          "analogy": "כמו מימים מטפחות סלע",
+          "state": "מצב בזרימה רציפה"
+        },
+        "temporal": {
+          "description": "זמן של זרימה — הרגע אחר הרגע זורם מטה",
+          "time_quality": "זמן זורם, אין עצירה",
+          "rhythm": "קצב של זרימה רציפה",
+          "cycle_position": "ירידה לאמצע התחתון"
+        }
+      },
+      "synthesis": {
+        "essence": "מם = זרימה ויתור. קול שפתי רך שזורם דרך האף. מרחבית: זרימה למטה, נהר, מיים רטובים וקרים. פסיכולוגית: שחרור, זרימה הנפשית, קיבול של קלות, ויתור על בקרה.",
+        "one_liner": "זרימה = מיים שלא עוצרים בדרכם אל הים",
+        "poetic_phrase": "המיים משחררים — הם לא בוחרים בדרך, רק זורמים"
+      },
+      "skill": {
+        "number": 40,
+        "name": "שחרור של בקרה",
+        "hebrew_title": "משחק עם הזרם",
+        "description": "בשעה 22:00-23:00, תן לדבר שחזק בך לזרום החוצה — דמעה, צחוק, תנועה, אמת",
+        "action": "אל תשמור. תן לדברים לזרום ללא בקרה. תנוע ללא תכנון. דבר בלא סינון. תן למים לעשות מה שהם רוצים.",
+        "trigger_time": "22:00-23:00",
+        "duration_minutes": 20,
+        "outcome": "הרגשה של שחרור, קלילות, זרימה טבעית",
+        "integration": "אחרי ל׳ (עלייה), קודם נ׳ (תנועה מתוך)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "3-4 פעמים בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "נהר או אקוודוק, זרימה למטה, מיים חיים",
+        "physical_expression": "מיים זורמים בערוץ טבעי",
+        "room_type": "חדר לחות ופתוח, מיים נראים",
+        "light_source": "אור שקוף דרך מיים",
+        "material_palette": "אבן רטובה, מתכת, צמחייה רטובה",
+        "spatial_qualities": [
+          "זרימה",
+          "שחרור",
+          "קלילות",
+          "רטיבות"
+        ],
+        "human_experience": "אדם שוחה או מרים יד אל המים",
+        "visual_metaphor": "הנהר של שחרור"
+      },
+      "visual_prompt": {
+        "hebrew": "נהר זורם במורד, מיים כחולים-ירוקים, קצף ותנועה, אדם בקרבת המים במרווח, אור שקוף דרך המים, הרגשה של זרימה חיה",
+        "english": "River flowing downward | Blue-green water with motion | Foam and white water | Figure near the water's edge at ease | Transparent light through flowing water | Sense of living flow | Captures essence of MEM: Release, natural surrender, water finding its way | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean river or stream, morning light | Shot from near water level looking at flow | #flow #release #fluidity #surrender #movement",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 50,
+      "character": "נ",
+      "hebrew_name": "נון",
+      "english_name": "Nun",
+      "gematria": 50,
+      "position": "middle",
+      "visual_category": "emergence",
+      "core": {
+        "name": "נון",
+        "number": 50,
+        "gematria_value": 50,
+        "position_in_alphabet": "חמש עשרה",
+        "archetypal_role": "הבקיעה, הצמיחה, הופעה מתוך"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שפתי סגור עם בקיעה, צמיחה דרך קול, הופעה",
+          "frequency_range": "בינוני (bilabial nasal) עם דגש צמיחה",
+          "articulation": "שפתיים בעדינות שמפתחות לקול",
+          "texture": "עדין ואך חודר, כמו צמח דרך אדמה",
+          "breath_quality": "אוויר שפורץ דרך חסם, קול של בקיעה"
+        },
+        "mathematical": {
+          "description": "50 = מחצית של מאה, סוף של הנברא, התחלה של הרוחני",
+          "function": "50 = יובל (50 שנה), זמן של שחרור ובקיעה",
+          "ratio": "50:22 = יותר מדוקסה בחצי",
+          "sequence_position": "חמש עשרה, קו ההופעה",
+          "pattern_role": "זמן של פרוץ אל תוך החדש"
+        },
+        "physical": {
+          "description": "בקיעה של צמחייה, פרח מתוך שורש, עלייה משתיקות",
+          "organ_of_articulation": "שפתיים עם בקיעה בעדינות",
+          "body_posture": "גוף משתנה, פוריץ, משתוקע לאוויר",
+          "movement_quality": "בקיעה עדינה אך עמוקה, פרוץ חיים",
+          "tension_state": "מתח של צמיחה, לא פתרון אלא תהליך"
+        },
+        "energetic": {
+          "description": "אנרגיה של בקיעה, גדילה מתוך, פרוץ חיים",
+          "flow_direction": "מתוך כלפי חוץ, בקיעה",
+          "intensity": "גבוהה, דחופה, דחוקה מתוך",
+          "rhythm": "קצב של גדילה, לא קפיץ",
+          "expansion_type": "בקיעה מדורגת"
+        },
+        "psychological": {
+          "description": "בקיעה של משהו חדש, התחדשות, תקווה וגדילה",
+          "emotional_state": "תקווה עמוקה, גדילה, פוריות פנימית",
+          "consciousness_quality": "מודעות של צמיחה, של משהו חדש הופך",
+          "will_expression": "רצון לצמוח, לבקוע, לשנות צורה",
+          "archetypal_mood": "הגן של הידידות"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "מ",
+            "quality": "נ = בקיעה כלפי חוץ | מ = זרימה כלפי מטה",
+            "dynamic": "מיים זורמים עד שצמחייה בוקעת",
+            "tension": "תנועה מול בקיעה"
+          },
+          "complementary": {
+            "letter": "ס",
+            "quality": "נ = בקיעה בודדת | ס = סיבוב של צמיחה",
+            "dynamic": "בקיעה שמתחזרת"
+          },
+          "sonic_similar": [
+            "ם (קול זהה, סוגר סגור)"
+          ],
+          "reinforces": [
+            "ל (גדילה דרך למדנות)"
+          ]
+        },
+        "spatial": {
+          "description": "בקיעה של צמחייה, גן בצמיחה, עלייה מעדינה",
+          "angle": "עקומה כלפי חוץ, בקיעה",
+          "line_type": "קו מעוקל בקיעה, כמו צמח",
+          "color_palette": "ירוק בהיר, צהוב-ירוק של בקיעה, חום של אדמה",
+          "position_in_space": "בוקע מתוך לעל",
+          "movement_through_space": "בקיעה מסודרת כלפי שמיים",
+          "architectural_principle": "גן או גיגן קטן, צמחייה בוקעת",
+          "light_quality": "אור בוקר על ירוקים"
+        },
+        "visual": {
+          "description": "צמחייה בוקעת מאדמה, ירוק בהיר, חיים",
+          "color_experience": "ירוק בהיר עם ייהלום של טל",
+          "light_impression": "אור בוקר על עלים חדשים",
+          "visual_metaphor": "הגן של בקיעה"
+        },
+        "tactile": {
+          "description": "אדמה רטובה, צמח רך בוקע, אדים",
+          "temperature": "חם ורטוב, כמו גן בבוקר",
+          "texture_feel": "רך של עלה חדש, אדמה ספוגה",
+          "body_sensation": "הרגשה של צמיחה בתוך"
+        },
+        "physics": {
+          "description": "כוח הצמיחה, תא בפיצול, אנרגיה של חיים",
+          "principle": "פוטוסינתזה — הופעה מתוך",
+          "analogy": "כמו ביצה שנפצעת",
+          "state": "מצב של שינוי חיובי"
+        },
+        "temporal": {
+          "description": "זמן של בקיעה — הרגע שלפני הופעה",
+          "time_quality": "זמן של צמיחה, לא קפיצה",
+          "rhythm": "קצב של חיים גדלים",
+          "cycle_position": "בקיעה של מחזור חדש"
+        }
+      },
+      "synthesis": {
+        "essence": "נון = בקיעה וצמיחה. קול שפתי שפורץ דרך סגירה. מרחבית: צמחייה בוקעת מאדמה, גן בחיים, אור בוקר. פסיכולוגית: תקווה עמוקה, גדילה, פוריות פנימית, בקיעה של משהו חדש.",
+        "one_liner": "בקיעה = צמח שמתעלם מעפר ונוטע בשמיים",
+        "poetic_phrase": "הצמח בוקע — האדמה לא מפחדת לתת"
+      },
+      "skill": {
+        "number": 50,
+        "name": "גדילה מודעת",
+        "hebrew_title": "יובל של בקיעה",
+        "description": "בשעה 23:00-00:00, תבחין בדבר שגדל בך — רעיון, יכולת, רגש — וחגוג את בקיעתו",
+        "action": "בחר משהו שגדל בך. שם אותו בשם. הודה ללא ביישן: אני גדל. אני משתנה. אני בוקע.",
+        "trigger_time": "23:00-00:00",
+        "duration_minutes": 12,
+        "outcome": "הכרה של גדילה אישית, כבוד של בקיעה",
+        "integration": "אחרי מ׳ (זרימה), קודם ס׳ (סיבוב)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "גן קטן בוקע, צמחייה גדלה, אור טבעי",
+        "physical_expression": "אדמה פתוחה עם צמחייה בוקעת",
+        "room_type": "חדר גן או בית זכוכית",
+        "light_source": "אור בוקר על צמחייה",
+        "material_palette": "אדמה, חול, צמחייה ירוקה",
+        "spatial_qualities": [
+          "בקיעה",
+          "צמיחה",
+          "חיים",
+          "תקווה"
+        ],
+        "human_experience": "אדם יושב בגן, מצפה לבקיעה",
+        "visual_metaphor": "הגן של החדש"
+      },
+      "visual_prompt": {
+        "hebrew": "גן קטן עם צמחייה בוקעת מאדמה, ירוק בהיר של עלים חדשים, אדם יושב בקרבת אדמה במודעות, טל וביטחון, אור בוקר על צמח צעיר",
+        "english": "Small garden with vegetation emerging from earth | Bright green of fresh leaves | Person sitting near soil in awareness | Dew and trust | Morning light on young plant | Sense of hope | Captures essence of NUN: Emergence, growth, hope breaking through | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean garden at dawn, spring season | Shot from near ground level toward emerging plant | #emergence #growth #hope #life #renewal",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 60,
+      "character": "ס",
+      "hebrew_name": "סמך",
+      "english_name": "Samekh",
+      "gematria": 60,
+      "position": "middle",
+      "visual_category": "support",
+      "core": {
+        "name": "סמך",
+        "number": 60,
+        "gematria_value": 60,
+        "position_in_alphabet": "שש עשרה",
+        "archetypal_role": "התמיכה, הסיבוב, המחזור של חיים"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שיניי-זעיר עם סגירה, קול של סיבוב, תמיכה",
+          "frequency_range": "אמצע-גבוה (alveolar fricative) עם מרקם",
+          "articulation": "שיניים עם שפה במקום, קול של סגר רך",
+          "texture": "חזק אך סגור, כמו סיבוב",
+          "breath_quality": "אוויר סגור בתוך מעגל"
+        },
+        "mathematical": {
+          "description": "60 = שש עשרות, שלוש עשור, מעגל (360 מעלות)",
+          "function": "60 = דקות בשעה, זמן של מעגל",
+          "ratio": "60:22 = יותר מהשלושה",
+          "sequence_position": "שש עשרה, קו תמיכת המרכז",
+          "pattern_role": "מעגל של סיבוב וחזרה"
+        },
+        "physical": {
+          "description": "מעגל סתום, תמיכה מכל צד, קו עגול",
+          "organ_of_articulation": "שיניים עם קול מרוכז",
+          "body_posture": "גוף מעוגל, מכיל, תומך",
+          "movement_quality": "סיבוב עגול, חזרה לנקודה",
+          "tension_state": "מתח של סגירה עגולה"
+        },
+        "energetic": {
+          "description": "אנרגיה סגורה במעגל, תמיכה מכל צד",
+          "flow_direction": "סיבוב מעגלי, חזרה תמיד",
+          "intensity": "בינונית אך עמוקה",
+          "rhythm": "קצב מעגלי עתיק",
+          "expansion_type": "סיבוב בלא שינוי"
+        },
+        "psychological": {
+          "description": "תמיכה עמוקה, חזרה לשורש, מחזור של חיים",
+          "emotional_state": "נוחות, בטחון, היכרות, סיבוב חיים",
+          "consciousness_quality": "מודעות של מעגל, של חזרה תמיד",
+          "will_expression": "רצון לתמוך, להציע ידיים עגולות",
+          "archetypal_mood": "הסד של הזקן שנתן וקיבל"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ל",
+            "quality": "ס = מעגל סגור | ל = קו ישר למעלה",
+            "dynamic": "עלייה שנסגרת במעגל",
+            "tension": "קו מול מעגל"
+          },
+          "complementary": {
+            "letter": "נ",
+            "quality": "נ = בקיעה חד-פעמית | ס = סיבוב תמידי",
+            "dynamic": "בקיעה שמתחזרת"
+          },
+          "sonic_similar": [
+            "ץ (דומה אך קשוח יותר)"
+          ],
+          "reinforces": [
+            "ח (סגירה תומכת)"
+          ]
+        },
+        "spatial": {
+          "description": "מעגל סגור, מרכז תמוך, סיבוב חיים",
+          "angle": "360 מעלות, מעגל מושלם",
+          "line_type": "קו עגול סגור, בלא שבירה",
+          "color_palette": "אפור-חום של סלע, כסף של זמן",
+          "position_in_space": "במרכז, מעגל סביב",
+          "movement_through_space": "סיבוב מעגלי קבוע",
+          "architectural_principle": "מעגל או טבעת, סטודיום או מעגל עתיק",
+          "light_quality": "אור מעגלי, בלא זווית"
+        },
+        "visual": {
+          "description": "מעגל סלע או אבן, סגור ותומך, זקן",
+          "color_experience": "אפור-חום עמוק, כסף",
+          "light_impression": "אור סביב מעגל",
+          "visual_metaphor": "הטבעת של הזמן"
+        },
+        "tactile": {
+          "description": "אבן או עץ חם בקצה מעגל, תמיכה",
+          "temperature": "חם ויציב, כמו חזקה",
+          "texture_feel": "חלק מ-חיכוך בזמן, אבן מלומדה",
+          "body_sensation": "הרגשה של תמיכה מכל צד"
+        },
+        "physics": {
+          "description": "כוח צנטריפוגלי, מעגל שומר על זמנו",
+          "principle": "מעגל = זמן, ך = תמיכה של קביעות",
+          "analogy": "כמו כוכב בתוך מסלול",
+          "state": "מצב יציב ומעגלי"
+        },
+        "temporal": {
+          "description": "זמן מעגלי — חזרה לנקודה ההתחלה",
+          "time_quality": "זמן עתיק, סיבובים",
+          "rhythm": "קצב מעגלי עתיק",
+          "cycle_position": "סוגר של מעגל בודד"
+        }
+      },
+      "synthesis": {
+        "essence": "סמך = תמיכה וסיבוב. קול שיניי-זעיר עם סגירה רכה. מרחבית: מעגל סלע, תמיכה מכל צד, סיבוב חיים. פסיכולוגית: תמיכה עמוקה, חזרה לשורש, מחזור של חיים, נוחות בחזרה.",
+        "one_liner": "תמיכה = מעגל שנשארת ללא סוף, תמיד סביב",
+        "poetic_phrase": "המעגל שמחזיק — הוא לא מתחיל, הוא לא נגמר, הוא רק סובב"
+      },
+      "skill": {
+        "number": 60,
+        "name": "סיבוב אל השורש",
+        "hebrew_title": "מעגל של תמיכה",
+        "description": "בשעה 00:00-01:00 (חצות), חזור אל משהו שתמך בך, תודה עמוקה וחזרה לשורש",
+        "action": "בחר משהו שתמך בך תמיד — אדם, מקום, אמת. חזור אליו. סגור את המעגל בתודה. הבן שהוא סוב תמיד.",
+        "trigger_time": "00:00-01:00",
+        "duration_minutes": 15,
+        "outcome": "תחושה של תמיכה נצחית, משהו שלא ישנה",
+        "integration": "אחרי נ׳ (בקיעה), קודם ע׳ (ראייה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "מעגל או טבעת עתיקה, תמיכה מכל צד",
+        "physical_expression": "אבנים מעגליות או סטוודיום כחול",
+        "room_type": "חדר בעיצוב מעגלי, מרכז תומך",
+        "light_source": "אור מעגלי סביב מרכז",
+        "material_palette": "אבן עתיקה, כסף, חום עמוק",
+        "spatial_qualities": [
+          "תמיכה",
+          "מעגל",
+          "זמן",
+          "חזרה"
+        ],
+        "human_experience": "אדם במרכז של מעגל, מחזוק",
+        "visual_metaphor": "הטבעת של הזמן"
+      },
+      "visual_prompt": {
+        "hebrew": "מעגל אבנים עתיקות, צוק או טבעת קדומה, אדם במרכז בשקט, אור מעגלי סביב, תחושה של תמיכה מכל צד, זמן עתיק",
+        "english": "Circle of ancient stones | Ruin or ring from old times | Figure in center in silence | Circular light around | Sense of support from all sides | Ancient time | Captures essence of SAMEKH: Support, return to roots, life circles back | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean ancient ruins, late night or dawn light | Shot from center looking outward at circle | #support #circle #ancient #wholeness #return",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 70,
+      "character": "ע",
+      "hebrew_name": "עין",
+      "english_name": "Ayin",
+      "gematria": 70,
+      "position": "end_beginning",
+      "visual_category": "perception",
+      "core": {
+        "name": "עין",
+        "number": 70,
+        "gematria_value": 70,
+        "position_in_alphabet": "שבע עשרה",
+        "archetypal_role": "העין, הראייה, ההכרה של קיום"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול גרוני עמוק פתוח, כמו עיניים שנפתחות, חושף",
+          "frequency_range": "נמוך (pharyngeal fricative) עם דגש ראייה",
+          "articulation": "גרון עמוק בחופש, אויר חופשי",
+          "texture": "עמוק אך חסר מחסום, כמו בואר",
+          "breath_quality": "אוויר זורם בלא הפרעה דרך גרון פתוח"
+        },
+        "mathematical": {
+          "description": "70 = שבע עשרות, הכרה של הקיום, ראייה בשלמות",
+          "function": "70 = 7×10, ראייה כפולה של מחזור",
+          "ratio": "70:22 = יותר משלוש עשרות",
+          "sequence_position": "שבע עשרה, עין הדרך",
+          "pattern_role": "ראייה של דפוסים בעומק"
+        },
+        "physical": {
+          "description": "עין פתוחה, הסתכלות ישירה, תשומת לב מלאה",
+          "organ_of_articulation": "גרון במלואו, בלא מחסום",
+          "body_posture": "גוף מיושר, עיניים פתוחות וקשובות",
+          "movement_quality": "תשומת לב רציפה, הסתכלות שלא מחדשת",
+          "tension_state": "מתח של ריכוז, לא רלקסציה"
+        },
+        "energetic": {
+          "description": "אנרגיה של ראייה וקבלה, הכרה עמוקה",
+          "flow_direction": "פנימה דרך עיניים, ספיגה",
+          "intensity": "גבוהה, ממוקדת, עמוקה",
+          "rhythm": "קצב של הסתכלות קבועה",
+          "expansion_type": "הרחבת תחום ראייה"
+        },
+        "psychological": {
+          "description": "ראייה עמוקה, הכרה של הקיום, תשומת לב מלאה",
+          "emotional_state": "עדות, הכרה, עדינות של ראייה",
+          "consciousness_quality": "מודעות של ראייה בעמוק, לא רק השטח",
+          "will_expression": "רצון לראות את האמת בעיניים פתוחות",
+          "archetypal_mood": "העד — הוא שרואה"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ב",
+            "quality": "ע = ראייה גלויה | ב = דואליות נסתרת",
+            "dynamic": "ראייה מחשיפה דואליות",
+            "tension": "גילוי מול הסתרה"
+          },
+          "complementary": {
+            "letter": "פ",
+            "quality": "ע = ראייה של חוץ | פ = פה שמדבר את הראייה",
+            "dynamic": "ראייה מובעת בדברים"
+          },
+          "sonic_similar": [
+            "ח (גרוני דומה, אך סגור)"
+          ],
+          "reinforces": [
+            "ש (ראייה משולשת)"
+          ]
+        },
+        "spatial": {
+          "description": "עין פתוחה על נוף, ראייה רחבה, הכרה מלאה",
+          "angle": "360° ראייה מעגלית",
+          "line_type": "קו של הסתכלות, קו הראייה",
+          "color_palette": "כל הצבעים — ראייה קולטת הכל",
+          "position_in_space": "במרכז ראייה, בחזית",
+          "movement_through_space": "נוף הסתוקף בחלון",
+          "architectural_principle": "חלון גדול, ראייה רחבה, נוף פתוח",
+          "light_quality": "אור מלא, בלא הסתרה"
+        },
+        "visual": {
+          "description": "עין פתוחה על עולם, ראייה מלאה, בהירות",
+          "color_experience": "כל הצבעים בו זמנית, מלא",
+          "light_impression": "אור בוקר בנוף פתוח",
+          "visual_metaphor": "העין של כל דבר"
+        },
+        "tactile": {
+          "description": "רוח עדינה על הפנים, הרגשה של ראייה",
+          "temperature": "תקין, כמו אוויר חי",
+          "texture_feel": "ברור וחד, ללא עיבוד",
+          "body_sensation": "הרגשה של תשומת לב וקול"
+        },
+        "physics": {
+          "description": "אור נכנס דרך עדשה, ראייה היא קליטת אור",
+          "principle": "עדשה קולטת אור, מוחק עובד",
+          "analogy": "כמו תאריך המצלמה",
+          "state": "מצב של קליטה מלאה"
+        },
+        "temporal": {
+          "description": "רגע של ראייה — כל מה שקורה עכשיו נראה",
+          "time_quality": "רגע של הווה, הרגע היכן הוא",
+          "rhythm": "קצב של תשומת לב קבועה",
+          "cycle_position": "ראייה רציפה דרך כל היום"
+        }
+      },
+      "synthesis": {
+        "essence": "עין = ראייה וקבלה. קול גרוני עמוק פתוח. מרחבית: עין פתוחה על נוף, ראייה רחבה, אור מלא בלא הסתרה. פסיכולוגית: קבלה עמוקה, הכרה של הקיום, ראייה שאינה שופטת.",
+        "one_liner": "ראייה = עין שקולטת הכל ללא שיפוט",
+        "poetic_phrase": "העין הראשונה — היא שראתה וידעה שהכל טוב"
+      },
+      "skill": {
+        "number": 70,
+        "name": "ראייה עמוקה",
+        "hebrew_title": "תודעת העדות",
+        "description": "בשעה 00:00-01:00, תבחן משהו בעיניים פתוחות בלא שיפוט — רק ראייה טהורה",
+        "action": "בחר משהו וראה אותו — דבר, אדם, עצמך במראה. לא בחר, לא תנוח, רק ראה.",
+        "trigger_time": "00:00-01:00",
+        "duration_minutes": 10,
+        "outcome": "ראייה עמוקה של מה שהוא באמת, בלא שיפוט",
+        "integration": "אחרי ס׳ (סיבוב), קודם פ׳ (פה)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "חלון גדול על נוף פתוח, ראייה רחבה",
+        "physical_expression": "חלון מינימליסטי, נוף לא מופרע",
+        "room_type": "חדר בחלון גדול, בחזות נוף",
+        "light_source": "אור טבעי מלא, בלא הסתרה",
+        "material_palette": "זכוכית, אבן בהירה, תצפית פתוחה",
+        "spatial_qualities": [
+          "ראייה",
+          "פתיחה",
+          "בהירות",
+          "קבלה"
+        ],
+        "human_experience": "אדם בחלון, מביט ישר לפנים",
+        "visual_metaphor": "החלון של כל דבר"
+      },
+      "visual_prompt": {
+        "hebrew": "חלון גדול על נוף פתוח, אור בוקר בהירות מלאה, אדם בחלון מביט בלא שיפוט, כל צבעי העולם נראים, בהירות וברור",
+        "english": "Large window onto open landscape | Morning light in full clarity | Figure at window gazing without judgment | All colors of world visible | Brightness and clarity | Captures essence of AYIN: Witnessing, deep sight, seeing without judgment | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Mediterranean landscape through window, morning light | Shot from inside toward figure and landscape | #sight #witness #clarity #perception #openness",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 80,
+      "character": "פ",
+      "hebrew_name": "פה",
+      "english_name": "Pe",
+      "gematria": 80,
+      "position": "end_beginning",
+      "visual_category": "expression",
+      "core": {
+        "name": "פה",
+        "number": 80,
+        "gematria_value": 80,
+        "position_in_alphabet": "שמונה עשרה",
+        "archetypal_role": "הפה, הדבור, ההבעה של מה שנראה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שפתי חזק וברור, פה שדובר, ביטוי מלא",
+          "frequency_range": "גבוה (labiodental fricative) ברור",
+          "articulation": "שפה תחתונה וניתנת עם כוח",
+          "texture": "חזק ותיבת קול, כמו הודעה",
+          "breath_quality": "אוויר חזק המוצא דברים החוצה"
+        },
+        "mathematical": {
+          "description": "80 = שמונה עשרות, ביטוי של דברים הנראים",
+          "function": "80 = 8×10, ביטוי כפול של מעגל",
+          "ratio": "80:22 = יותר משלוש וחצי",
+          "sequence_position": "שמונה עשרה, קו הביטוי",
+          "pattern_role": "דברים שנראו בעיניים מובעים בשפה"
+        },
+        "physical": {
+          "description": "פה פתוח ודובר, שפתיים משפעות, קול חזק",
+          "organ_of_articulation": "שפה תחתונה ועליונה בקול",
+          "body_posture": "גוף קדימה, פה מלא קול",
+          "movement_quality": "ביטוי חזק וברור, לא ישיבה שקטה",
+          "tension_state": "מתח של ביטוי, של העברת דברים"
+        },
+        "energetic": {
+          "description": "אנרגיה של ביטוי, של הנשמעות, של ההודעה",
+          "flow_direction": "החוצה מתוך, דברים המומרים להודעה",
+          "intensity": "גבוהה, ברורה, שמעוני",
+          "rhythm": "קצב של דברים שנמלטים",
+          "expansion_type": "פיזור של הודעה"
+        },
+        "psychological": {
+          "description": "ביטוי אמיתי, דברים הנשמעים, רצון להודיע",
+          "emotional_state": "כנות, ביטוי גלוי, אמירה ברורה",
+          "consciousness_quality": "מודעות של מה שנאמר, של חריצות הדברים",
+          "will_expression": "רצון חזק להודיע, לדבר את האמת",
+          "archetypal_mood": "הנביא — הוא שדובר"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ע",
+            "quality": "פ = ביטוי בשפה | ע = ראייה שקטה",
+            "dynamic": "ראייה הופכת לדברים",
+            "tension": "קליטה מול ביטוי"
+          },
+          "complementary": {
+            "letter": "כ",
+            "quality": "כ = קבלה | פ = מה שנקבל מובע",
+            "dynamic": "קבלה שמתבטאת"
+          },
+          "sonic_similar": [
+            "ל (שפתי דומה, עולה)"
+          ],
+          "reinforces": [
+            "ש (שלוש רמות של ביטוי)"
+          ]
+        },
+        "spatial": {
+          "description": "פה שדובר לעולם, ביטוי לקהל, הודעה מלאה",
+          "angle": "זקוף, מלא, פונה קדימה",
+          "line_type": "קו של דברים שנשמעים",
+          "color_palette": "לבן של שן, אדום של עור, שחור של שפתיים",
+          "position_in_space": "במרכז, מול עיני משמע",
+          "movement_through_space": "קול הנשמע לרחוק",
+          "architectural_principle": "תזמורת או במות דובר, אקוסטיקה נקייה",
+          "light_quality": "אור המאיר את הדברים"
+        },
+        "visual": {
+          "description": "פה פתוח לתקשורת, דברים המשמעות, הודעה",
+          "color_experience": "אדום וללבן, לבן של אמת",
+          "light_impression": "אור הדובר מול קהל",
+          "visual_metaphor": "הפה של כל דבר"
+        },
+        "tactile": {
+          "description": "רעד של קול, רטט של אנרגיה, דברים שנשמעים",
+          "temperature": "חם של נשימה וקול",
+          "texture_feel": "חלק של שפתיים, יבש של קול",
+          "body_sensation": "הרגשה של קול עוזר"
+        },
+        "physics": {
+          "description": "גלי קול, פה משפיע על אוויר, תנודות",
+          "principle": "קול הוא תנועה של אוויר שקול",
+          "analogy": "כמו עירוי נגן",
+          "state": "מצב של התפשטות קול"
+        },
+        "temporal": {
+          "description": "רגע של דברים שנמלטים — המילים עובדות בעבר",
+          "time_quality": "זמן של ביטוי, שעובר כמו דברים",
+          "rhythm": "קצב של דברים שנשמעים",
+          "cycle_position": "ביטוי רציף של מה שנראה"
+        }
+      },
+      "synthesis": {
+        "essence": "פה = ביטוי וודיעה. קול שפתי חזק וברור. מרחבית: פה דובר, ביטוי לקהל, קול המשמע הרחוק. פסיכולוגית: כנות, ביטוי גלוי, רצון חזק להודיע את האמת.",
+        "one_liner": "ביטוי = דברים שנראו בעיניים מהופכים לקול",
+        "poetic_phrase": "הפה שדובר — מילים שאינן חוזרות כשהן יוצאות"
+      },
+      "skill": {
+        "number": 80,
+        "name": "דברים האמת",
+        "hebrew_title": "כנות של קול",
+        "description": "בשעה 01:00-02:00, דבר משהו שחזה בך זמן רב, בכנות מלאה ללא סינון",
+        "action": "בחר אמת שלא אמרת. תן לה להישמע. לא עם כעס, עם כנות. דברים שנראו בעיניים ממלטים בקול.",
+        "trigger_time": "01:00-02:00",
+        "duration_minutes": 12,
+        "outcome": "הרגשה של שחרור דרך ביטוי, כנות",
+        "integration": "אחרי ע׳ (ראייה), קודם צ׳ (צדק)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "3-4 פעמים בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "במות דובר או תזמורת, אקוסטיקה מושלמת",
+        "physical_expression": "פה דובר, עדים משמעים",
+        "room_type": "אולם או תזמורה",
+        "light_source": "אור על הדובר",
+        "material_palette": "עץ בהיר, אבן, יד",
+        "spatial_qualities": [
+          "ביטוי",
+          "קול",
+          "הודעה",
+          "כנות"
+        ],
+        "human_experience": "אדם דובר בעדים המקשיבים",
+        "visual_metaphor": "הבמה של הקול"
+      },
+      "visual_prompt": {
+        "hebrew": "דובר על במה, אור מלא עליו, עדים המקשיבים בשקט עמוק, קול משמע בבהירות, אמת המשמעת",
+        "english": "Speaker on stage | Full light upon speaker | Listeners in deep silence | Voice heard with clarity | Truth sounding | Captures essence of PE: Expression, speaking truth, voice as witness | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Ancient theater or modern hall, dramatic lighting | Shot from audience toward speaker | #expression #truth #voice #witness #speaking",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 90,
+      "character": "צ",
+      "hebrew_name": "צדי",
+      "english_name": "Tsadi",
+      "gematria": 90,
+      "position": "end_beginning",
+      "visual_category": "justice",
+      "core": {
+        "name": "צדי",
+        "number": 90,
+        "gematria_value": 90,
+        "position_in_alphabet": "תשע עשרה",
+        "archetypal_role": "הצדק, הדיוק, התשובה"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שיניי-מוזלג חזק עם דיוק, צדק של קול",
+          "frequency_range": "גבוה (affricate) דיוק",
+          "articulation": "שיניים וחך בדיוק מלא",
+          "texture": "חד וברור, כמו חנית צדק",
+          "breath_quality": "אוויר דיוק בדרך יחידה"
+        },
+        "mathematical": {
+          "description": "90 = תשע עשרות, נקודת תשע, צדק מתמטי",
+          "function": "90 = זוויה ישרה, דיוק קוטגורי",
+          "ratio": "90:22 = יותר מארבע",
+          "sequence_position": "תשע עשרה, קו הדיוק",
+          "pattern_role": "צדק של דפוסים מדויקים"
+        },
+        "physical": {
+          "description": "צדי דיוק, עמדה ישרה, דיוק של יד",
+          "organ_of_articulation": "שיניים וחך בדיוק מלא",
+          "body_posture": "עמידה ישרה ודיוקית",
+          "movement_quality": "תנועה בדיוק, בלא סטייה",
+          "tension_state": "מתח של צדק, של עמידה על עקרון"
+        },
+        "energetic": {
+          "description": "אנרגיה של צדק, של דיוק, של תשובה",
+          "flow_direction": "כלפי מטה בדיוק, ישרה לעיניים",
+          "intensity": "גבוהה, בלא פשרה",
+          "rhythm": "קצב של דיוק מתמטי",
+          "expansion_type": "אין התפשטות, רק דיוק"
+        },
+        "psychological": {
+          "description": "צדק פנימי, תשובה אמיתית, דיוק בחיים",
+          "emotional_state": "חוזק, אמון בעקרון, צדק",
+          "consciousness_quality": "מודעות של צדק, של מה שנכון",
+          "will_expression": "רצון חזק לעמוד על צדק",
+          "archetypal_mood": "השופט — הוא שדן בדיוק"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ח",
+            "quality": "צ = צדק ופתוח | ח = סוד וסגור",
+            "dynamic": "צדק חושף סודות",
+            "tension": "פתיחה מול הסתרה"
+          },
+          "complementary": {
+            "letter": "פ",
+            "quality": "פ = ביטוי | צ = צדק של מה שנאמר",
+            "dynamic": "ביטוי שדיוק מוביל אותו"
+          },
+          "sonic_similar": [
+            "ז (שיניי דומה, אך פעילות)"
+          ],
+          "reinforces": [
+            "ש (שלוש רמות של צדק)"
+          ]
+        },
+        "spatial": {
+          "description": "דיוק של זווית, שפוט בחנות, אמת חדה",
+          "angle": "90° זוויה ישרה, דיוק",
+          "line_type": "קו ישר בלא סטייה, צדק",
+          "color_palette": "לבן צח של צדק, אדום של דם",
+          "position_in_space": "במרכז, בחנות",
+          "movement_through_space": "ישר בלא סטייה",
+          "architectural_principle": "משפחה או חנות, גיאומטריה מדויקת",
+          "light_quality": "אור חד בלא הצללים"
+        },
+        "visual": {
+          "description": "צדק של קו ישר, דיוק בלא סטייה",
+          "color_experience": "לבן וחד, אדום של אמת",
+          "light_impression": "אור משפט בלא צל",
+          "visual_metaphor": "החנות של צדק"
+        },
+        "tactile": {
+          "description": "קו חד, דיוק של קו, לא רך",
+          "temperature": "קור של צדק",
+          "texture_feel": "חד, כמו חוד",
+          "body_sensation": "הרגשה של עמידה ישרה"
+        },
+        "physics": {
+          "description": "זווית ישרה, דיוק של אנרגיה, כוח שלא מתפזר",
+          "principle": "דיוק של זווית 90°, לא סטייה",
+          "analogy": "כמו חוד חנית",
+          "state": "מצב של עמידה בעקרון"
+        },
+        "temporal": {
+          "description": "רגע של דיוק — הרגע שבו צדק נפל",
+          "time_quality": "זמן של דיוק, של שיפוט",
+          "rhythm": "קצב של צדק, של דיוק",
+          "cycle_position": "צדק של כל רגע"
+        }
+      },
+      "synthesis": {
+        "essence": "צדי = צדק ודיוק. קול שיניי-מוזלג חזק וברור. מרחבית: זווית ישרה, דיוק בלא סטייה, אור משפט. פסיכולוגית: צדק פנימי, תשובה אמיתית, עמידה על עקרון בלא פשרה.",
+        "one_liner": "צדק = קו ישר שלא מתנדנד גם בזוג רוחות",
+        "poetic_phrase": "הצדק של הצדי — הוא שאינו משפר ואינו מסתתר"
+      },
+      "skill": {
+        "number": 90,
+        "name": "צדק אישי",
+        "hebrew_title": "עמידה על עקרון",
+        "description": "בשעה 02:00-03:00, עמוד על משהו שאתה יודע שנכון, גם אם זה בודד",
+        "action": "בחר עקרון שלא יכול להתפשר. עמוד עליו בלא לעקר. תן למעמד שלך להיות בדיוק צדק.",
+        "trigger_time": "02:00-03:00",
+        "duration_minutes": 12,
+        "outcome": "הרגשה של צדק אישי, חוזק של עקרון",
+        "integration": "אחרי פ׳ (ביטוי), קודם ק׳ (קדוש)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "משפחה או חדר דיוק, גיאומטריה מושלמת",
+        "physical_expression": "זווית ישרה, קו דיוק, לא סטייה",
+        "room_type": "חדר משפט או דיוק",
+        "light_source": "אור חד בלא הצללים",
+        "material_palette": "לבן וחד, מתכת",
+        "spatial_qualities": [
+          "צדק",
+          "דיוק",
+          "עקרון",
+          "חוזק"
+        ],
+        "human_experience": "אדם עומד בדיוק, לא בודד",
+        "visual_metaphor": "המשפחה של צדק"
+      },
+      "visual_prompt": {
+        "hebrew": "משפחה או חדר דיוק, זווית ישרה מושלמת, אדם עומד בדיוק בלא סטייה, אור חד בלא צל, עקרון שלא משתנה",
+        "english": "Court or precision room | Perfect right angle | Figure standing in precise stance without deviation | Sharp light without shadow | Principle that does not bend | Captures essence of TSADI: Justice, precision, standing firm | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Minimalist court or geometric space, harsh light | Shot from directly ahead at standing figure | #justice #precision #principle #standing #firmness",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 100,
+      "character": "ק",
+      "hebrew_name": "קוף",
+      "english_name": "Qoph",
+      "gematria": 100,
+      "position": "end_beginning",
+      "visual_category": "transcendence",
+      "core": {
+        "name": "קוף",
+        "number": 100,
+        "gematria_value": 100,
+        "position_in_alphabet": "עשרים",
+        "archetypal_role": "הקדושה, ההתעלות, האל שלא מעבר"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול חך עמוק וקדוש, כמו התעלות, רוחנות",
+          "frequency_range": "נמוך (velar consonant) עמוק",
+          "articulation": "חך רך עמוק, קול מעולם אחר",
+          "texture": "קדוש, מעוקל, לא ישר",
+          "breath_quality": "אוויר עמוק ממוקדי הנשמה"
+        },
+        "mathematical": {
+          "description": "100 = מאה, מלאות מספריית, עיגול שלם בעשרות",
+          "function": "100 = השלמה של כל מספור, שלמות מוחלטת",
+          "ratio": "100:22 = יותר מארבע וחצי",
+          "sequence_position": "עשרים, תחנה קדושה",
+          "pattern_role": "קדוש של השלמה"
+        },
+        "physical": {
+          "description": "קול עמוק וקדוש, מעטפה של רוחנות",
+          "organ_of_articulation": "חך רך עמוק, קול מעבר",
+          "body_posture": "גוף כופף בהערצה, משפחה קדושה",
+          "movement_quality": "תנועה קדושה, קשרו, מעטפה",
+          "tension_state": "מתח קדוש של התעלות"
+        },
+        "energetic": {
+          "description": "אנרגיה קדושה, התעלות, קשר לעד",
+          "flow_direction": "כלפי מעלה וקדימה, קדוש",
+          "intensity": "גבוהה ועמוקה, קדוש",
+          "rhythm": "קצב קדוש של טעון",
+          "expansion_type": "התעלות קדושה"
+        },
+        "psychological": {
+          "description": "קדוש פנימי, התעלות אל שם אלוהים, נוכחות קדושה",
+          "emotional_state": "סיוע, כבוד, התחשבות קדושה",
+          "consciousness_quality": "מודעות קדושה, של משהו מעבר",
+          "will_expression": "רצון להתחבר לקדוש",
+          "archetypal_mood": "הקדוש — הוא שחובר לעד"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "א",
+            "quality": "ק = קדוש מעבר | א = פתיחה ישירה",
+            "dynamic": "קדוש שמעבר לפתיחה",
+            "tension": "קדוש מול פתוח"
+          },
+          "complementary": {
+            "letter": "צ",
+            "quality": "צ = צדק אנושי | ק = צדק קדוש",
+            "dynamic": "צדק אנושי שחובר לקדוש"
+          },
+          "sonic_similar": [
+            "כ (חך דומה, אך פתוח)"
+          ],
+          "reinforces": [
+            "ש (שלוש קדושות)"
+          ]
+        },
+        "spatial": {
+          "description": "קדש קדושים, מקדש, מקום התעלות מוחלטת",
+          "angle": "כפוף בהערצה, לא ישר",
+          "line_type": "קו עקום בכבוד, קדוש",
+          "color_palette": "זהוב קדוש, לבן של קדוש, שחור של עמוקות",
+          "position_in_space": "במקדש, בעומק קדוש",
+          "movement_through_space": "התעלות אל המקדש",
+          "architectural_principle": "מקדש או מוקדש, קדוש הקדשים",
+          "light_quality": "אור קדוש מעבר למעבר"
+        },
+        "visual": {
+          "description": "קדוש הקדשים, התעלות כלפי שם",
+          "color_experience": "זהוב וקדוש, לבן של רוח",
+          "light_impression": "אור קדוש מעבר להוויות",
+          "visual_metaphor": "קדוש השם"
+        },
+        "tactile": {
+          "description": "קדוש של מגע, עטיפה קדושה",
+          "temperature": "חום קדוש של נוכחות",
+          "texture_feel": "רך וקדוש, מטליית קדוש",
+          "body_sensation": "הרגשה של קדוש מעבר"
+        },
+        "physics": {
+          "description": "אנרגיה קדושה שלא ניתן להסביר, מעבר למציאות",
+          "principle": "קדוש הוא מעבר למדידה",
+          "analogy": "כמו אור שמתחלף לתוך אור",
+          "state": "מצב של היותך קדוש"
+        },
+        "temporal": {
+          "description": "זמן קדוש — כשרגע נוגע בנצח",
+          "time_quality": "זמן קדוש של נוכחות",
+          "rhythm": "קצב קדוש של טעון עמוק",
+          "cycle_position": "השלמה קדושה של כל מחזור"
+        }
+      },
+      "synthesis": {
+        "essence": "קוף = קדוש והתעלות. קול חך עמוק וקדוש. מרחבית: מקדש קדוש, התעלות אל שם, אור קדוש מעבר. פסיכולוגית: קדוש פנימי, התחברות לעד, נוכחות קדושה בלא מילים.",
+        "one_liner": "קדוש = זמן שנוגע בנצח, מדבר ללא אנושיות",
+        "poetic_phrase": "הקדוש של הקוף — הוא שאינו מובן, רק מורגש"
+      },
+      "skill": {
+        "number": 100,
+        "name": "התחברות קדושה",
+        "hebrew_title": "נוכחות בלא מילים",
+        "description": "בשעה 03:00-04:00, בא לנוכחות של משהו קדוש — בן אדם, מקום, שקט — בלא מילים",
+        "action": "בחר משהו קדוש לך. ישב בשקט מלא. לא תדבר, לא תשנע, רק בא לנוכחות בכבוד. קדוש הוא בלא מילים.",
+        "trigger_time": "03:00-04:00",
+        "duration_minutes": 20,
+        "outcome": "הרגשה של קדוש, נוכחות שלא תצאו במילים",
+        "integration": "אחרי צ׳ (צדק), קודם ר׳ (ראשון של הסוף)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "מקדש קדוש, קדוש הקדשים, התעלות מוחלטת",
+        "physical_expression": "חלל קדוש, אור קדוש מעבר",
+        "room_type": "מקדש או מוקדש",
+        "light_source": "אור קדוש מעבר למעבר",
+        "material_palette": "זהוב קדוש, לבן של רוח",
+        "spatial_qualities": [
+          "קדוש",
+          "התעלות",
+          "נוכחות",
+          "שקט"
+        ],
+        "human_experience": "אדם בנוכחות קדושה, בשקט מלא",
+        "visual_metaphor": "קדוש השם"
+      },
+      "visual_prompt": {
+        "hebrew": "מקדש קדוש או חדר התעלות, אור זהוב קדוש מעבר, אדם בנוכחות קדושה בשקט מלא, לא מילים, רק נוכחות, קדוש",
+        "english": "Sacred temple or transcendent space | Golden sacred light beyond | Figure in sacred presence in absolute silence | No words, only presence | Sacred | Captures essence of QOPH: Holiness, transcendence, presence beyond words | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Ancient sacred space, ethereal golden light | Shot from within toward center of presence | #sacred #transcendence #presence #holiness #silence",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 200,
+      "character": "ר",
+      "hebrew_name": "ריש",
+      "english_name": "Resh",
+      "gematria": 200,
+      "position": "end_beginning",
+      "visual_category": "beginning_again",
+      "core": {
+        "name": "ריש",
+        "number": 200,
+        "gematria_value": 200,
+        "position_in_alphabet": "עשרים",
+        "archetypal_role": "ההתחלה מחדש, הראש, ההנהגה אל דורות"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שלשוני גלגול, מתכרך, ראש של מילים, התחלה",
+          "frequency_range": "בינוני-גבוה (alveolar tap/trill) עם תנועה",
+          "articulation": "שלשון בתנועה מהירה, קול של התחלה",
+          "texture": "מתכרך, חם, כמו התחלה חדשה",
+          "breath_quality": "אוויר חוזר בתנועה, לא סטטי"
+        },
+        "mathematical": {
+          "description": "200 = עשרים עשרות, ראש חדש של מאות, התחלה כל הדורות",
+          "function": "200 = הראש של הדורות הבאות, עידן חדש",
+          "ratio": "200:22 = תשע עשרות וחצי",
+          "sequence_position": "עשרים וראשית, נקודת הנהגה",
+          "pattern_role": "ראש של דפוסים חדשים"
+        },
+        "physical": {
+          "description": "ראש קוטגור, שלשון בתנועה, הנהגה חדשה",
+          "organ_of_articulation": "שלשון בתנועה כלפי הילך",
+          "body_posture": "ראש קדימה, הנהגה בחוזקה",
+          "movement_quality": "תנועה של ראש, של הנהגה, של קדימה",
+          "tension_state": "מתח של התחלה חדשה, של קדימה"
+        },
+        "energetic": {
+          "description": "אנרגיה של ראש, של הנהגה, של דור חדש",
+          "flow_direction": "קדימה וגבוה, ראש הדרך",
+          "intensity": "גבוהה, ברורה, של קדימה",
+          "rhythm": "קצב של התחלות חדשות",
+          "expansion_type": "התפתחות של דור חדש"
+        },
+        "psychological": {
+          "description": "הנהגה חדשה, חוכמת דורות, ראש של בני אדם",
+          "emotional_state": "כוח, הנהגה, נושא של עתיד",
+          "consciousness_quality": "מודעות של הנהגה, של אחריות לדורות",
+          "will_expression": "רצון להנהיג, לפתוח דרך חדשה",
+          "archetypal_mood": "הנביא בראש — הוא שמנהיג את הדרך"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "ת",
+            "quality": "ר = ראש התחלה | ת = סוף חתימה",
+            "dynamic": "מחזור שלם מראש לסוף",
+            "tension": "התחלה מול סיום"
+          },
+          "complementary": {
+            "letter": "ש",
+            "quality": "ר = ראש בודד | ש = שלוש קולות של קדימה",
+            "dynamic": "ראש שמתפתח לשלוש"
+          },
+          "sonic_similar": [
+            "ל (שלשוני דומה, אך עולה)"
+          ],
+          "reinforces": [
+            "כ (הנהגה דרך הכלה)"
+          ]
+        },
+        "spatial": {
+          "description": "ראש הדרך, הנהגה קדימה, עתידות פתוחות",
+          "angle": "קדימה, בראשות, לא אחורי",
+          "line_type": "קו של קדימה, של ראש הדרך",
+          "color_palette": "אדום של ראש, זהוב של עתידות",
+          "position_in_space": "בראשות, מנהיג",
+          "movement_through_space": "קדימה בחוזקה, ראש הדרך",
+          "architectural_principle": "ראש של עיר או בעמודים, הנהגה ברורה",
+          "light_quality": "אור קדימה של עתידות"
+        },
+        "visual": {
+          "description": "ראש הדרך, הנהגה קדימה, עתידות בהירות",
+          "color_experience": "אדום וזהוב, אור קדימה",
+          "light_impression": "אור קדימה של בוקר עתידות",
+          "visual_metaphor": "ראש הדרך"
+        },
+        "tactile": {
+          "description": "אדום חם של ראש, חוזקה של הנהגה",
+          "temperature": "חם של קדימה",
+          "texture_feel": "חזק וברור, כמו ראש",
+          "body_sensation": "הרגשה של הנהגה וקדימה"
+        },
+        "physics": {
+          "description": "כוח קדימה, אנרגיה של הנהגה, תנועה רחוקה",
+          "principle": "ראש מוביל את הגוף קדימה",
+          "analogy": "כמו ראש של צי",
+          "state": "מצב של קדימה עמוקה"
+        },
+        "temporal": {
+          "description": "רגע של ראש — כשמתחילים דור חדש",
+          "time_quality": "זמן של עתידות חדשות",
+          "rhythm": "קצב של התחלות חדשות",
+          "cycle_position": "ראש של מחזור עתידות"
+        }
+      },
+      "synthesis": {
+        "essence": "ריש = ראש והנהגה. קול שלשוני גלגול וחם. מרחבית: ראש הדרך, הנהגה קדימה, אור עתידות. פסיכולוגית: הנהגה חדשה, אחריות לדורות, כוח של קדימה.",
+        "one_liner": "ראש = כל דור שמתחיל במנהיג שראה הרחוק",
+        "poetic_phrase": "הראש שמנהיג — הוא שרואה את מה שאחריו לא יראו"
+      },
+      "skill": {
+        "number": 200,
+        "name": "הנהגה של דור",
+        "hebrew_title": "אחריות כלפי עתידות",
+        "description": "בשעה 04:00-05:00, השקף על מה שתרים את הדור שלך כדי שידורות הבאות ידעו",
+        "action": "בחר ערך אחד שאתה רוצה להשאיר לדורות שלאחריך. זה לא עבור עכשיו, זה עבור מה שיהיה.",
+        "trigger_time": "04:00-05:00",
+        "duration_minutes": 12,
+        "outcome": "הרגשה של אחריות לעתידות, הנהגה של ערכים",
+        "integration": "אחרי ק׳ (קדוש), קודם ש׳ (שלוש)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "ראש של עיר או בעמודים, הנהגה ברורה",
+        "physical_expression": "עמודים ממובילים, דרך קדימה",
+        "room_type": "חדר של הנהגה או בעמודים",
+        "light_source": "אור קדימה של עתידות",
+        "material_palette": "אדום וזהוב, אבן חזקה",
+        "spatial_qualities": [
+          "ראש",
+          "הנהגה",
+          "קדימה",
+          "עתידות"
+        ],
+        "human_experience": "אדם בראש של דרך, מנהיג",
+        "visual_metaphor": "בעמודים של הנהגה"
+      },
+      "visual_prompt": {
+        "hebrew": "בעמודים ממובילים, ראש של דרך, אדם בראשות, אור קדימה של עתידות, דרך ברורה וברורה, ניהול של ערכים לדורות",
+        "english": "Leading columns | Head of path | Figure at front leading | Light ahead of futures | Clear path and leadership | Legacy of values | Captures essence of RESH: Leadership, beginning anew, responsibility to generations | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Monumental columns, sunrise light ahead | Shot from behind figure looking forward at path | #leadership #vision #legacy #beginning #responsibility",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 300,
+      "character": "ש",
+      "hebrew_name": "שין",
+      "english_name": "Shin",
+      "gematria": 300,
+      "position": "end_beginning",
+      "visual_category": "fire",
+      "core": {
+        "name": "שין",
+        "number": 300,
+        "gematria_value": 300,
+        "position_in_alphabet": "עשרים ואחת",
+        "archetypal_role": "האש, השלוש, השינוי מוחלט"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול שיניי חזק וזוהר, כמו אש, שלוש קולות בעומק",
+          "frequency_range": "גבוה (sibilant fricative) עם שלוש רמות",
+          "articulation": "שיניים בחיכוך חזק, קול של אש",
+          "texture": "זוהר, חזק, תלת-ממדי",
+          "breath_quality": "אוויר של אש המטפחת"
+        },
+        "mathematical": {
+          "description": "300 = שלוש מאות, שלוש עשרות בעומק, התשע של התשע",
+          "function": "300 = שלוש קולות של כוח, שלושה מספרים",
+          "ratio": "300:22 = שלוש עשרה וחצי",
+          "sequence_position": "עשרים ואחת, קו האש",
+          "pattern_role": "אש של שלוש קאטגוריות"
+        },
+        "physical": {
+          "description": "אש בשלוש תנועות, שיניים בחיכוך מלא, קול של אש",
+          "organ_of_articulation": "שיניים וחנויות משיח בחיכוך חזק",
+          "body_posture": "גוף בעלויט, אש של כוח",
+          "movement_quality": "תנועה של אש, של שלוש קולות בו זמנית",
+          "tension_state": "מתח של אש, של כוח מוחלט"
+        },
+        "energetic": {
+          "description": "אנרגיה של אש, של שלוש קולות, של שינוי כולל",
+          "flow_direction": "כל הכיוונים בו זמנית, אש",
+          "intensity": "גבוהה מאוד, בלתי נשלטת",
+          "rhythm": "קצב של אש, של לעיות",
+          "expansion_type": "התפשטות של אש"
+        },
+        "psychological": {
+          "description": "אש של קרביים, שלוש קולות של כוח, שינוי",
+          "emotional_state": "כוח, התלהבות, שינוי מוחלט",
+          "consciousness_quality": "מודעות של אש, של שינוי שלא ניתן לעצור",
+          "will_expression": "רצון של אש, להשתנות לחלוטין",
+          "archetypal_mood": "הנביא של אש — הוא שדובר בחזון"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "מ",
+            "quality": "ש = אש בשלוש | מ = מים בזרימה",
+            "dynamic": "אש ומיים בקרב",
+            "tension": "אש מול מים"
+          },
+          "complementary": {
+            "letter": "ר",
+            "quality": "ר = ראש אחד | ש = שלוש ראשים של אש",
+            "dynamic": "ראש שמתפוצץ לשלוש"
+          },
+          "sonic_similar": [
+            "צ (שיניי דומה, אך דיוק)"
+          ],
+          "reinforces": [
+            "נ (בקיעה של אש)"
+          ]
+        },
+        "spatial": {
+          "description": "אש בשלוש כיוונים, להבה מתפרצת, שינוי קוטגורי",
+          "angle": "360° בו זמנית, אש בכל כיוון",
+          "line_type": "קו של אש בשלוש כיוונים",
+          "color_palette": "אדום, כתום, צהוב של אש",
+          "position_in_space": "בכל מקום בו זמנית, לא ממוקדת",
+          "movement_through_space": "התפרצות של אש בכל כיוון",
+          "architectural_principle": "אש בשלוש מדורות, להבה מתפרצת",
+          "light_quality": "אור של אש שלהבה חמה"
+        },
+        "visual": {
+          "description": "אש בשלוש כיוונים, להבה מתפרצת, שינוי",
+          "color_experience": "אדום וכתום וצהוב, אש",
+          "light_impression": "אור של אש בלילה חושך",
+          "visual_metaphor": "האש של כל דבר"
+        },
+        "tactile": {
+          "description": "חום של אש, הוד אש, כוח",
+          "temperature": "חם מאוד של אש",
+          "texture_feel": "חד וחם של אש",
+          "body_sensation": "הרגשה של אש מהלהבה"
+        },
+        "physics": {
+          "description": "אנרגיה של אש, כימיה של בעירה, שינוי מוחלט",
+          "principle": "אש היא שינוי כימי, לא חזרה",
+          "analogy": "כמו נר שדולק",
+          "state": "מצב של שינוי קבוע"
+        },
+        "temporal": {
+          "description": "רגע של אש — כשהעולם משתנה כולו",
+          "time_quality": "זמן של שינוי חד, של אש",
+          "rhythm": "קצב של אש, של הוד",
+          "cycle_position": "אש של כל מחזור חדש"
+        }
+      },
+      "synthesis": {
+        "essence": "שין = אש ושלוש קולות. קול שיניי זוהר וחזק. מרחבית: אש בשלוש כיוונים, להבה מתפרצת, שינוי קוטגורי. פסיכולוגית: כוח, התלהבות, שינוי שלא ניתן לעצור.",
+        "one_liner": "אש = שלוש קולות בו זמנית שמשנים הכל",
+        "poetic_phrase": "האש של השין — היא שבוערת בלי להשתוקק"
+      },
+      "skill": {
+        "number": 300,
+        "name": "אש של שינוי",
+        "hebrew_title": "התלהבות למה שבא",
+        "description": "בשעה 05:00-06:00, בחר משהו שאתה רוצה להשתנות בו, בלהבה ללא פחד",
+        "action": "בחר שינוי שאתה רוצה. לא קטן, גדול. בחר באש של שינוי, בלא פחד מהתוצאה.",
+        "trigger_time": "05:00-06:00",
+        "duration_minutes": 12,
+        "outcome": "הרגשה של אש בתוך, התלהבות כלפי שינוי",
+        "integration": "אחרי ר׳ (ראש), קודם ת׳ (סיום)",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "2-3 פעמים בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "אש בשלוש מדורות, להבה מתפרצת למעלה",
+        "physical_expression": "אש בשלוש כיוונים, לא מבוקרת",
+        "room_type": "תנור או בית אש",
+        "light_source": "אור של אש, לאדום כתום",
+        "material_palette": "אדום וכתום וצהוב של אש",
+        "spatial_qualities": [
+          "אש",
+          "שלוש",
+          "שינוי",
+          "התלהבות"
+        ],
+        "human_experience": "אדם במרכז אש בשלוש, התלהבות",
+        "visual_metaphor": "מדורות של אש"
+      },
+      "visual_prompt": {
+        "hebrew": "אש בשלוש מדורות, להבה אדומה כתומה וצהובה, אדם במרכז בהתלהבות, כוח של שינוי, אש בלילה",
+        "english": "Fire in three tiers | Flame red orange and yellow | Figure in center with fervor | Power of transformation | Fire at night | Captures essence of SHIN: Fire, transformation, three voices | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Ancient fire ritual or bonfire, night light | Shot from close to figure within flames | #fire #transformation #passion #change #fervor",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
+      }
+    },
+    {
+      "id": 400,
+      "character": "ת",
+      "hebrew_name": "תו",
+      "english_name": "Tav",
+      "gematria": 400,
+      "position": "end",
+      "visual_category": "completion",
+      "core": {
+        "name": "תו",
+        "number": 400,
+        "gematria_value": 400,
+        "position_in_alphabet": "עשרים ושתיים",
+        "archetypal_role": "הסיום, החתימה, הצלב שמחבר הכל"
+      },
+      "dimensions": {
+        "sonic": {
+          "description": "קול עתקיקי סגור, דלדול, סיום עמוק, חתימה",
+          "frequency_range": "נמוך (dental stop) עם חתימה",
+          "articulation": "שיניים סגורות בעדינות, קול של סוף",
+          "texture": "חם וסגור, כמו חתום",
+          "breath_quality": "אוויר עוצר בחתימה"
+        },
+        "mathematical": {
+          "description": "400 = ארבע מאות, סך הכל שלם, השלמה מוחלטת של אלפבית",
+          "function": "400 = מלאות שלמה, החתימה של הספירה",
+          "ratio": "400:22 = שמונה עשרה וחצי",
+          "sequence_position": "עשרים ושתיים, נקודת הסיום",
+          "pattern_role": "חתימה של כל דפוסים"
+        },
+        "physical": {
+          "description": "עטיפה סגורה, מחובר כל הדברים, צלב של חתימה",
+          "organ_of_articulation": "שיניים בעדינות סגורה",
+          "body_posture": "גוף סגור, מקובץ, שלם",
+          "movement_quality": "תנועה של סיום, של קומה",
+          "tension_state": "מתח של סיום, של שלמות"
+        },
+        "energetic": {
+          "description": "אנרגיה של סיום, של חתימה, של שלמות",
+          "flow_direction": "הכל חוזר אל עצמו, סגור",
+          "intensity": "בינונית, אך עמוקה",
+          "rhythm": "קצב של סיום, של שלמות",
+          "expansion_type": "אין התפשטות, רק סיום"
+        },
+        "psychological": {
+          "description": "סיום של מחזור, שלמות של חיים, חתימה על התיעוד",
+          "emotional_state": "שלום, השלמה, סגור הלב",
+          "consciousness_quality": "מודעות של סיום, של מה שהשלם",
+          "will_expression": "רצון להשלים, לחתום",
+          "archetypal_mood": "הזקן בחתום — הוא שהשלים את המחזור"
+        },
+        "relationships": {
+          "opposite": {
+            "letter": "א",
+            "quality": "ת = סיום וחתימה | א = פתיחה ותחילה",
+            "dynamic": "מחזור שלם מתחילה לסיום",
+            "tension": "סוף מול תחילה"
+          },
+          "complementary": {
+            "letter": "ש",
+            "quality": "ש = אש של שינוי | ת = סיום של שינוי",
+            "dynamic": "אש שמסתיימת בחתימה"
+          },
+          "sonic_similar": [
+            "ד (דנטלי דומה, אך פתוח)"
+          ],
+          "reinforces": [
+            "ה (אחר-פתיחה לסיום)"
+          ]
+        },
+        "spatial": {
+          "description": "חתימה סגורה, מחזור שלם, הצלב שמחבר",
+          "angle": "360° סגור, צלב",
+          "line_type": "קו של צלב, חתימה שלמה",
+          "color_palette": "שחור של חתימה, לבן של חתום",
+          "position_in_space": "בסוף, מעטפה",
+          "movement_through_space": "אין תנועה, סיום",
+          "architectural_principle": "צלב של חתימה, ספרייה סגורה",
+          "light_quality": "אור סגור של שלום"
+        },
+        "visual": {
+          "description": "צלב שמחבר הכל, חתימה של שלמות",
+          "color_experience": "שחור וללבן, ברור של סוף",
+          "light_impression": "אור השקט של סיום",
+          "visual_metaphor": "הצלב של כל דבר"
+        },
+        "tactile": {
+          "description": "סגור של חוזה, שלמות של מגע",
+          "temperature": "תקין, לא חם לא קר",
+          "texture_feel": "חלק של חתום, לא גס",
+          "body_sensation": "הרגשה של שלמות וסגירה"
+        },
+        "physics": {
+          "description": "אנרגיה סגורה, שיווי משקל קבוע, לא תנועה",
+          "principle": "צלב הוא צורה יציבה, לא משתנה",
+          "analogy": "כמו אבן חתומה",
+          "state": "מצב של היותך שלם"
+        },
+        "temporal": {
+          "description": "רגע של סיום — כשמחזור נשלם לחלוטין",
+          "time_quality": "זמן של סיום, של תעוד",
+          "rhythm": "קצב של שלמות, של סוף",
+          "cycle_position": "סיום של כל מחזורים"
+        }
+      },
+      "synthesis": {
+        "essence": "תו = סיום וחתימה. קול עתקיקי סגור וחם. מרחבית: צלב שמחבר הכל, חתימה של שלמות, אור שקט. פסיכולוגית: סיום של מחזור, שלמות של חיים, חתימה על התיעוד הטוב.",
+        "one_liner": "סיום = צלב שחבר את כל הדברים לשלם",
+        "poetic_phrase": "הסיום של התו — הוא שאינו מתחיל, רק משלים"
+      },
+      "skill": {
+        "number": 400,
+        "name": "השלמה של מחזור",
+        "hebrew_title": "תעוד של שלמות",
+        "description": "בשעה 06:00-07:00, תעד משהו שהשלמת, בכנות מלאה וללא חרטה",
+        "action": "בחר דבר שהשלמת. כתוב או חשוב אותו בכנות: זה קיים, זה היה, זה נשלם. עכשיו בא הדבר הבא.",
+        "trigger_time": "06:00-07:00",
+        "duration_minutes": 10,
+        "outcome": "הרגשה של שלמות, סיום נקי, קבלה של מה שהיה",
+        "integration": "אחרי ש׳ (אש), ואחרי כל 22 האותיות מחזור",
+        "daily_frequency": "פעם אחת ביום",
+        "weekly_pattern": "כל יום בשבוע"
+      },
+      "spatial_model": {
+        "architectural_principle": "צלב של חתימה, ספרייה סגורה, סיום",
+        "physical_expression": "צלב שמחבר, לא יוצא",
+        "room_type": "ספרייה או חדר סגור",
+        "light_source": "אור שקט של סיום",
+        "material_palette": "שחור וללבן, ברור",
+        "spatial_qualities": [
+          "סיום",
+          "חתימה",
+          "שלמות",
+          "שלום"
+        ],
+        "human_experience": "אדם סגור בצלב, משלים",
+        "visual_metaphor": "הצלב של הכל"
+      },
+      "visual_prompt": {
+        "hebrew": "צלב סגור, חתימה של שלמות, אדם בסוף דרך בשלום, אור שקט של בוקר, כל דברי סגורים, סגור ושלם",
+        "english": "Closed cross | Signature of wholeness | Figure at end of path in peace | Quiet light of dawn | All things sealed | Complete and whole | Captures essence of TAV: Completion, signature, the cross that holds all together | Professional architecture photography | Documentary realism | Aspect ratio 16:9 | No text | No frame divisions | Closed sacred space, dawn light serene | Shot from inside looking toward sealed door | #completion #signature #wholeness #peace #closure",
+        "prompt_version": "1.0",
+        "recommended_tool": "Midjourney v6"
+      },
+      "metadata": {
+        "status": "complete",
+        "percentage_filled": 100,
+        "images_collected": 0,
+        "last_updated": "2026-06-13"
       }
     }
   ]
