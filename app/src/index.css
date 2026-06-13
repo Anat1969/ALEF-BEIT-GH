@@ -168,10 +168,87 @@
     filter: drop-shadow(0 1px 3px rgba(59, 130, 246, 0.4));
   }
 
-  /* Color mode: Black & White */
+  /* Color mode: Black & White — no filter, so images stay in color */
   .color-bw {
-    filter: grayscale(1);
     --color-accent: #A0A0A0;
     --color-accent-light: #C0C0C0;
+    --color-warning: #A0A0A0;
+    --color-info: #909090;
+    --color-success: #909090;
+    --color-danger: #909090;
+    --color-dark-bg: #0A0A0A;
+    --color-dark-text: #E0E0E0;
+    --color-dark-border: #252525;
+    --color-dark-surface: #151515;
+  }
+  .color-bw .glass {
+    border-color: rgba(160, 160, 160, 0.08);
+  }
+  .color-bw .glass-card:hover {
+    background: rgba(160, 160, 160, 0.08);
+    border-color: rgba(160, 160, 160, 0.2);
+    box-shadow: 0 0 20px rgba(160, 160, 160, 0.06);
+  }
+  .color-bw .glow-gold {
+    box-shadow: 0 0 15px rgba(160, 160, 160, 0.15), 0 0 45px rgba(160, 160, 160, 0.05);
+  }
+  .color-bw .text-gold {
+    background: linear-gradient(135deg, #707070 0%, #909090 25%, #B0B0B0 50%, #A0A0A0 75%, #909090 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 1px 3px rgba(160, 160, 160, 0.3));
+  }
+  .color-bw .dark .text-accent,
+  .color-bw .dark .text-accent-light {
+    text-shadow: 0 0 8px rgba(160, 160, 160, 0.2);
+  }
+  .color-bw .bg-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23808080' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Color mode: White & Black (Inverse / Light) — images stay in color */
+  .color-wb {
+    --color-accent: #2A2A2A;
+    --color-accent-light: #404040;
+    --color-warning: #555555;
+    --color-info: #555555;
+    --color-success: #555555;
+    --color-danger: #555555;
+    --color-dark-bg: #F2F2F2;
+    --color-dark-text: #1A1A1A;
+    --color-dark-border: #D0D0D0;
+    --color-dark-surface: #E5E5E5;
+  }
+  .color-wb .glass {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(16px);
+  }
+  .color-wb .glass-card {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  .color-wb .glass-card:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.06);
+  }
+  .color-wb .glow-gold {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.10), 0 0 45px rgba(0, 0, 0, 0.04);
+  }
+  .color-wb .text-gold {
+    background: linear-gradient(135deg, #1A1A1A 0%, #333333 25%, #555555 50%, #333333 75%, #1A1A1A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+  .color-wb .dark .text-accent,
+  .color-wb .dark .text-accent-light {
+    text-shadow: none;
+  }
+  .color-wb .bg-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }

@@ -22,6 +22,7 @@ const COLOR_MODES = [
   { id: 'gold', label: 'זהב' },
   { id: 'blue', label: 'כחול' },
   { id: 'bw', label: 'שחור-לבן' },
+  { id: 'wb', label: 'לבן-שחור' },
 ]
 
 function LandingPage({ onEnter }) {
