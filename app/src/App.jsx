@@ -79,10 +79,13 @@ function LandingPage({ onEnter }) {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard')
-  const [selectedLetterId, setSelectedLetterId] = useState(null)
-  const [showLanding, setShowLanding] = useState(true)
-  const [colorMode, setColorMode] = useState('gold')
+  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('app-tab') || 'dashboard')
+  const [selectedLetterId, setSelectedLetterId] = useState(() => {
+    const saved = localStorage.getItem('app-letter')
+    return saved ? Number(saved) : null
+  })
+  const [showLanding, setShowLanding] = useState(() => !localStorage.getItem('app-entered'))
+  const [colorMode, setColorMode] = useState(() => localStorage.getItem('app-color') || 'gold')
   const letterImages = useLetterImages()
 
   useEffect(() => {
@@ -90,6 +93,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    localStorage.setItem('app-color', colorMode)
     const el = document.documentElement
     el.classList.remove('color-gold', 'color-blue', 'color-bw')
     if (colorMode !== 'gold') {
@@ -97,8 +101,11 @@ export default function App() {
     }
   }, [colorMode])
 
+  useEffect(() => { localStorage.setItem('app-tab', activeTab) }, [activeTab])
+
   const handleSelectLetter = (id) => {
     setSelectedLetterId(id)
+    localStorage.setItem('app-letter', String(id))
     setActiveTab('letter')
   }
 
@@ -128,7 +135,7 @@ export default function App() {
   }
 
   if (showLanding) {
-    return <LandingPage onEnter={() => setShowLanding(false)} />
+    return <LandingPage onEnter={() => { localStorage.setItem('app-entered', '1'); setShowLanding(false) }} />
   }
 
   return (
