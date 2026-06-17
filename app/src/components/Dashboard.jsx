@@ -3,10 +3,7 @@ import { useLetters } from '../hooks/useLetters'
 import PageIntro from './PageIntro'
 
 function getLetterImage(letterId, letterImages) {
-  const img = letterImages?.getImage(letterId)
-  if (img) return img
-  if (typeof window === 'undefined') return null
-  return localStorage.getItem(`article-hero-${letterId}`) || localStorage.getItem(`arch-image-${letterId}`) || null
+  return letterImages?.getAnyImage(letterId) || null
 }
 
 export default function Dashboard({ onSelectLetter, letterImages }) {

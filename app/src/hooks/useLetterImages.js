@@ -1,104 +1,139 @@
 import { useState, useCallback, useEffect } from 'react'
+import { supabase, BUCKET, getPublicUrl } from '../lib/supabase'
 
-const DB_NAME = 'letter-images-db'
-const STORE_NAME = 'images'
-const DB_VERSION = 1
+const FOLDERS = ['letters', 'article-hero', 'arch']
 
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, DB_VERSION)
-    request.onupgradeneeded = () => {
-      const db = request.result
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME)
-      }
-    }
-    request.onsuccess = () => resolve(request.result)
-    request.onerror = () => reject(request.error)
-  })
+async function dataUrlToBlob(dataUrl) {
+  const res = await fetch(dataUrl)
+  return res.blob()
 }
 
-async function dbGet(key) {
-  const db = await openDB()
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readonly')
-    const store = tx.objectStore(STORE_NAME)
-    const request = store.get(key)
-    request.onsuccess = () => resolve(request.result || null)
-    request.onerror = () => reject(request.error)
-  })
+function extensionFromDataUrl(dataUrl) {
+  const match = dataUrl.match(/^data:image\/(\w+)/)
+  if (!match) return 'png'
+  const ext = match[1]
+  return ext === 'jpeg' ? 'jpg' : ext
 }
 
-async function dbPut(key, value) {
-  const db = await openDB()
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readwrite')
-    const store = tx.objectStore(STORE_NAME)
-    const request = store.put(value, key)
-    request.onsuccess = () => resolve()
-    request.onerror = () => reject(request.error)
+async function uploadImage(folder, id, dataUrl) {
+  const ext = extensionFromDataUrl(dataUrl)
+  const path = `${folder}/${id}.${ext}`
+  const blob = await dataUrlToBlob(dataUrl)
+
+  const { data: existing } = await supabase.storage.from(BUCKET).list(folder, { search: `${id}.` })
+  if (existing?.length) {
+    const old = existing.filter(f => f.name.startsWith(`${id}.`)).map(f => `${folder}/${f.name}`)
+    if (old.length) await supabase.storage.from(BUCKET).remove(old)
+  }
+
+  const { error } = await supabase.storage.from(BUCKET).upload(path, blob, {
+    contentType: blob.type,
+    upsert: true,
   })
+  if (error) {
+    console.error(`Failed to upload ${path}:`, error)
+    return null
+  }
+  return getPublicUrl(path) + '?t=' + Date.now()
 }
 
-async function dbDelete(key) {
-  const db = await openDB()
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readwrite')
-    const store = tx.objectStore(STORE_NAME)
-    const request = store.delete(key)
-    request.onsuccess = () => resolve()
-    request.onerror = () => reject(request.error)
-  })
-}
-
-async function dbGetAll() {
-  const db = await openDB()
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_NAME, 'readonly')
-    const store = tx.objectStore(STORE_NAME)
-    const result = {}
-    const request = store.openCursor()
-    request.onsuccess = () => {
-      const cursor = request.result
-      if (cursor) {
-        result[cursor.key] = cursor.value
-        cursor.continue()
-      } else {
-        resolve(result)
-      }
-    }
-    request.onerror = () => reject(request.error)
-  })
+async function deleteImage(folder, id) {
+  const { data: files } = await supabase.storage.from(BUCKET).list(folder, { search: `${id}.` })
+  if (files?.length) {
+    const toRemove = files.filter(f => f.name.startsWith(`${id}.`)).map(f => `${folder}/${f.name}`)
+    if (toRemove.length) await supabase.storage.from(BUCKET).remove(toRemove)
+  }
 }
 
 export function useLetterImages() {
   const [images, setImages] = useState({})
+  const [heroImages, setHeroImages] = useState({})
+  const [archImages, setArchImages] = useState({})
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    dbGetAll().then(all => {
-      setImages(all)
+    loadAll()
+  }, [])
+
+  async function loadFolder(folder) {
+    const { data: files, error } = await supabase.storage.from(BUCKET).list(folder, { limit: 100 })
+    if (error) { console.error(`Failed to list ${folder}:`, error); return {} }
+    const map = {}
+    for (const file of (files || [])) {
+      const id = file.name.split('.')[0]
+      map[id] = getPublicUrl(`${folder}/${file.name}`)
+    }
+    return map
+  }
+
+  async function loadAll() {
+    try {
+      const [letters, heroes, archs] = await Promise.all([
+        loadFolder('letters'),
+        loadFolder('article-hero'),
+        loadFolder('arch'),
+      ])
+      setImages(letters)
+      setHeroImages(heroes)
+      setArchImages(archs)
+    } catch (err) {
+      console.error('Failed to load images:', err)
+    } finally {
       setReady(true)
-    }).catch(() => setReady(true))
+    }
+  }
+
+  const saveImage = useCallback(async (letterId, dataUrl) => {
+    const url = await uploadImage('letters', letterId, dataUrl)
+    if (url) setImages(prev => ({ ...prev, [letterId]: url }))
   }, [])
 
-  const saveImage = useCallback((letterId, dataUrl) => {
-    setImages(prev => ({ ...prev, [letterId]: dataUrl }))
-    dbPut(String(letterId), dataUrl).catch(console.error)
-  }, [])
-
-  const removeImage = useCallback((letterId) => {
-    setImages(prev => {
-      const next = { ...prev }
-      delete next[letterId]
-      return next
-    })
-    dbDelete(String(letterId)).catch(console.error)
+  const removeImage = useCallback(async (letterId) => {
+    await deleteImage('letters', letterId)
+    setImages(prev => { const next = { ...prev }; delete next[letterId]; return next })
   }, [])
 
   const getImage = useCallback((letterId) => {
     return images[letterId] || images[String(letterId)] || null
   }, [images])
 
-  return { images, getImage, saveImage, removeImage, ready }
+  const saveHeroImage = useCallback(async (letterId, dataUrl) => {
+    const url = await uploadImage('article-hero', letterId, dataUrl)
+    if (url) setHeroImages(prev => ({ ...prev, [letterId]: url }))
+  }, [])
+
+  const removeHeroImage = useCallback(async (letterId) => {
+    await deleteImage('article-hero', letterId)
+    setHeroImages(prev => { const next = { ...prev }; delete next[letterId]; return next })
+  }, [])
+
+  const getHeroImage = useCallback((letterId) => {
+    return heroImages[letterId] || heroImages[String(letterId)] || null
+  }, [heroImages])
+
+  const saveArchImage = useCallback(async (letterId, dataUrl) => {
+    const url = await uploadImage('arch', letterId, dataUrl)
+    if (url) setArchImages(prev => ({ ...prev, [letterId]: url }))
+  }, [])
+
+  const removeArchImage = useCallback(async (letterId) => {
+    await deleteImage('arch', letterId)
+    setArchImages(prev => { const next = { ...prev }; delete next[letterId]; return next })
+  }, [])
+
+  const getArchImage = useCallback((letterId) => {
+    return archImages[letterId] || archImages[String(letterId)] || null
+  }, [archImages])
+
+  const getAnyImage = useCallback((letterId) => {
+    return getImage(letterId) || getHeroImage(letterId) || getArchImage(letterId)
+  }, [getImage, getHeroImage, getArchImage])
+
+  return {
+    images, getImage, saveImage, removeImage,
+    getHeroImage, saveHeroImage, removeHeroImage,
+    getArchImage, saveArchImage, removeArchImage,
+    getAnyImage,
+    ready,
+  }
 }

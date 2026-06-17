@@ -455,15 +455,9 @@ function SectionSpace({ letter }) {
 
 function SectionPrompt({ letter, letterImages }) {
   const [copied, setCopied] = useState(false)
-  const [archImage, setArchImage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem(`arch-image-${letter.id}`) || ''
-    }
-    return ''
-  })
+  const archImage = letterImages.getArchImage(letter.id) || ''
 
   useEffect(() => {
-    setArchImage(localStorage.getItem(`arch-image-${letter.id}`) || '')
     setCopied(false)
   }, [letter.id])
 
@@ -496,9 +490,7 @@ function SectionPrompt({ letter, letterImages }) {
     if (file) {
       const reader = new FileReader()
       reader.onload = () => {
-        const dataUrl = reader.result
-        setArchImage(dataUrl)
-        localStorage.setItem(`arch-image-${letter.id}`, dataUrl)
+        letterImages.saveArchImage(letter.id, reader.result)
       }
       reader.readAsDataURL(file)
     }
@@ -516,7 +508,7 @@ function SectionPrompt({ letter, letterImages }) {
             <h3 className="text-lg font-bold text-text dark:text-dark-text">{letter.character}׳ — השראה אדריכלית</h3>
           </div>
           <button
-            onClick={() => { setArchImage(''); localStorage.removeItem(`arch-image-${letter.id}`) }}
+            onClick={() => letterImages.removeArchImage(letter.id)}
             className="absolute top-2 left-2 px-2 py-1 bg-black/40 text-white/70 text-[10px] opacity-0 group-hover:opacity-60 hover:!opacity-100 hover:bg-black/60 transition-opacity backdrop-blur-sm"
           >
             הסר
@@ -560,13 +552,8 @@ function SectionPrompt({ letter, letterImages }) {
   )
 }
 
-function SectionArticle({ letter }) {
-  const [heroImage, setHeroImage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`) || ''
-    }
-    return ''
-  })
+function SectionArticle({ letter, letterImages }) {
+  const heroImage = letterImages.getHeroImage(letter.id) || letterImages.getArchImage(letter.id) || ''
   const [articleText, setArticleText] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(`article-${letter.id}`) || ''
@@ -578,7 +565,6 @@ function SectionArticle({ letter }) {
   const [showText, setShowText] = useState(false)
 
   useEffect(() => {
-    setHeroImage(localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`) || '')
     setArticleText(localStorage.getItem(`article-${letter.id}`) || '')
     setCopied(false)
     setIsEditing(false)
@@ -634,10 +620,7 @@ function SectionArticle({ letter }) {
     const file = e.target.files?.[0]
     if (file) {
       const reader = new FileReader()
-      reader.onload = () => {
-        setHeroImage(reader.result)
-        localStorage.setItem(`article-hero-${letter.id}`, reader.result)
-      }
+      reader.onload = () => letterImages.saveHeroImage(letter.id, reader.result)
       reader.readAsDataURL(file)
     }
   }
@@ -650,10 +633,7 @@ function SectionArticle({ letter }) {
         e.preventDefault()
         const file = item.getAsFile()
         const reader = new FileReader()
-        reader.onload = () => {
-          setHeroImage(reader.result)
-          localStorage.setItem(`article-hero-${letter.id}`, reader.result)
-        }
+        reader.onload = () => letterImages.saveHeroImage(letter.id, reader.result)
         reader.readAsDataURL(file)
         return
       }
@@ -685,7 +665,7 @@ function SectionArticle({ letter }) {
             <input type="file" accept="image/*" className="hidden" onChange={handleHeroUpload} />
           </label>
           <button
-            onClick={() => { setHeroImage(''); localStorage.removeItem(`article-hero-${letter.id}`) }}
+            onClick={() => letterImages.removeHeroImage(letter.id)}
             className="px-2 py-1 bg-black/40 text-white/70 text-[10px] hover:bg-black/60"
           >
             הסר
@@ -940,15 +920,13 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
         </div>
 
         {activeSection === 'article' ? (
-          <SectionArticle letter={letter} />
+          <SectionArticle letter={letter} letterImages={letterImages} />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[500px]">
             {/* Image + Energetic below */}
             <div className="p-4 md:p-5 flex flex-col border-l border-border/50 dark:border-dark-border/50 bg-surface/20 dark:bg-dark-bg/20">
               {(() => {
-                const anyImage = currentImage
-                  || (typeof window !== 'undefined' && (localStorage.getItem(`article-hero-${letter.id}`) || localStorage.getItem(`arch-image-${letter.id}`)))
-                  || null
+                const anyImage = letterImages.getAnyImage(letter.id)
 
                 if (anyImage) return (
                   <div className="relative w-full group">
