@@ -45,6 +45,83 @@ async function deleteImage(folder, id) {
   }
 }
 
+const OLD_DB_NAME = 'letter-images-db'
+const OLD_STORE_NAME = 'images'
+
+function openOldDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(OLD_DB_NAME, 1)
+    request.onupgradeneeded = () => {
+      const db = request.result
+      if (!db.objectStoreNames.contains(OLD_STORE_NAME)) {
+        db.createObjectStore(OLD_STORE_NAME)
+      }
+    }
+    request.onsuccess = () => resolve(request.result)
+    request.onerror = () => reject(request.error)
+  })
+}
+
+async function getOldDBImages() {
+  try {
+    const db = await openOldDB()
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(OLD_STORE_NAME, 'readonly')
+      const store = tx.objectStore(OLD_STORE_NAME)
+      const result = {}
+      const request = store.openCursor()
+      request.onsuccess = () => {
+        const cursor = request.result
+        if (cursor) {
+          result[cursor.key] = cursor.value
+          cursor.continue()
+        } else {
+          resolve(result)
+        }
+      }
+      request.onerror = () => reject(request.error)
+    })
+  } catch { return {} }
+}
+
+async function migrateLocalToCloud(cloudLetters, cloudHeroes, cloudArchs) {
+  if (localStorage.getItem('images-migrated-to-cloud')) return { letters: {}, heroes: {}, archs: {} }
+
+  const migrated = { letters: {}, heroes: {}, archs: {} }
+  let didMigrate = false
+
+  const oldDB = await getOldDBImages()
+  for (const [id, dataUrl] of Object.entries(oldDB)) {
+    if (dataUrl && typeof dataUrl === 'string' && dataUrl.startsWith('data:image') && !cloudLetters[id]) {
+      console.log(`Migrating letter image ${id} to cloud...`)
+      const url = await uploadImage('letters', id, dataUrl)
+      if (url) { migrated.letters[id] = url; didMigrate = true }
+    }
+  }
+
+  for (let i = 1; i <= 22; i++) {
+    const heroData = localStorage.getItem(`article-hero-${i}`)
+    if (heroData && heroData.startsWith('data:image') && !cloudHeroes[String(i)]) {
+      console.log(`Migrating article-hero image ${i} to cloud...`)
+      const url = await uploadImage('article-hero', i, heroData)
+      if (url) { migrated.heroes[String(i)] = url; didMigrate = true }
+    }
+
+    const archData = localStorage.getItem(`arch-image-${i}`)
+    if (archData && archData.startsWith('data:image') && !cloudArchs[String(i)]) {
+      console.log(`Migrating arch image ${i} to cloud...`)
+      const url = await uploadImage('arch', i, archData)
+      if (url) { migrated.archs[String(i)] = url; didMigrate = true }
+    }
+  }
+
+  if (didMigrate) {
+    console.log('Migration complete — local images uploaded to cloud.')
+  }
+  localStorage.setItem('images-migrated-to-cloud', '1')
+  return migrated
+}
+
 export function useLetterImages() {
   const [images, setImages] = useState({})
   const [heroImages, setHeroImages] = useState({})
@@ -76,9 +153,16 @@ export function useLetterImages() {
       setImages(letters)
       setHeroImages(heroes)
       setArchImages(archs)
+      setReady(true)
+
+      const migrated = await migrateLocalToCloud(letters, heroes, archs)
+      if (Object.keys(migrated.letters).length || Object.keys(migrated.heroes).length || Object.keys(migrated.archs).length) {
+        setImages(prev => ({ ...prev, ...migrated.letters }))
+        setHeroImages(prev => ({ ...prev, ...migrated.heroes }))
+        setArchImages(prev => ({ ...prev, ...migrated.archs }))
+      }
     } catch (err) {
       console.error('Failed to load images:', err)
-    } finally {
       setReady(true)
     }
   }
