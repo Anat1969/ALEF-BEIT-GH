@@ -27,6 +27,10 @@ jobs:
         working-directory: ./app
         run: npm install
 
+      - name: Build image manifest
+        working-directory: ./app
+        run: node scripts/build-image-manifest.mjs
+
       - name: Build
         working-directory: ./app
         run: npx vite build
