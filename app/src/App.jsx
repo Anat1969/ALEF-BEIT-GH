@@ -150,9 +150,10 @@ export default function App() {
             className="text-xl font-extrabold tracking-tight hover:opacity-80 transition-opacity"
           >
             <span className="text-gold">22 אותיות</span>
-            <span className="text-gray-500 font-normal text-sm mr-2 opacity-60">מערכת חיה</span>
+            <span className="hidden sm:inline text-gray-500 font-normal text-sm mr-2 opacity-60">מערכת חיה</span>
           </button>
 
+          <div className="flex items-center gap-3">
           <div className="flex gap-0.5">
             {COLOR_MODES.map(mode => (
               <button
@@ -167,6 +168,8 @@ export default function App() {
                 {mode.label}
               </button>
             ))}
+          </div>
+          <ai-menu />
           </div>
         </header>
 
