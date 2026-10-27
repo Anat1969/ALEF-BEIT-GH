@@ -1,32 +1,37 @@
-export default function PageIntro({ title, subtitle, purpose, howToUse, example, tip }) {
+import RichText from './text/RichText'
+
+// Distilled intro: an insight line (up to 8 words), one explanation sentence
+// (up to 20 words), then how to use, an example and a tip. Text uses RichText.
+export default function PageIntro({ title, subtitle, insight, explain, howToUse, example, tip }) {
   return (
     <div className="mb-10">
-      <h2 className="text-4xl sm:text-5xl font-extralight tracking-tight text-text dark:text-dark-text mb-2">{title}</h2>
+      <h2 className="page-title">{title}</h2>
       {subtitle && <p className="text-lg text-text-secondary dark:text-gray-400 mb-4">{subtitle}</p>}
 
       <div className="glass depth p-5 space-y-4">
-        {purpose && (
+        {insight && (
           <div>
-            <h3 className="font-mono text-[11px] tracking-[0.04em] text-accent dark:text-accent-light mb-1">למה זה קיים?</h3>
-            <p className="text-base text-text dark:text-dark-text leading-relaxed">{purpose}</p>
+            <span className="label">למה זה קיים</span>
+            <RichText text={insight} as="p" className="insight-line" />
+            {explain && <RichText text={explain} as="p" className="explain-line" />}
           </div>
         )}
         {howToUse && (
           <div>
-            <h3 className="font-mono text-[11px] tracking-[0.04em] text-accent dark:text-accent-light mb-1">איך להשתמש?</h3>
-            <p className="text-base text-text dark:text-dark-text leading-relaxed">{howToUse}</p>
+            <span className="label">איך משתמשים</span>
+            <RichText text={howToUse} as="p" className="text-base text-text dark:text-dark-text leading-relaxed" />
           </div>
         )}
         {example && (
           <div className="bg-white/60 dark:bg-dark-surface/60 p-3 border border-border/50 dark:border-dark-border/50">
-            <h3 className="font-mono text-[11px] tracking-[0.04em] text-warning mb-1">דוגמה מעשית</h3>
-            <p className="text-sm text-text-secondary dark:text-gray-400 leading-relaxed">{example}</p>
+            <span className="label">דוגמה</span>
+            <RichText text={example} as="p" className="text-sm text-text-secondary dark:text-gray-400 leading-relaxed" />
           </div>
         )}
         {tip && (
-          <div className="flex gap-2 items-start bg-success/10 dark:bg-success/20 p-3">
-            <span className="text-success text-lg shrink-0">*</span>
-            <p className="text-sm text-text dark:text-dark-text leading-relaxed">{tip}</p>
+          <div className="meaning meaning-insight">
+            <span className="meaning-label">טיפ</span>
+            <RichText text={tip} as="p" className="meaning-text" />
           </div>
         )}
       </div>

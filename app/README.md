@@ -1,8 +1,10 @@
 # 22 אותיות, מערכת חיה
 
-חקירה רב-ממדית של האלף-בית העברי: מרחב, אנרגיה, קול ואדריכלות. כל אות היא כרטיס שלם עם שבעה מימדים, מיומנות יומית, קשרים ומאמר.
+**[לאפליקציה החיה: https://alef-beit-gh.vercel.app/](https://alef-beit-gh.vercel.app/)**
 
-כתובת: https://alef-beit-gh.vercel.app/
+המיזוג האחרון, בלי Vercel: https://raw.githack.com/Anat1969/ALEF-BEIT-GH/main/build/index.html
+
+חקירה רב-ממדית של האלף-בית העברי: מרחב, אנרגיה, קול ואדריכלות. כל אות היא כרטיס שלם עם שבעה מימדים, מיומנות יומית, קשרים ומאמר.
 
 גיבוי ב-GitHub Pages: https://anat1969.github.io/ALEF-BEIT-GH/
 

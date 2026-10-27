@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "icons": "node scripts/build-icons.mjs",
-    "test": "node tests/smoke.mjs"
+    "test": "node tests/smoke.mjs",
+    "build:github": "node scripts/build-image-manifest.mjs && vite build --base=./ --outDir ../build --emptyOutDir"
   },
   "dependencies": {
     "react": "^19.2.6",
