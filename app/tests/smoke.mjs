@@ -16,21 +16,42 @@ page.on('pageerror', (e) => errors.push(e.message))
 
 await page.goto(BASE)
 await page.waitForSelector('header')
-ok(await page.locator('header >> text=22 אותיות').isVisible(), 'top bar visible on the landing page')
-ok(await page.locator('text=כניסה למערכת').isVisible(), 'landing page shows the enter button')
+ok(await page.locator('header >> text=22 אותיות').isVisible(), 'top bar visible on the home page')
+ok(page.url().endsWith('#home'), 'first visit opens the home page')
+for (const part of ['חזון', 'מטרה', 'שיטה', 'שש עדשות על אותו מידע', 'מה כבר קיים במערכת', '22 האותיות לפי ערך']) {
+  ok(await page.getByText(part, { exact: true }).first().isVisible(), `home page shows "${part}"`)
+}
+ok((await page.locator('.ring-tile').count()) === 22, '3D ring holds all 22 letters')
+ok((await page.locator('.map-tile').count()) === 22, 'content map holds all 22 letters')
 await page.waitForFunction(() => customElements.get('ai-menu'), null, { timeout: 15000 }).catch(() => {})
 ok(await page.locator('ai-menu .logo').isVisible().catch(() => false), 'A&I logo button in the top bar')
 ok(!(await page.locator('header >> text=העתקת קישור').first().isVisible().catch(() => false)), 'no loose development buttons in the bar')
 ok(!(await page.locator('header button', { hasText: 'זהב' }).first().isVisible().catch(() => false)), 'color modes are not loose buttons in the bar')
-await page.screenshot({ path: `${SHOTS}/landing.png` })
+await page.screenshot({ path: `${SHOTS}/home.png`, fullPage: true })
 
-await page.click('text=כניסה למערכת')
-const tabs = ['לוח בקרה', 'אות בודדת', 'גלריה', 'קשרים', 'מטריצה', 'סדר יום']
-const hashes = ['#dashboard', '#letter/1', '#gallery', '#network', '#matrix', '#workflow']
+// Home tool cards and ring tiles navigate
+await page.locator('.tool-card', { hasText: 'גלריה' }).click()
+ok(page.url().endsWith('#gallery'), 'home tool card opens its screen')
+await page.goto(BASE + '#home')
+await page.locator('.map-tile.tier-3').last().click()
+ok(page.url().endsWith('#letter/400'), 'content map opens a hundreds letter (#letter/400)')
+await page.locator('main button', { hasText: 'הבאה' }).first().click()
+ok(page.url().endsWith('#letter/1'), 'next after ת wraps to א')
+await page.locator('main button', { hasText: 'הקודמת' }).first().click()
+await page.waitForTimeout(150)
+ok(page.url().endsWith('#letter/400') && (await page.locator('main').innerText()).length > 200, 'previous from א goes to ת and renders')
+await page.goto(BASE + '#letter/10')
+await page.locator('main button', { hasText: 'הבאה' }).first().click()
+await page.waitForTimeout(150)
+ok(page.url().endsWith('#letter/20') && !(await page.getByText('אות לא נמצאה').isVisible()), 'next after י goes to כ (20), not a missing letter')
+
+const tabs = ['בית', 'לוח בקרה', 'אות בודדת', 'גלריה', 'קשרים', 'מטריצה', 'סדר יום']
+const hashes = ['#home', '#dashboard', '#letter/1', '#gallery', '#network', '#matrix', '#workflow']
 for (let i = 0; i < tabs.length; i++) {
   await page.click(`nav button:has-text("${tabs[i]}")`)
   await page.waitForTimeout(250)
-  ok(page.url().endsWith(hashes[i]), `tab "${tabs[i]}" puts ${hashes[i]} in the URL`)
+  const want = hashes[i] === '#letter/1' ? /#letter\/\d+$/ : new RegExp(`${hashes[i]}$`)
+  ok(want.test(page.url()), `tab "${tabs[i]}" puts ${hashes[i].replace('/1', '/<id>')} in the URL`)
   ok(await page.locator('header').isVisible(), `top bar stays on "${tabs[i]}"`)
   await page.screenshot({ path: `${SHOTS}/tab-${i}.png` })
 }
@@ -63,7 +84,7 @@ ok((await page.locator('main').innerText()).length > 200, 'card still renders af
 
 // App name links home
 await page.click('header a[aria-label*="דף הבית"]')
-ok(page.url().endsWith('#dashboard'), 'app name links to the home page')
+ok(page.url().endsWith('#home'), 'app name links to the home page')
 
 // Color mode lives in the logo menu
 await page.locator('ai-menu .logo').click().catch(() => {})
@@ -80,7 +101,7 @@ ok(rounded === 0, `all buttons are square (${rounded} rounded)`)
 
 // Installability
 const cdp = await ctx.newCDPSession(page)
-await page.goto(BASE + '#dashboard')
+await page.goto(BASE + '#home')
 await page.waitForTimeout(1500)
 const { installabilityErrors } = await cdp.send('Page.getInstallabilityErrors')
 ok(installabilityErrors.length === 0, `installable from Chrome (${JSON.stringify(installabilityErrors)})`)
@@ -94,8 +115,9 @@ for (const h of hashes) {
   const overflow = await mobile.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
   ok(overflow <= 0, `mobile ${h}: no horizontal scroll (${overflow}px)`)
 }
-await mobile.goto(BASE + '#dashboard')
-await mobile.screenshot({ path: `${SHOTS}/mobile-dashboard.png` })
+await mobile.goto(BASE + '#home')
+await mobile.waitForTimeout(500)
+await mobile.screenshot({ path: `${SHOTS}/mobile-home.png`, fullPage: true })
 
 // Reduced motion hides the background video
 const rm = await browser.newContext({ reducedMotion: 'reduce' })
@@ -103,6 +125,8 @@ const rmp = await rm.newPage()
 await rmp.goto(BASE)
 await rmp.waitForSelector('header')
 ok(!(await rmp.locator('video').isVisible()), 'reduced motion: background video hidden')
+ok(await rmp.evaluate(() => getComputedStyle(document.querySelector('.letter-ring')).animationName === 'none'), 'reduced motion: ring does not spin')
+ok((await rmp.locator('.ring-tile').count()) === 22, 'reduced motion: all content still shown')
 
 ok(errors.length === 0, `no page errors (${errors.join(' | ')})`)
 await browser.close()
