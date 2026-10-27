@@ -18,11 +18,13 @@ npm run preview    # תצוגה מקדימה של הבנייה
 
 ## מבנה
 - `src/App.jsx` סרגל עליון, ניווט לשוניות, מצב בכתובת, כפתור הלוגו A&I.
-- `src/components/` מסך לכל לשונית: לוח בקרה, אות בודדת, גלריה, קשרים, מטריצה, סדר יום.
-- `src/data/letters.json` מקור הנתונים היחיד של האותיות.
+- `src/components/` מסך לכל לשונית: בית, לוח בקרה, אות בודדת, גלריה, קשרים, סדר יום.
+- `src/data/letterKnowledge.js` ידע, הבנה ויישום לכל אות, עם מקורות ורמת ודאות.
+- `src/data/systems.js` חמש שיטות קשר מחושבות (א״ת ב״ש, מספר קטן, מוצא בפה, ספר יצירה, צורות סופיות).
+- `src/data/letters.json` האפיון המקורי: מימדים חושיים, מיומנויות ומודל מרחבי.
 - `public/letter-images/` תמונות האותיות. `scripts/build-image-manifest.mjs` בונה מהן מניפסט.
 - `public/manifest.webmanifest`, `public/sw.js`, `public/icon*.png` התקנה מ-Chrome.
-- `tests/smoke.mjs` בדיקת Playwright לפני מסירה.
+- `tests/smoke.mjs` בדיקת Playwright לפני מסירה (`VERCEL=1 npm run build` ואז `VERCEL=1 npx vite preview`).
 
 ## החלטות
 - אתר סטטי בלי בסיס נתונים. בחירות משתמש נשמרות ב-localStorage.

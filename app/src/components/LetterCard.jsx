@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useLetters } from '../hooks/useLetters'
 import { SECTIONS } from './letter/constants'
+import SectionKnowing from './letter/SectionKnowing'
+import KNOWLEDGE from '../data/letterKnowledge'
+import RichText from './text/RichText'
 import SectionOverview from './letter/SectionOverview'
 import SectionDimensions from './letter/SectionDimensions'
 import SectionWords from './letter/SectionWords'
@@ -13,7 +16,7 @@ import SectionArticle from './letter/SectionArticle'
 export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
   const { letters, getLetter } = useLetters()
   const letter = getLetter(letterId)
-  const [activeSection, setActiveSection] = useState('overview')
+  const [activeSection, setActiveSection] = useState('knowing')
 
   if (!letter) return <p className="text-text-secondary text-lg">אות לא נמצאה</p>
 
@@ -30,6 +33,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
   const renderSection = () => {
     if (!letter.hasData && activeSection !== 'overview' && activeSection !== 'article') return null
     switch (activeSection) {
+      case 'knowing': return <SectionKnowing letter={letter} letters={letters} onSelectLetter={onSelectLetter} />
       case 'overview': return <SectionOverview letter={letter} />
       case 'dimensions': return <SectionDimensions letter={letter} />
       case 'words': return <SectionWords letterId={letter.id} character={letter.character} />
@@ -50,7 +54,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
           onClick={() => onSelectLetter(prevId)}
           className="px-3 py-1.5 text-sm text-gray-500 hover:text-dark-text hover:bg-white/5 transition-all"
         >
-          הקודמת →
+          הקודמת
         </button>
         <div className="flex gap-0.5">
           {letters.map(l => (
@@ -73,7 +77,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
           onClick={() => onSelectLetter(nextId)}
           className="px-3 py-1.5 text-sm text-gray-500 hover:text-dark-text hover:bg-white/5 transition-all"
         >
-          ← הבאה
+          הבאה
         </button>
       </div>
 
@@ -102,6 +106,23 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
 
         {activeSection === 'article' ? (
           <SectionArticle key={letter.id} letter={letter} letterImages={letterImages} />
+        ) : activeSection === 'knowing' ? (
+          // The core section gets the full width: the letter, its image, then three layers
+          <div className="p-4 md:p-6">
+            <div className="knowing-head">
+              <div className="knowing-title">
+                <span className="knowing-glyph">{letter.character}</span>
+                <div>
+                  <h2 className="page-title">{letter.name}</h2>
+                  <p className="explain-line">{KNOWLEDGE[letter.character]?.nameMeaning}</p>
+                </div>
+              </div>
+              {letterImages.getAnyImage(letter.id) && (
+                <img className="knowing-img" src={letterImages.getAnyImage(letter.id)} alt={`הדימוי האדריכלי של ${letter.name}`} />
+              )}
+            </div>
+            {renderSection()}
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[500px]">
             {/* Image + Energetic below */}
@@ -173,22 +194,17 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                 )
               })()}
 
-              {letter.hasData && letter.dimensions?.energetic && (
-                <div className="mt-4 bg-warning/5 dark:bg-warning/10 border border-warning/20 dark:border-warning/30 p-4">
-                  <h4 className="text-sm font-bold text-warning uppercase tracking-wider mb-1">הכוח של האות</h4>
-                  <p className="text-sm text-text dark:text-dark-text leading-relaxed">{letter.dimensions.energetic.description}</p>
-                  {letter.dimensions.energetic.flow_direction && (
-                    <p className="text-xs text-text-secondary dark:text-gray-400 mt-1">כיוון: {letter.dimensions.energetic.flow_direction}</p>
-                  )}
-                  {letter.dimensions.energetic.expansion_type && (
-                    <p className="text-xs text-text-secondary dark:text-gray-400">התרחבות: {letter.dimensions.energetic.expansion_type}</p>
-                  )}
+              {KNOWLEDGE[letter.character] && (
+                <div className="layer layer-read mt-4">
+                  <span className="layer-label">התובנה והפעולה</span>
+                  <RichText as="p" className="insight-line" text={KNOWLEDGE[letter.character].insight} />
+                  <RichText as="p" className="layer-text mt-2" text={KNOWLEDGE[letter.character].action} />
                 </div>
               )}
             </div>
 
             {/* Content */}
-            <div className="p-4 md:p-5 overflow-y-auto max-h-[600px]">
+            <div className="p-4 md:p-5 min-w-0">
               {renderSection()}
 
               {!letter.hasData && activeSection === 'overview' && (

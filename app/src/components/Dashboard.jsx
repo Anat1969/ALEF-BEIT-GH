@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useLetters } from '../hooks/useLetters'
 import PageIntro from './PageIntro'
+import RichText from './text/RichText'
+import KNOWLEDGE from '../data/letterKnowledge'
 
 function getLetterImage(letterId, letterImages) {
   return letterImages?.getAnyImage(letterId) || null
@@ -17,11 +19,10 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
     <div>
       <PageIntro
         title="כל האותיות במבט אחד"
-        subtitle={`22 אותיות, 7 מימדים, מערכת חיה אחת`}
         insight="**מפת הכניסה** לכל 22 האותיות."
-        explain="לכל אות **תפקיד**, **משפט מפתח** ודימוי. לחיצה פותחת את הכרטיס המלא."
-        howToUse="בכרטיס: **7 מימדים**, מיומנות יומית, קשרים ומאמר."
-        example={`א׳ היא ==נשימה ראשונה==, הצליל השקט ביותר, עם תרגול של **5 דקות** ב-06:00.`}
+        explain="לכל אות: **פירוש השם**, תובנה אחת ודימוי. לחיצה פותחת את הכרטיס המלא."
+        howToUse="בכרטיס: **ידע** עם מקורות, **הבנה** ו**יישום**, ואחריהם קשרים, מרחב ומאמר."
+        example={`א׳ לא נשמעת בעברית של היום, ולכן ==התחלה משאירה מקום==. הפעולה: **3 דקות** של שקט לפני משימה חדשה.`}
         tip={readyCount === 22 ? "כל 22 האותיות מוכנות. אפשר להתחיל מכל אות, ובסדר היום לבחור 3 עד 5 מיומנויות." : `${readyCount} מתוך 22 אותיות מוכנות כרגע. אפשר כבר להתחיל עם המוכנות.`}
       />
 
@@ -47,8 +48,8 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
           {letters.map(letter => {
             const full = getLetter(letter.id)
             const image = getLetterImage(letter.id, letterImages)
-            const role = full.core?.archetypal_role || ''
-            const oneLiner = full.synthesis?.one_liner || ''
+            const role = KNOWLEDGE[letter.character]?.nameMeaning || full.core?.archetypal_role || ''
+            const oneLiner = KNOWLEDGE[letter.character]?.insight || ''
 
             return (
               <button
@@ -87,7 +88,7 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
                     <p className="text-xs text-gray-600 leading-relaxed">ממתינה להשלמה</p>
                   )}
                   {oneLiner && (
-                    <p className="text-[10px] text-gray-500 mt-1 line-clamp-2 italic leading-relaxed">"{oneLiner}"</p>
+                    <RichText as="p" className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed" text={oneLiner} />
                   )}
                 </div>
 
@@ -104,8 +105,8 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
           {letters.map(letter => {
             const full = getLetter(letter.id)
             const image = getLetterImage(letter.id, letterImages)
-            const role = full.core?.archetypal_role || ''
-            const oneLiner = full.synthesis?.one_liner || ''
+            const role = KNOWLEDGE[letter.character]?.nameMeaning || full.core?.archetypal_role || ''
+            const oneLiner = KNOWLEDGE[letter.character]?.insight || ''
             const skill = full.skill?.name || ''
 
             return (
@@ -139,7 +140,7 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
                     <p className="text-xs text-gray-600">ממתינה להשלמה</p>
                   )}
                   {oneLiner && (
-                    <p className="text-[10px] text-gray-500 truncate italic mt-0.5">"{oneLiner}"</p>
+                    <RichText as="p" className="text-xs text-gray-500 truncate mt-0.5" text={oneLiner} />
                   )}
                 </div>
 

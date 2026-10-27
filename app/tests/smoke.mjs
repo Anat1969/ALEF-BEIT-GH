@@ -27,7 +27,7 @@ await page.goto(BASE)
 await page.waitForSelector('header')
 ok(await page.locator('header >> text=22 אותיות').isVisible(), 'top bar visible on the home page')
 ok(page.url().endsWith('#home'), 'first visit opens the home page')
-for (const part of ['01 · חזון', '02 · מטרה', '03 · שיטה', 'שש עדשות על אותו מידע', 'מה כבר קיים במערכת', '22 האותיות לפי ערך', 'בעיה', 'פתרון', 'תובנה', 'א׳ היא היציאה אל הים']) {
+for (const part of ['01 · חזון', '02 · מטרה', '03 · שיטה', 'חמש עדשות על אותו מידע', 'אות אחת, שלוש שכבות', 'מה כבר קיים במערכת', '22 האותיות לפי ערך', 'בעיה', 'פתרון', 'תובנה', 'א׳ היא היציאה אל הים']) {
   ok(await page.getByText(part, { exact: true }).first().isVisible(), `home page shows "${part}"`)
 }
 ok(await page.locator('.now-card .now-title').isVisible(), 'home page shows the current daily skill')
@@ -38,6 +38,11 @@ const weights = await page.evaluate(() => ['.home-title', '.section-title', '.pi
 ok(weights.every((w) => Number(w) >= 400 && Number(w) <= 500), `headings weigh 400 to 500 (${weights})`)
 ok((await page.locator('.ring-tile').count()) === 22, '3D ring holds all 22 letters')
 ok((await page.locator('.map-tile').count()) === 22, 'content map holds all 22 letters')
+ok((await page.locator('video').count()) === 0, 'no background video')
+const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor)
+const lum = bg.match(/\d+/g).slice(0, 3).map(Number).reduce((a, b) => a + b, 0) / 3
+ok(lum > 200, `background is light (${bg})`)
+ok((await page.locator('.demo .layer').count()) === 3, 'home shows the three layers on a real letter')
 await page.waitForFunction(() => customElements.get('ai-menu'), null, { timeout: 15000 }).catch(() => {})
 ok(await page.locator('ai-menu .logo').isVisible().catch(() => false), 'A&I logo button in the top bar')
 ok(!(await page.locator('header >> text=העתקת קישור').first().isVisible().catch(() => false)), 'no loose development buttons in the bar')
@@ -60,8 +65,8 @@ await page.locator('main button', { hasText: 'הבאה' }).first().click()
 await page.waitForTimeout(150)
 ok(page.url().endsWith('#letter/20') && !(await page.getByText('אות לא נמצאה').isVisible()), 'next after י goes to כ (20), not a missing letter')
 
-const tabs = ['בית', 'לוח בקרה', 'אות בודדת', 'גלריה', 'קשרים', 'מטריצה', 'סדר יום']
-const hashes = ['#home', '#dashboard', '#letter/1', '#gallery', '#network', '#matrix', '#workflow']
+const tabs = ['בית', 'לוח בקרה', 'אות בודדת', 'גלריה', 'קשרים', 'סדר יום']
+const hashes = ['#home', '#dashboard', '#letter/1', '#gallery', '#relations', '#workflow']
 for (let i = 0; i < tabs.length; i++) {
   await page.click(`nav button:has-text("${tabs[i]}")`)
   await page.waitForTimeout(250)
@@ -80,13 +85,35 @@ await page.waitForSelector('main')
 const after = await page.locator('text=/\\d+\\/22 הושלמו/').first().textContent()
 ok(before === after && !before.startsWith('0/'), `workflow progress kept after refresh (${before} -> ${after})`)
 
+// Relationships: every system has rule, meaning and action, and picking a letter shows its partners
+await page.goto(BASE + '#matrix')
+await page.waitForSelector('main')
+ok(page.url().endsWith('#relations'), 'old #matrix link opens the merged relationships screen')
+const systems = await page.locator('.system-tab').count()
+ok(systems === 5, `5 relationship systems (${systems})`)
+for (let i = 0; i < systems; i++) {
+  await page.locator('.system-tab').nth(i).click()
+  await page.waitForTimeout(100)
+  const layers = await page.locator('main .layers .layer').count()
+  ok(layers === 3, `system ${i + 1}: rule, meaning and action (${layers})`)
+}
+await page.locator('.system-tab').first().click()
+await page.locator('.rel-tile', { hasText: 'ב' }).first().click()
+await page.waitForTimeout(100)
+ok(await page.locator('.pair-panel').getByText('שין', { exact: false }).first().isVisible(), 'atbash: picking ב shows its mirror ש')
+
 // Deep link opens the right letter
 await page.goto(`${BASE}#letter/5`)
 await page.waitForSelector('main')
 ok(page.url().endsWith('#letter/5'), 'deep link #letter/5 opens and stays on that letter')
+for (const layer of ['1 · ידע · עובדות', '2 · הבנה · פרשנות', '3 · יישום · פעולה']) {
+  ok(await page.getByText(layer, { exact: true }).isVisible(), `letter card opens on "${layer}"`)
+}
+ok(await page.locator('.certainty').first().isVisible(), 'letter card rates how certain the name meaning is')
+ok(await page.locator('.fact-source').first().isVisible(), 'letter card cites a source')
 
 // Every letter-card section renders, and switching letters keeps the card working
-const sections = ['סקירה', 'מימדים', 'שפה', 'קשרים', 'מיומנות', 'מודל מרחבי', 'אדריכלות', 'מאמר']
+const sections = ['ידע, הבנה, יישום', 'סקירה', 'קשרים', 'שפה', 'מיומנות', 'מודל מרחבי', 'אדריכלות', 'מחקר חושי', 'מאמר']
 for (const label of sections) {
   await page.locator('main button', { hasText: new RegExp(`^${label}$`) }).first().click()
   await page.waitForTimeout(150)
@@ -103,11 +130,15 @@ ok(page.url().endsWith('#home'), 'app name links to the home page')
 
 // Color mode lives in the logo menu
 await page.locator('ai-menu .logo').click().catch(() => {})
-const blue = page.locator('ai-menu').getByText('תצוגה: כחול')
-ok(await blue.isVisible().catch(() => false), 'logo menu offers the display modes')
-await blue.click().catch(() => {})
+const night = page.locator('ai-menu').getByText('תצוגה: כהה')
+ok(await night.isVisible().catch(() => false), 'logo menu offers the display modes')
+await night.click().catch(() => {})
 await page.waitForTimeout(300)
-ok(await page.evaluate(() => document.documentElement.classList.contains('color-blue')), 'choosing a display mode applies it')
+ok(await page.evaluate(() => document.documentElement.classList.contains('theme-night')), 'choosing the dark mode applies it')
+await page.locator('ai-menu .logo').click().catch(() => {})
+await page.locator('ai-menu').getByText('תצוגה: בהיר').click().catch(() => {})
+await page.waitForTimeout(300)
+ok(await page.evaluate(() => !document.documentElement.classList.contains('theme-night')), 'switching back to light works')
 
 // Square controls
 const rounded = await page.evaluate(() => [...document.querySelectorAll('main button, nav button')]
@@ -136,13 +167,12 @@ await mobile.goto(BASE + '#home')
 await mobile.waitForTimeout(500)
 await mobile.screenshot({ path: `${SHOTS}/mobile-home.png` })
 
-// Reduced motion hides the background video
+// Reduced motion stops the ring
 const rm = await browser.newContext({ reducedMotion: 'reduce' })
 await routeMenu(rm)
 const rmp = await rm.newPage()
 await rmp.goto(BASE)
 await rmp.waitForSelector('header')
-ok(!(await rmp.locator('video').isVisible()), 'reduced motion: background video hidden')
 ok(await rmp.evaluate(() => getComputedStyle(document.querySelector('.letter-ring')).animationName === 'none'), 'reduced motion: ring does not spin')
 ok((await rmp.locator('.ring-tile').count()) === 22, 'reduced motion: all content still shown')
 

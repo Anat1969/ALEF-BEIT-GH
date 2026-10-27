@@ -1,6 +1,7 @@
 import { useLetters } from '../hooks/useLetters'
 import SKILLS_DATA from '../data/dailySkills'
 import RichText, { MeaningBox } from './text/RichText'
+import KNOWLEDGE from '../data/letterKnowledge'
 
 // Gematria tiers: the content map groups letters by order of magnitude,
 // and tile size grows with the tier so the structure reads before the labels.
@@ -14,7 +15,7 @@ const TIERS = [
 const PILLARS = [
   { n: '01', label: 'חזון', insight: 'האלף-בית כ**מערכת חיה**.', explain: 'לכל אות **אור**, **חומר**, **קול** ותנועה משלה, כמו חדר בבניין.' },
   { n: '02', label: 'מטרה', insight: 'ללמוד אות **בגוף**, לא רק בראש.', explain: 'כל אות מתורגמת ל-**7 מימדים**, למרחב אדריכלי ולמיומנות יומית.' },
-  { n: '03', label: 'שיטה', insight: '**מקור נתונים אחד**, שש עדשות.', explain: 'כרטיס, גלריה, רשת, מטריצה וסדר יום מציגים את אותו מידע מזווית אחרת.' },
+  { n: '03', label: 'שיטה', insight: '**ידע, הבנה, יישום** בכל אות.', explain: 'עובדה עם **מקור**, פרשנות שמסומנת כפרשנות, ו**פעולה** שאפשר לעשות היום.' },
 ]
 
 function readLocalCounts() {
@@ -84,10 +85,9 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
 
   const tools = [
     { tab: 'dashboard', title: 'לוח בקרה', does: 'כל **22 האותיות** במבט אחד, עם תפקיד ומשפט מפתח.', gives: 'נקודת כניסה מהירה', stat: `${withData}/22 אותיות` },
-    { tab: 'letter', title: 'כרטיס אות', does: '**8 מקטעים** לאות אחת, מהמימדים ועד המאמר.', gives: 'הבנה מלאה של אות', stat: '8 מקטעים' },
+    { tab: 'letter', title: 'כרטיס אות', does: '**ידע** עם מקורות, **הבנה** ו**יישום**, ואחריהם שפה, מרחב ומאמר.', gives: 'אות מהעובדה ועד הפעולה', stat: '3 שכבות' },
     { tab: 'gallery', title: 'גלריה', does: 'הדימוי **האדריכלי** של כל אות, זה לצד זה.', gives: 'השוואה חזותית', stat: `${withImage} תמונות` },
-    { tab: 'network', title: 'קשרים', does: 'רשת של אותיות **מנוגדות**, **משלימות** ודומות בקול.', gives: 'מי מושכת את מי', stat: '3 סוגי קשר' },
-    { tab: 'matrix', title: 'מטריצה', does: 'כל זוג אותיות בטבלה אחת, לפי **סוג הקשר**.', gives: 'מבנה המערכת כולה', stat: '22 על 22' },
+    { tab: 'relations', title: 'קשרים', does: '**חמש שיטות** מוכרות: א״ת ב״ש, מספר קטן, מוצא בפה, ספר יצירה וצורות סופיות.', gives: 'קשר עם כלל ומקור', stat: '5 שיטות' },
     { tab: 'workflow', title: 'סדר יום', does: 'מיומנות לכל אות, מ-**06:00** עד **01:00**.', gives: 'תרגול יומי שנשמר', stat: `${todayDone}/22 היום` },
   ]
 
@@ -101,15 +101,6 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
   return (
     <div className="home">
       <section className="home-hero">
-        <video
-          className="landing-video home-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          aria-hidden="true"
-          src={`${import.meta.env.BASE_URL}landing-bg.mp4`}
-        />
         <div className="home-hero-text">
           <p className="eyebrow">22 אותיות · 7 מימדים · מערכת חיה אחת</p>
           <h1 className="home-title">
@@ -120,7 +111,7 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
           <RichText
             as="p"
             className="home-lead"
-            text="בוחרים **אות**, נכנסים ל**חדר** שלה, ומתרגלים אותה ביום יום."
+            text="לכל אות: **מה ידוע** עליה ומאיפה, **מה זה אומר**, ו**מה עושים** עם זה היום."
           />
           <div className="home-cta">
             <button className="cta-solid" onClick={() => onSelectLetter(1)}>לפתוח את א׳</button>
@@ -148,6 +139,31 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
         </div>
       </section>
 
+      <section className="demo" aria-labelledby="demo-h">
+        <div className="section-head">
+          <span className="eyebrow">איך זה עובד</span>
+          <h2 id="demo-h" className="section-title">אות אחת, שלוש שכבות</h2>
+          <p className="section-note">כך בנוי כל כרטיס. הדוגמה: א׳.</p>
+        </div>
+        <div className="layers">
+          <div className="layer layer-fact">
+            <span className="layer-label">1 · ידע · עובדה</span>
+            <p className="layer-text">שם האות: {KNOWLEDGE['א'].nameMeaning}. {KNOWLEDGE['א'].sound}.</p>
+            <p className="layer-source">מקור: {KNOWLEDGE['א'].nameSource}</p>
+          </div>
+          <div className="layer layer-read">
+            <span className="layer-label">2 · הבנה · פרשנות</span>
+            <RichText as="p" className="insight-line" text={KNOWLEDGE['א'].insight} />
+            <RichText as="p" className="explain-line" text={KNOWLEDGE['א'].explain} />
+          </div>
+          <div className="layer layer-do">
+            <span className="layer-label">3 · יישום · פעולה</span>
+            <RichText as="p" className="layer-text" text={KNOWLEDGE['א'].action} />
+          </div>
+        </div>
+        <button className="cta-solid demo-cta" onClick={() => onSelectLetter(1)}>לכרטיס המלא של א׳</button>
+      </section>
+
       <section className="home-pillars" aria-label="חזון, מטרה ושיטה">
         {PILLARS.map((p) => (
           <div key={p.n} className="pillar">
@@ -167,7 +183,7 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
       <section aria-labelledby="tools-h">
         <div className="section-head">
           <span className="eyebrow">כלים</span>
-          <h2 id="tools-h" className="section-title">שש עדשות על אותו מידע</h2>
+          <h2 id="tools-h" className="section-title">חמש עדשות על אותו מידע</h2>
         </div>
         <div className="tools-grid">
           {tools.map((t, i) => (

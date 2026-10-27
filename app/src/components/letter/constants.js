@@ -35,13 +35,14 @@ export const DIMENSION_CATEGORIES = [
 ]
 
 export const SECTIONS = [
+  { id: 'knowing', label: 'ידע, הבנה, יישום' },
   { id: 'overview', label: 'סקירה' },
-  { id: 'dimensions', label: 'מימדים' },
-  { id: 'words', label: 'שפה' },
   { id: 'relationships', label: 'קשרים' },
+  { id: 'words', label: 'שפה' },
   { id: 'skill', label: 'מיומנות' },
   { id: 'space', label: 'מודל מרחבי' },
   { id: 'prompt', label: 'אדריכלות' },
+  { id: 'dimensions', label: 'מחקר חושי' },
   { id: 'article', label: 'מאמר' },
 ]
 
