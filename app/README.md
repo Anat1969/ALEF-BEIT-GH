@@ -2,7 +2,9 @@
 
 חקירה רב-ממדית של האלף-בית העברי: מרחב, אנרגיה, קול ואדריכלות. כל אות היא כרטיס שלם עם שבעה מימדים, מיומנות יומית, קשרים ומאמר.
 
-כתובת: https://anat1969.github.io/ALEF-BEIT-GH/
+כתובת: https://alef-beit-gh.vercel.app/
+
+גיבוי ב-GitHub Pages: https://anat1969.github.io/ALEF-BEIT-GH/
 
 ## הרצה
 ```

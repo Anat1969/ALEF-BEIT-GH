@@ -15,7 +15,8 @@ The top bar holds only the app name (links home), content navigation, and ONE lo
 - מצב התצוגה נשמר בכתובת (`#dashboard`, `#letter/5`, `#workflow`), ולכן "העתקת קישור" משתפת בדיוק את המסך הנוכחי.
 - מצבי צבע (זהב, כחול, שחור-לבן, לבן-שחור) ומסך הפתיחה נמצאים בתוך כפתור הלוגו (`menu.items`), לא בסרגל.
 - התקנה מ-Chrome: `public/manifest.webmanifest`, `public/sw.js`, אייקונים מ-`public/icon.svg` דרך `node scripts/build-icons.mjs`.
-- פריסה: Vercel מ-main (Root Directory: `app`), ו-GitHub Pages מ-main (`.github/workflows/deploy.yml`) כגיבוי: https://anat1969.github.io/ALEF-BEIT-GH/
+- פריסה: Vercel מ-main, פרויקט `alef-beit-gh` (Root Directory: `app`). כתובת ראשית: https://alef-beit-gh.vercel.app/
+- גיבוי: GitHub Pages מ-main (`.github/workflows/deploy.yml`) כגיבוי: https://anat1969.github.io/ALEF-BEIT-GH/
 - `base` ב-vite.config.js: `/` ב-Vercel (משתנה `VERCEL`), `/ALEF-BEIT-GH/` ב-GitHub Pages.
 
 ## בדיקה לפני מסירה
@@ -34,4 +35,6 @@ NODE_PATH=$(npm root -g) node tests/smoke.mjs
 - סרגל זכוכית שקוף מדי נותן לתוכן הגלול להיראות דרכו. לסרגלים דביקים: רקע אטום כמעט (`.glass.bar`).
 - `ai-menu` הוא Custom Element: ב-React מעבירים `items` דרך ref, לא כ-prop.
 - ב-Playwright, שינוי שעובר דרך useEffect דורש המתנה קצרה לפני הבדיקה.
+- פרויקט Vercel שנוצר דרך ה-API לא נפרס עד הדחיפה הבאה. את הפריסה הראשונה מפעילים ב-create_deployment עם gitSource על main.
+- מהסביבה הזו vercel.app כן נגיש, ולכן בדיקת smoke רצה גם מול האתר החי (`BASE=https://alef-beit-gh.vercel.app/`).
 - איפוס מצב כשמחליפים אות: `key={letter.id}` על הרכיב, לא setState בתוך useEffect.
