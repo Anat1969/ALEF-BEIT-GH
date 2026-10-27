@@ -57,6 +57,10 @@ export default function SectionDimensions({ letter }) {
 
   return (
     <div className="space-y-3">
+      <div className="meaning meaning-insight">
+        <span className="meaning-label">שכבת מחקר</span>
+        <p className="meaning-text">תיאורים חושיים מהאפיון המקורי. הם פרשנות ולא עובדה. העובדות והמקורות נמצאים ב"ידע, הבנה, יישום".</p>
+      </div>
       {DIMENSION_CATEGORIES.map(cat => {
         const hasDims = cat.dims.some(d => letter.dimensions[d.key])
         if (!hasDims) return null

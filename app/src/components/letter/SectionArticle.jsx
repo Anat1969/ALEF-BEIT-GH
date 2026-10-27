@@ -153,7 +153,7 @@ export default function SectionArticle({ letter, letterImages }) {
                 onClick={() => setShowText(false)}
                 className="px-3 py-1.5 text-xs text-gray-500 hover:text-gray-800 transition-colors"
               >
-                ← חזרה לתמונה
+                חזרה לתמונה
               </button>
               <div className="flex gap-1 opacity-60 hover:opacity-100 transition-opacity">
                 <button

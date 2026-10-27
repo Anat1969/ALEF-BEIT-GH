@@ -3,8 +3,7 @@ import Home from './components/Home'
 import Dashboard from './components/Dashboard'
 import LetterCard from './components/LetterCard'
 import Gallery from './components/Gallery'
-import Network from './components/Network'
-import Matrix from './components/Matrix'
+import Relations from './components/Relations'
 import Workflow from './components/Workflow'
 import { useLetterImages } from './hooks/useLetterImages'
 
@@ -13,8 +12,7 @@ const TABS = [
   { id: 'dashboard', label: 'לוח בקרה' },
   { id: 'letter', label: 'אות בודדת' },
   { id: 'gallery', label: 'גלריה' },
-  { id: 'network', label: 'קשרים' },
-  { id: 'matrix', label: 'מטריצה' },
+  { id: 'relations', label: 'קשרים' },
   { id: 'workflow', label: 'סדר יום' },
 ]
 
@@ -24,7 +22,9 @@ const CHAT_URL = 'https://claude.ai/code/session_018qeN1AtEFMg9QwTCerHjo5'
 
 // State lives in the URL hash (#tab or #letter/5) so "העתקת קישור" shares the exact view.
 function readHash() {
-  const [tab, letter] = window.location.hash.replace(/^#\/?/, '').split('/')
+  const [rawTab, letter] = window.location.hash.replace(/^#\/?/, '').split('/')
+  // Old links to the two relationship screens open the merged one
+  const tab = rawTab === 'network' || rawTab === 'matrix' ? 'relations' : rawTab
   return {
     tab: TAB_IDS.includes(tab) ? tab : null,
     // Letter ids are gematria values (1..10, 20..90, 100..400)
@@ -32,11 +32,10 @@ function readHash() {
   }
 }
 
+// Light is the default; night is the earlier dark look.
 const COLOR_MODES = [
-  { id: 'gold', label: 'זהב' },
-  { id: 'blue', label: 'כחול' },
-  { id: 'bw', label: 'שחור-לבן' },
-  { id: 'wb', label: 'לבן-שחור' },
+  { id: 'day', label: 'בהיר' },
+  { id: 'night', label: 'כהה' },
 ]
 
 export default function App() {
@@ -47,7 +46,7 @@ export default function App() {
     const saved = localStorage.getItem('app-letter')
     return saved ? Number(saved) : null
   })
-  const [colorMode, setColorMode] = useState(() => localStorage.getItem('app-color') || 'gold')
+  const [colorMode, setColorMode] = useState(() => (localStorage.getItem('app-color') === 'night' ? 'night' : 'day'))
   const letterImages = useLetterImages()
   const menuRef = useRef(null)
 
@@ -58,10 +57,8 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('app-color', colorMode)
     const el = document.documentElement
-    el.classList.remove('color-gold', 'color-blue', 'color-bw', 'color-wb')
-    if (colorMode !== 'gold') {
-      el.classList.add(`color-${colorMode}`)
-    }
+    el.classList.toggle('theme-night', colorMode === 'night')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', colorMode === 'night' ? '#0A0E1A' : '#F4F0E8')
   }, [colorMode])
 
   useEffect(() => {
@@ -118,10 +115,8 @@ export default function App() {
         )
       case 'gallery':
         return <Gallery onSelectLetter={handleSelectLetter} letterImages={letterImages} />
-      case 'network':
-        return <Network onSelectLetter={handleSelectLetter} />
-      case 'matrix':
-        return <Matrix onSelectLetter={handleSelectLetter} />
+      case 'relations':
+        return <Relations onSelectLetter={handleSelectLetter} />
       case 'workflow':
         return <Workflow />
       default:
@@ -131,7 +126,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-dark-bg bg-texture relative">
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-transparent to-indigo-950/30 pointer-events-none" />
+      <div className="page-wash fixed inset-0 bg-gradient-to-br from-slate-900/80 via-transparent to-indigo-950/30 pointer-events-none" />
 
       <div className="relative z-10">
         <header className="sticky top-0 z-50 glass bar h-14 flex items-center justify-between gap-3 px-4 sm:px-6">
