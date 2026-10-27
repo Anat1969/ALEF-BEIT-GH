@@ -17,8 +17,10 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
 
   if (!letter) return <p className="text-text-secondary text-lg">אות לא נמצאה</p>
 
-  const prevId = letterId > 1 ? letterId - 1 : 22
-  const nextId = letterId < 22 ? letterId + 1 : 1
+  // Ids are gematria values, so step through the ordered list, not id ± 1
+  const index = letters.findIndex(l => l.id === letter.id)
+  const prevId = letters[(index - 1 + letters.length) % letters.length].id
+  const nextId = letters[(index + 1) % letters.length].id
 
   const availableSections = SECTIONS.filter(s => {
     if (!letter.hasData && s.id !== 'overview' && s.id !== 'article') return false
