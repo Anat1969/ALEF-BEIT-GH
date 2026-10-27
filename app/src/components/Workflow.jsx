@@ -27,7 +27,12 @@ const SKILLS_DATA = [
 ]
 
 export default function Workflow() {
-  const [completed, setCompleted] = useState(new Set())
+  // Progress is per day and survives a refresh.
+  const todayKey = `workflow-${new Date().toLocaleDateString('en-CA')}`
+  const [completed, setCompleted] = useState(() => {
+    try { return new Set(JSON.parse(localStorage.getItem(todayKey) || '[]')) } catch { return new Set() }
+  })
+  const [savedAt, setSavedAt] = useState(null)
   const [expandedId, setExpandedId] = useState(null)
 
   const toggle = (id) => {
@@ -35,6 +40,8 @@ export default function Workflow() {
       const next = new Set(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
+      localStorage.setItem(todayKey, JSON.stringify([...next]))
+      setSavedAt(new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }))
       return next
     })
   }
@@ -45,7 +52,7 @@ export default function Workflow() {
   return (
     <div>
       <PageIntro
-        title="Workflow יומי"
+        title="סדר יום"
         subtitle="22 מיומנויות מ-06:00 עד 01:00"
         purpose="זהו סדר היום שלך לפי 22 האותיות — כל אות מייצגת מיומנות אחת בזמן מסוים ביום. מפתיחת הבוקר ועד הכנה לשינה, כל רגע ביום מקבל משמעות וכוונה."
         howToUse="סמני V ליד כל מיומנות שהשלמת. לחצי על שורה כדי לראות פרטים נוספים. שימי לב — לא חובה לעשות הכל! בחרי 3-5 מיומנויות ביום ובני עליהן."
@@ -60,6 +67,7 @@ export default function Workflow() {
         <div className="text-left">
           <span className="text-4xl font-bold text-accent dark:text-accent-light">{progress}%</span>
           <p className="text-sm text-text-tertiary dark:text-gray-500">{completed.size}/22 הושלמו</p>
+          <p className="text-xs font-mono text-gray-500" role="status">{savedAt ? `נשמר ${savedAt}` : 'נשמר אוטומטית בדפדפן, ומתאפס בכל יום חדש'}</p>
         </div>
       </div>
 
@@ -88,6 +96,8 @@ export default function Workflow() {
               <div className="flex items-center gap-3 p-4">
                 <button
                   onClick={() => toggle(skill.id)}
+                  aria-pressed={isDone}
+                  aria-label={`סימון ${skill.name} כהושלם`}
                   className={`
                     w-7 h-7 border-2 flex items-center justify-center shrink-0 transition-colors text-sm
                     ${isDone

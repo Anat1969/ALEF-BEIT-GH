@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Dashboard from './components/Dashboard'
 import LetterCard from './components/LetterCard'
 import Gallery from './components/Gallery'
@@ -13,8 +13,20 @@ const TABS = [
   { id: 'gallery', label: 'גלריה' },
   { id: 'network', label: 'קשרים' },
   { id: 'matrix', label: 'מטריצה' },
-  { id: 'workflow', label: 'Workflow' },
+  { id: 'workflow', label: 'סדר יום' },
 ]
+
+const TAB_IDS = TABS.map(t => t.id)
+const CHAT_URL = 'https://claude.ai/code/session_018qeN1AtEFMg9QwTCerHjo5'
+
+// State lives in the URL hash (#tab or #letter/5) so "העתקת קישור" shares the exact view.
+function readHash() {
+  const [tab, letter] = window.location.hash.replace(/^#\/?/, '').split('/')
+  return {
+    tab: TAB_IDS.includes(tab) ? tab : null,
+    letter: letter && Number(letter) >= 1 && Number(letter) <= 22 ? Number(letter) : null,
+  }
+}
 
 const HEBREW_LETTERS = 'אבגדהוזחטיכלמנסעפצקרשת'
 
@@ -36,14 +48,14 @@ function LandingPage({ onEnter }) {
   const base = import.meta.env.BASE_URL
 
   return (
-    <div className="fixed inset-0 z-[100] bg-dark-bg flex items-center justify-center overflow-hidden" dir="rtl">
+    <div className="relative min-h-[calc(100svh-3.5rem)] bg-dark-bg flex items-center justify-center overflow-hidden py-16" dir="rtl">
       {/* Video background — fullscreen, no frame, semi-transparent */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+        className="landing-video absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
         src={`${base}landing-bg.mp4`}
       />
       <div className="absolute inset-0 bg-dark-bg/40 pointer-events-none" />
@@ -69,7 +81,7 @@ function LandingPage({ onEnter }) {
           כניסה למערכת
         </button>
 
-        <div className="mt-16 flex items-center justify-center gap-1 text-accent/30">
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-1 text-accent/30" aria-hidden="true">
           {HEBREW_LETTERS.split('').map((ch, i) => (
             <span key={i} className="text-sm font-light">{ch}</span>
           ))}
@@ -80,14 +92,17 @@ function LandingPage({ onEnter }) {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState(() => localStorage.getItem('app-tab') || 'dashboard')
+  const initial = readHash()
+  const [activeTab, setActiveTab] = useState(() => initial.tab || localStorage.getItem('app-tab') || 'dashboard')
   const [selectedLetterId, setSelectedLetterId] = useState(() => {
+    if (initial.letter) return initial.letter
     const saved = localStorage.getItem('app-letter')
     return saved ? Number(saved) : null
   })
-  const [showLanding, setShowLanding] = useState(() => !localStorage.getItem('app-entered'))
+  const [showLanding, setShowLanding] = useState(() => !initial.tab && !localStorage.getItem('app-entered'))
   const [colorMode, setColorMode] = useState(() => localStorage.getItem('app-color') || 'gold')
   const letterImages = useLetterImages()
+  const menuRef = useRef(null)
 
   useEffect(() => {
     document.documentElement.classList.add('dark')
@@ -96,13 +111,44 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('app-color', colorMode)
     const el = document.documentElement
-    el.classList.remove('color-gold', 'color-blue', 'color-bw')
+    el.classList.remove('color-gold', 'color-blue', 'color-bw', 'color-wb')
     if (colorMode !== 'gold') {
       el.classList.add(`color-${colorMode}`)
     }
   }, [colorMode])
 
-  useEffect(() => { localStorage.setItem('app-tab', activeTab) }, [activeTab])
+  useEffect(() => {
+    localStorage.setItem('app-tab', activeTab)
+    const hash = activeTab === 'letter' ? `#letter/${selectedLetterId || 1}` : `#${activeTab}`
+    if (window.location.hash !== hash) history.replaceState(null, '', hash)
+    const label = TABS.find(t => t.id === activeTab)?.label
+    document.title = label ? `${label} | 22 אותיות` : '22 אותיות'
+    window.scrollTo({ top: 0 })
+  }, [activeTab, selectedLetterId, showLanding])
+
+  useEffect(() => {
+    const onHash = () => {
+      const { tab, letter } = readHash()
+      if (letter) setSelectedLetterId(letter)
+      if (tab) setActiveTab(tab)
+    }
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  // Display settings live inside the A&I logo button, not as loose buttons in the bar.
+  useEffect(() => {
+    const menu = menuRef.current
+    if (!menu) return
+    menu.items = [
+      ...COLOR_MODES.map(mode => ({
+        label: `תצוגה: ${mode.label}`,
+        pressed: colorMode === mode.id,
+        onSelect: () => setColorMode(mode.id),
+      })),
+      { label: 'מסך הפתיחה', onSelect: () => setShowLanding(true) },
+    ]
+  }, [colorMode, showLanding])
 
   const handleSelectLetter = (id) => {
     setSelectedLetterId(id)
@@ -135,53 +181,36 @@ export default function App() {
     }
   }
 
-  if (showLanding) {
-    return <LandingPage onEnter={() => { localStorage.setItem('app-entered', '1'); setShowLanding(false) }} />
-  }
-
   return (
     <div className="min-h-screen bg-dark-bg bg-texture relative">
       <div className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-transparent to-indigo-950/30 pointer-events-none" />
 
       <div className="relative z-10">
-        <header className="sticky top-0 z-50 glass h-14 flex items-center justify-between px-6">
-          <button
-            onClick={() => setShowLanding(true)}
-            className="text-xl font-extrabold tracking-tight hover:opacity-80 transition-opacity"
+        <header className="sticky top-0 z-50 glass bar h-14 flex items-center justify-between gap-3 px-4 sm:px-6">
+          <a
+            href="#dashboard"
+            onClick={(e) => { e.preventDefault(); setShowLanding(false); setActiveTab('dashboard') }}
+            className="flex items-center gap-2 min-w-0 text-xl font-extrabold tracking-tight hover:opacity-80 transition-opacity"
+            aria-label="22 אותיות, דף הבית"
           >
-            <span className="text-gold">22 אותיות</span>
-            <span className="hidden sm:inline text-gray-500 font-normal text-sm mr-2 opacity-60">מערכת חיה</span>
-          </button>
+            <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="" className="w-8 h-8 shrink-0" />
+            <span className="text-gold whitespace-nowrap">22 אותיות</span>
+            <span className="hidden sm:inline text-gray-500 font-normal text-sm opacity-60">מערכת חיה</span>
+          </a>
 
-          <div className="flex items-center gap-3">
-          <div className="flex gap-0.5">
-            {COLOR_MODES.map(mode => (
-              <button
-                key={mode.id}
-                onClick={() => setColorMode(mode.id)}
-                className={`px-2 py-1 text-[10px] transition-all ${
-                  colorMode === mode.id
-                    ? 'text-accent bg-white/10'
-                    : 'text-gray-500 hover:text-gray-300'
-                }`}
-              >
-                {mode.label}
-              </button>
-            ))}
-          </div>
-          <ai-menu />
-          </div>
+          <ai-menu ref={menuRef} chat={CHAT_URL} />
         </header>
 
-        <nav className="glass border-b border-white/10">
-          <div className="max-w-[1200px] mx-auto flex gap-0 overflow-x-auto">
+        <nav className="glass bar border-b border-white/10 sticky top-14 z-40" aria-label="ניווט תוכן">
+          <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center sm:justify-start gap-0 min-w-0">
             {TABS.map(tab => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`
-                  px-5 py-3 text-sm font-semibold transition-all duration-150 border-b-2 whitespace-nowrap
-                  ${activeTab === tab.id
+                onClick={() => { setShowLanding(false); setActiveTab(tab.id) }}
+                aria-current={!showLanding && activeTab === tab.id ? 'page' : undefined}
+                className={`tab-btn
+                  px-3 sm:px-5 py-2.5 sm:py-3 text-sm font-semibold transition-all duration-150 border-b-2 whitespace-nowrap
+                  ${!showLanding && activeTab === tab.id
                     ? 'text-accent border-accent'
                     : 'text-gray-400 border-transparent hover:text-dark-text hover:bg-white/5 opacity-60 hover:opacity-100'
                   }
@@ -193,9 +222,13 @@ export default function App() {
           </div>
         </nav>
 
-        <main className="max-w-[1200px] mx-auto p-6">
-          {renderContent()}
-        </main>
+        {showLanding ? (
+          <LandingPage onEnter={() => { localStorage.setItem('app-entered', '1'); setShowLanding(false) }} />
+        ) : (
+          <main className="max-w-[1200px] mx-auto p-4 sm:p-6 min-w-0">
+            {renderContent()}
+          </main>
+        )}
       </div>
     </div>
   )

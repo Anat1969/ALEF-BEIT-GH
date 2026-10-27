@@ -8,7 +8,8 @@ function getLetterImage(letterId, letterImages) {
 
 export default function Dashboard({ onSelectLetter, letterImages }) {
   const { letters, getLetter } = useLetters()
-  const [viewMode, setViewMode] = useState('grid')
+  const [viewMode, setViewMode] = useState(() => localStorage.getItem('dashboard-view') || 'grid')
+  const chooseView = (mode) => { setViewMode(mode); localStorage.setItem('dashboard-view', mode) }
 
   const readyCount = letters.filter(l => l.hasData).length
 
@@ -25,13 +26,15 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
 
       <div className="flex items-center justify-end gap-1 mb-4">
         <button
-          onClick={() => setViewMode('grid')}
+          onClick={() => chooseView('grid')}
+          aria-pressed={viewMode === 'grid'}
           className={`px-2 py-1 text-[10px] transition-all ${viewMode === 'grid' ? 'text-accent bg-white/10' : 'text-gray-500 hover:text-gray-300'}`}
         >
           כרטיסיות
         </button>
         <button
-          onClick={() => setViewMode('list')}
+          onClick={() => chooseView('list')}
+          aria-pressed={viewMode === 'list'}
           className={`px-2 py-1 text-[10px] transition-all ${viewMode === 'list' ? 'text-accent bg-white/10' : 'text-gray-500 hover:text-gray-300'}`}
         >
           רשימה
@@ -89,7 +92,7 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
 
                 {/* Data indicator */}
                 {letter.hasData && (
-                  <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-accent rounded-full" />
+                  <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-accent" />
                 )}
               </button>
             )
@@ -154,11 +157,11 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
 
       <div className="mt-6 flex items-center gap-6 text-xs text-gray-500">
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-accent rounded-full inline-block"></span>
+          <span className="w-2 h-2 bg-accent inline-block"></span>
           נתונים מלאים ({readyCount})
         </span>
         <span className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-gray-600 rounded-full inline-block"></span>
+          <span className="w-2 h-2 bg-gray-600 inline-block"></span>
           ממתין ({22 - readyCount})
         </span>
       </div>
