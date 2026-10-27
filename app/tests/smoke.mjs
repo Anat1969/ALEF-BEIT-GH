@@ -49,6 +49,18 @@ await page.goto(`${BASE}#letter/5`)
 await page.waitForSelector('main')
 ok(page.url().endsWith('#letter/5'), 'deep link #letter/5 opens and stays on that letter')
 
+// Every letter-card section renders, and switching letters keeps the card working
+const sections = ['סקירה', 'מימדים', 'שפה', 'קשרים', 'מיומנות', 'מודל מרחבי', 'אדריכלות', 'מאמר']
+for (const label of sections) {
+  await page.locator('main button', { hasText: new RegExp(`^${label}$`) }).first().click()
+  await page.waitForTimeout(150)
+  ok((await page.locator('main').innerText()).length > 200, `letter section "${label}" renders content`)
+}
+await page.locator('main button', { hasText: 'הבאה' }).first().click()
+await page.waitForTimeout(200)
+ok(page.url().endsWith('#letter/6'), 'next letter from the article section moves to #letter/6')
+ok((await page.locator('main').innerText()).length > 200, 'card still renders after switching letters')
+
 // App name links home
 await page.click('header a[aria-label*="דף הבית"]')
 ok(page.url().endsWith('#dashboard'), 'app name links to the home page')

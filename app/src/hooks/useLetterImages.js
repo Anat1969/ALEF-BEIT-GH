@@ -14,7 +14,6 @@ import { useState, useCallback, useEffect } from 'react'
  * to the repo to publish it for everyone.
  */
 
-const FOLDERS = ['letters', 'article-hero', 'arch']
 const BASE = import.meta.env.BASE_URL // e.g. "/ALEF-BEIT-GH/"
 const LOCAL_KEY = 'local-letter-images-v2'
 
