@@ -324,6 +324,10 @@
 
 /* ---------- Text standard (Claude-GH docs/ai-text-standard.md) ---------- */
 @layer components {
+  /* Hebrew in a mono stack: letters come from Plex Sans Hebrew but the space is Plex Mono's wide one */
+  .label, .eyebrow, .meaning-label, .pillar-n, .home-hint, .tier-range, .tool-n {
+    word-spacing: -0.28em;
+  }
   .label {
     display: block;
     margin-bottom: 4px;
