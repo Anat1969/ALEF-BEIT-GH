@@ -1,15 +1,24 @@
-// Delivery gate: run against `npm run build && npx vite preview --port 4173`.
-// NODE_PATH=$(npm root -g) node tests/smoke.mjs
+// Delivery gate. Build at the root base (as on Vercel) and preview it:
+//   VERCEL=1 npm run build && npx vite preview --port 4173
+//   NODE_PATH=$(npm root -g) node tests/smoke.mjs
+// BASE=https://alef-beit-gh.vercel.app/ runs the same checks against the live site.
 import { createRequire } from 'node:module'
+import { readFileSync } from 'node:fs'
 const { chromium } = createRequire(import.meta.url)('playwright')
 
-const BASE = process.env.BASE || 'http://localhost:4173/ALEF-BEIT-GH/'
+// ai-menu.js comes from a local copy (AppOfApp-GH public/ai-menu.js), so the
+// test does not depend on reaching vercel.app.
+const AI_MENU = readFileSync(new URL('./fixtures/ai-menu.js', import.meta.url), 'utf8')
+const routeMenu = (target) => target.route('**/ai-menu.js', (r) => r.fulfill({ contentType: 'text/javascript', body: AI_MENU }))
+
+const BASE = process.env.BASE || 'http://localhost:4173/'
 const SHOTS = process.env.SHOTS || 'tests/screenshots'
 let failed = 0
 const ok = (cond, msg) => { console.log(`${cond ? 'PASS' : 'FAIL'}  ${msg}`); if (!cond) failed++ }
 
 const browser = await chromium.launch()
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 }, locale: 'he-IL' })
+await routeMenu(ctx)
 const page = await ctx.newPage()
 const errors = []
 page.on('pageerror', (e) => errors.push(e.message))
@@ -18,9 +27,15 @@ await page.goto(BASE)
 await page.waitForSelector('header')
 ok(await page.locator('header >> text=22 אותיות').isVisible(), 'top bar visible on the home page')
 ok(page.url().endsWith('#home'), 'first visit opens the home page')
-for (const part of ['חזון', 'מטרה', 'שיטה', 'שש עדשות על אותו מידע', 'מה כבר קיים במערכת', '22 האותיות לפי ערך']) {
+for (const part of ['01 · חזון', '02 · מטרה', '03 · שיטה', 'שש עדשות על אותו מידע', 'מה כבר קיים במערכת', '22 האותיות לפי ערך', 'בעיה', 'פתרון', 'תובנה', 'א׳ היא היציאה אל הים']) {
   ok(await page.getByText(part, { exact: true }).first().isVisible(), `home page shows "${part}"`)
 }
+ok(await page.locator('.now-card .now-title').isVisible(), 'home page shows the current daily skill')
+ok(await page.getByText('ספר יצירה', { exact: false }).first().isVisible(), 'home page names its source of inspiration')
+ok((await page.locator('.rt-mark').count()) > 5, 'distilled text uses highlights')
+ok((await page.locator('.rt-num').count()) > 0, 'numbers are set in mono')
+const weights = await page.evaluate(() => ['.home-title', '.section-title', '.pillar-title'].map((sel) => getComputedStyle(document.querySelector(sel)).fontWeight))
+ok(weights.every((w) => Number(w) >= 400 && Number(w) <= 500), `headings weigh 400 to 500 (${weights})`)
 ok((await page.locator('.ring-tile').count()) === 22, '3D ring holds all 22 letters')
 ok((await page.locator('.map-tile').count()) === 22, 'content map holds all 22 letters')
 await page.waitForFunction(() => customElements.get('ai-menu'), null, { timeout: 15000 }).catch(() => {})
@@ -107,7 +122,9 @@ const { installabilityErrors } = await cdp.send('Page.getInstallabilityErrors')
 ok(installabilityErrors.length === 0, `installable from Chrome (${JSON.stringify(installabilityErrors)})`)
 
 // Mobile: no horizontal scroll on any tab
-const mobile = await browser.newPage({ viewport: { width: 375, height: 760 } })
+const mctx = await browser.newContext({ viewport: { width: 375, height: 760 } })
+await routeMenu(mctx)
+const mobile = await mctx.newPage()
 for (const h of hashes) {
   await mobile.goto(BASE + h)
   await mobile.waitForSelector('main')
@@ -117,10 +134,11 @@ for (const h of hashes) {
 }
 await mobile.goto(BASE + '#home')
 await mobile.waitForTimeout(500)
-await mobile.screenshot({ path: `${SHOTS}/mobile-home.png`, fullPage: true })
+await mobile.screenshot({ path: `${SHOTS}/mobile-home.png` })
 
 // Reduced motion hides the background video
 const rm = await browser.newContext({ reducedMotion: 'reduce' })
+await routeMenu(rm)
 const rmp = await rm.newPage()
 await rmp.goto(BASE)
 await rmp.waitForSelector('header')
