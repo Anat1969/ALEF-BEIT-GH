@@ -1,16 +1,26 @@
-# React + Vite
+# 22 אותיות, מערכת חיה
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+חקירה רב-ממדית של האלף-בית העברי: מרחב, אנרגיה, קול ואדריכלות. כל אות היא כרטיס שלם עם שבעה מימדים, מיומנות יומית, קשרים ומאמר.
 
-Currently, two official plugins are available:
+כתובת: https://anat1969.github.io/ALEF-BEIT-GH/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## הרצה
+```
+npm install
+npm run dev        # פיתוח
+npm run build      # בנייה ל-dist, כולל מניפסט תמונות
+npm run preview    # תצוגה מקדימה של הבנייה
+```
 
-## React Compiler
+## מבנה
+- `src/App.jsx` סרגל עליון, ניווט לשוניות, מצב בכתובת, כפתור הלוגו A&I.
+- `src/components/` מסך לכל לשונית: לוח בקרה, אות בודדת, גלריה, קשרים, מטריצה, סדר יום.
+- `src/data/letters.json` מקור הנתונים היחיד של האותיות.
+- `public/letter-images/` תמונות האותיות. `scripts/build-image-manifest.mjs` בונה מהן מניפסט.
+- `public/manifest.webmanifest`, `public/sw.js`, `public/icon*.png` התקנה מ-Chrome.
+- `tests/smoke.mjs` בדיקת Playwright לפני מסירה.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## החלטות
+- אתר סטטי בלי בסיס נתונים. בחירות משתמש נשמרות ב-localStorage.
+- כל פעולות העריכה והפיתוח בתוך כפתור הלוגו (`<ai-menu>`), לפי https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/ai-menu-standard.md
+- service worker: דפים מהרשת, נכסים ותמונות מהמטמון.
