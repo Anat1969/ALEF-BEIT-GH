@@ -27,7 +27,7 @@ await page.goto(BASE)
 await page.waitForSelector('header')
 ok(await page.locator('header >> text=22 אותיות').isVisible(), 'top bar visible on the home page')
 ok(page.url().endsWith('#home'), 'first visit opens the home page')
-for (const part of ['01 · חזון', '02 · מטרה', '03 · שיטה', 'חמש עדשות על אותו מידע', 'אות אחת, שלוש שכבות', 'מה כבר קיים במערכת', '22 האותיות לפי ערך', 'בעיה', 'פתרון', 'תובנה', 'א׳ היא היציאה אל הים']) {
+for (const part of ['01 · חזון', '02 · מטרה', '03 · שיטה', 'שבע עדשות על אותו מידע', 'אות אחת: כוח, ידע ומעשה', 'מה כבר קיים במערכת', '22 האותיות לפי ערך', 'בעיה', 'פתרון', 'תובנה', 'א׳ היא היציאה אל הים']) {
   ok(await page.getByText(part, { exact: true }).first().isVisible(), `home page shows "${part}"`)
 }
 ok(await page.locator('.now-card .now-title').isVisible(), 'home page shows the current daily skill')
@@ -65,25 +65,50 @@ await page.locator('main button', { hasText: 'הבאה' }).first().click()
 await page.waitForTimeout(150)
 ok(page.url().endsWith('#letter/20') && !(await page.getByText('אות לא נמצאה').isVisible()), 'next after י goes to כ (20), not a missing letter')
 
-const tabs = ['בית', 'לוח בקרה', 'אות בודדת', 'גלריה', 'קשרים', 'סדר יום']
-const hashes = ['#home', '#dashboard', '#letter/1', '#gallery', '#relations', '#workflow']
+const tabs = ['בית', 'לוח בקרה', 'אות בודדת', 'גלריה', 'הסדר', 'קשרים', 'פואטיקה', 'סדר יום']
+const hashes = ['#home', '#dashboard', '#letter/1', '#gallery', '#sequence', '#relations', '#poetics/1', '#workflow']
 for (let i = 0; i < tabs.length; i++) {
   await page.click(`nav button:has-text("${tabs[i]}")`)
   await page.waitForTimeout(250)
-  const want = hashes[i] === '#letter/1' ? /#letter\/\d+$/ : new RegExp(`${hashes[i]}$`)
+  const want = hashes[i].endsWith('/1') ? new RegExp(`${hashes[i].replace('/1', '')}\\/\\d+$`) : new RegExp(`${hashes[i]}$`)
   ok(want.test(page.url()), `tab "${tabs[i]}" puts ${hashes[i].replace('/1', '/<id>')} in the URL`)
   ok(await page.locator('header').isVisible(), `top bar stays on "${tabs[i]}"`)
   await page.screenshot({ path: `${SHOTS}/tab-${i}.png` })
 }
 
-// Workflow progress survives a refresh
+// Workflow: every hour has thought, deed and note; progress and journal survive a refresh
+ok((await page.locator('.day-row').count()) === 22, 'daily schedule has 22 hours')
+ok((await page.locator('.day-row').first().locator('.day-steps .label').allTextContents()).join(',') === 'מחשבה,מעשה,רושמים', 'each hour: thought, deed, note')
 await page.locator('main button[aria-label^="סימון"]').first().click()
+await page.locator('.day-row').first().locator('.day-open, textarea').first().click()
+await page.locator('.day-row').first().locator('textarea').fill('שלוש נשימות, וכוונה אחת')
 await page.waitForTimeout(200)
-const before = await page.locator('text=/\\d+\\/22 הושלמו/').first().textContent()
 await page.reload()
-await page.waitForSelector('main')
-const after = await page.locator('text=/\\d+\\/22 הושלמו/').first().textContent()
-ok(before === after && !before.startsWith('0/'), `workflow progress kept after refresh (${before} -> ${after})`)
+await page.waitForSelector('.day-row')
+ok(await page.locator('.day-row').first().locator('.day-check.is-on').isVisible(), 'progress kept after refresh')
+const kept = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem(`journal-${new Date().toLocaleDateString('en-CA')}`) || '{}')).join(''))
+ok(kept === 'שלוש נשימות, וכוונה אחת', 'journal line kept after refresh')
+
+// Sequence: the journey, the stairs and the order facts
+await page.goto(BASE + '#sequence')
+await page.waitForSelector('.journey-step')
+ok((await page.locator('.journey-step').count()) === 11, 'sequence: 11 steps of the Shabbat 104a journey')
+ok((await page.locator('.stair').count()) === 3, 'sequence: units, tens, hundreds')
+ok(await page.getByText('באמצע: "כל"').isVisible(), 'sequence: the middle letters spell כל')
+
+// Poetics: a poem whose lines open with the letter, and a post, both copyable
+await ctx.grantPermissions(['clipboard-read', 'clipboard-write'])
+for (const ch of ['א', 'נ', 'ת']) {
+  await page.goto(BASE + '#poetics')
+  await page.locator('.poet-letter', { hasText: ch }).click()
+  await page.waitForTimeout(100)
+  const lines = await page.locator('.poem-line').allTextContents()
+  ok(lines.length === 4 && lines.every((l) => l.startsWith(ch)), `poem of ${ch}: 4 lines, each opens with ${ch}`)
+  ok((await page.locator('.post-line').count()) >= 3, `post of ${ch} is there`)
+}
+await page.getByRole('button', { name: 'העתקת השיר' }).click()
+const clip = await page.evaluate(() => navigator.clipboard.readText())
+ok(clip.split('\n').length === 4 && clip.startsWith('ת'), 'copy poem puts the poem on the clipboard')
 
 // Relationships: every system has rule, meaning and action, and picking a letter shows its partners
 await page.goto(BASE + '#matrix')
@@ -101,19 +126,24 @@ await page.locator('.system-tab').first().click()
 await page.locator('.rel-tile', { hasText: 'ב' }).first().click()
 await page.waitForTimeout(100)
 ok(await page.locator('.pair-panel').getByText('שין', { exact: false }).first().isVisible(), 'atbash: picking ב shows its mirror ש')
+ok(await page.getByText('התובנה שמאחורי הבחירה').isVisible(), 'atbash explains why the order is reversed')
+ok((await page.locator('.group-insight').count()) === 11, 'every mirror pair has its insight')
 
 // Deep link opens the right letter
 await page.goto(`${BASE}#letter/5`)
 await page.waitForSelector('main')
 ok(page.url().endsWith('#letter/5'), 'deep link #letter/5 opens and stays on that letter')
-for (const layer of ['1 · ידע · עובדות', '2 · הבנה · פרשנות', '3 · יישום · פעולה']) {
+for (const layer of ['1 · ידע · עובדות', '2 · הבנה · פרשנות', '3 · יישום · פעולה', 'במקום שלה בסדר']) {
   ok(await page.getByText(layer, { exact: true }).isVisible(), `letter card opens on "${layer}"`)
 }
-ok(await page.locator('.certainty').first().isVisible(), 'letter card rates how certain the name meaning is')
+ok(await page.locator('.power-name').isVisible(), 'letter card opens on the force of the letter')
+ok(await page.locator('.power .meaning-solution').isVisible() && await page.locator('.power .meaning-problem').isVisible(), 'the force has a positive and a negative direction')
+ok((await page.locator('.seq-row .seq-letter').count()) === 3, 'the card shows the letter before and after')
+ok(!(await page.getByText('לא ידוע', { exact: false }).count()), 'no "unknown" wording in the card')
 ok(await page.locator('.fact-source').first().isVisible(), 'letter card cites a source')
 
 // Every letter-card section renders, and switching letters keeps the card working
-const sections = ['ידע, הבנה, יישום', 'סקירה', 'קשרים', 'שפה', 'מיומנות', 'מודל מרחבי', 'אדריכלות', 'מחקר חושי', 'מאמר']
+const sections = ['הכוח, ידע ויישום', 'סקירה', 'קשרים', 'שפה', 'מיומנות', 'מודל מרחבי', 'אדריכלות', 'מחקר חושי', 'מאמר']
 for (const label of sections) {
   await page.locator('main button', { hasText: new RegExp(`^${label}$`) }).first().click()
   await page.waitForTimeout(150)

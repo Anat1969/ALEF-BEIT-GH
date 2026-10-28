@@ -681,15 +681,6 @@
   .fact dd { display: grid; gap: 4px; justify-items: start; }
   .fact-value { font-size: 17px; font-weight: 500; line-height: 1.5; color: var(--color-dark-text); }
   .fact-source { font-size: 13px; line-height: 1.5; color: var(--color-even-dim); }
-  .certainty {
-    padding: 1px 8px;
-    font-size: 12px;
-    font-weight: 600;
-    border: 1px solid currentColor;
-  }
-  .certainty-מבוסס { color: #2E8B57; }
-  .certainty-מקובל { color: var(--color-warning); }
-  .certainty-השערה { color: #C2413A; }
   .do-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
   @media (min-width: 760px) { .do-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   .rel-list { display: grid; gap: 12px; }
@@ -723,6 +714,185 @@
   }
 }
 
+/* ---------- Force, sequence, poetics, daily loop ---------- */
+@layer components {
+  .power {
+    padding: 24px;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 10%, transparent), transparent 60%),
+      var(--color-dark-surface);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+    box-shadow: 0 1px 0 rgb(var(--lift) / calc(0.06 * var(--lift-k))) inset, 0 20px 40px -24px rgb(var(--shade) / calc(0.8 * var(--shade-k)));
+  }
+  .power-name { font-size: clamp(30px, 4vw, 42px); font-weight: 500; line-height: 1.15; color: var(--color-accent); }
+  .power-line { margin: 6px 0 16px; font-size: 18px; color: var(--color-dark-text); }
+  .power-poles { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  @media (min-width: 760px) { .power-poles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .demo-poles { margin-bottom: 16px; }
+  .power-tilt { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--color-dark-text); }
+  .knowing-poles, .day-poles { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 8px; }
+  .pole { padding: 2px 10px; font-size: 15px; font-weight: 600; border-inline-start: 3px solid; }
+  .pole-plus { color: #1F6B42; border-color: #30A46C; background: rgb(48 164 108 / 0.1); }
+  .pole-minus { color: #A3302A; border-color: #E5484D; background: rgb(229 72 77 / 0.08); }
+  .theme-night .pole-plus { color: #7BD9A6; }
+  .theme-night .pole-minus { color: #FF9C9C; }
+  .pole-sep { font-size: 13px; color: var(--color-even-dim); }
+  .pole-tilt { flex-basis: 100%; font-size: 14px; color: var(--color-even-dim); }
+
+  .seq-row { display: flex; align-items: stretch; gap: 8px; margin-bottom: 10px; min-width: 0; }
+  .seq-letter {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    min-width: 76px;
+    padding: 8px 10px;
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    box-shadow: 0 2px 4px rgb(var(--shade) / calc(0.25 * var(--shade-k)));
+  }
+  .seq-letter.is-current { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 12%, var(--color-dark-surface)); }
+  .seq-glyph { font-size: 30px; line-height: 1.1; color: var(--color-accent-light); }
+  .seq-power { font-size: 12px; color: var(--color-even-dim); }
+  .seq-edge { display: grid; place-items: center; min-width: 76px; font-size: 13px; color: var(--color-even-dim); border: 1px dashed var(--color-dark-border); }
+
+  .seq-section { margin-bottom: 56px; }
+  .journey { display: grid; gap: 12px; margin-top: 16px; }
+  .journey-step {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-inline-start: 4px solid var(--color-accent);
+    box-shadow: 0 10px 24px -18px rgb(var(--shade) / calc(0.8 * var(--shade-k)));
+  }
+  @media (min-width: 900px) { .journey-step { grid-template-columns: 40px auto minmax(0, 1fr); align-items: center; } }
+  .journey-n { font-family: var(--font-mono); font-size: 13px; color: var(--color-accent); }
+  .journey-letters { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+  .journey-reading { font-size: 16px; font-weight: 500; line-height: 1.6; color: var(--color-dark-text); }
+  .journey-insight { margin-top: 4px; font-size: 16px; line-height: 1.6; color: var(--color-dark-text); }
+  .journey-action { margin-top: 6px; font-size: 14px; color: var(--color-even-dim); }
+  .journey-action .label { display: inline; margin-inline-end: 8px; }
+
+  /* The hierarchy as stairs: each tier a step higher and nearer */
+  .stairs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 16px; perspective: 1400px; }
+  @media (min-width: 900px) {
+    .stairs { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; }
+    .stair-1 { transform: rotateX(8deg) translateY(48px); }
+    .stair-2 { transform: rotateX(8deg) translateY(24px); }
+    .stair-3 { transform: rotateX(8deg); }
+  }
+  .stair {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    border-top: 4px solid var(--color-accent);
+    transform-origin: 50% 100%;
+    box-shadow: 0 2px 4px rgb(var(--shade) / calc(0.3 * var(--shade-k))), 0 30px 50px -30px rgb(var(--shade) / calc(0.9 * var(--shade-k)));
+  }
+  .stair-head { display: flex; align-items: baseline; gap: 12px; }
+  .stair-label { font-size: 24px; font-weight: 500; color: var(--color-dark-text); }
+
+  .group-insight { margin-bottom: 8px; font-size: 14px; line-height: 1.6; color: var(--color-dark-text); }
+
+  .poet-letters { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 20px; min-width: 0; }
+  .poet-letter {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: var(--color-dark-text);
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+  }
+  .poet-letter.is-active { color: var(--color-dark-bg); background: var(--color-accent); border-color: var(--color-accent); }
+  .poet-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  @media (min-width: 900px) { .poet-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .poem-card, .post-card {
+    position: relative;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+    padding: 32px;
+    overflow: hidden;
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    box-shadow: 0 1px 0 rgb(var(--lift) / calc(0.08 * var(--lift-k))) inset, 0 24px 48px -28px rgb(var(--shade) / calc(0.9 * var(--shade-k)));
+  }
+  .poem-glyph {
+    position: absolute;
+    inset-inline-end: -12px;
+    bottom: -40px;
+    font-size: 260px;
+    line-height: 1;
+    color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    pointer-events: none;
+  }
+  .poem { position: relative; display: grid; gap: 10px; }
+  .poem-line { font-size: 22px; line-height: 1.6; color: var(--color-dark-text); }
+  .poem-first { font-weight: 600; color: var(--color-accent); }
+  .post { display: grid; gap: 8px; }
+  .post-hook { font-size: 20px; font-weight: 500; color: var(--color-dark-text); }
+  .post-line { font-size: 16px; line-height: 1.7; color: var(--color-dark-text); }
+  .post-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .poem-card .cta-solid { justify-self: start; position: relative; }
+
+  .day-progress {
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    gap: 8px 32px;
+    align-items: end;
+    margin-bottom: 20px;
+  }
+  .day-saved { font-size: 13px; color: var(--color-even-dim); justify-self: end; }
+  .day-bar { grid-column: 1 / -1; }
+  .day-list { display: grid; gap: 10px; }
+  .day-row {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+    background: var(--color-dark-surface);
+    border: 1px solid var(--color-dark-border);
+    box-shadow: 0 8px 20px -16px rgb(var(--shade) / calc(0.8 * var(--shade-k)));
+  }
+  .day-row.is-now { border-color: var(--color-accent); box-shadow: 0 0 0 1px var(--color-accent) inset, 0 16px 32px -20px rgb(var(--shade) / calc(0.9 * var(--shade-k))); }
+  .day-row.is-done { background: color-mix(in srgb, #30A46C 7%, var(--color-dark-surface)); }
+  .day-head { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .day-check {
+    min-width: 64px;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-dark-text);
+    background: var(--color-dark-bg);
+    border: 1px solid var(--color-dark-border);
+  }
+  .day-check.is-on { color: #fff; background: #2E8B57; border-color: #2E8B57; }
+  .day-glyph { font-size: 32px; line-height: 1; color: var(--color-accent-light); }
+  .day-title { display: grid; min-width: 0; }
+  .day-name { font-size: 18px; font-weight: 500; color: var(--color-dark-text); }
+  .day-meta { font-size: 13px; color: var(--color-even-dim); }
+  .day-now { margin-inline-start: auto; padding: 2px 10px; font-size: 13px; font-weight: 600; color: var(--color-dark-bg); background: var(--color-accent); }
+  .day-steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  @media (min-width: 760px) { .day-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .day-steps p { font-size: 15px; line-height: 1.6; color: var(--color-dark-text); }
+  .day-journal { display: grid; gap: 4px; }
+  .day-journal textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--color-dark-text);
+    background: var(--color-dark-bg);
+    border: 1px solid var(--color-dark-border);
+    box-shadow: inset 0 2px 4px rgb(var(--shade) / calc(0.15 * var(--shade-k)));
+    resize: vertical;
+  }
+  .day-open { justify-self: start; font-size: 14px; padding: 8px 14px; }
+}
+
 /* Respect reduced motion: no lift, no shimmer, no spinning ring */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -739,6 +909,9 @@
     transform: rotateX(-14deg) rotateY(-8deg);
   }
   .tool-card:hover {
+    transform: none !important;
+  }
+  .stair-1, .stair-2, .stair-3 {
     transform: none !important;
   }
 }

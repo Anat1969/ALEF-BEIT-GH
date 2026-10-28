@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import PageIntro from './PageIntro'
-import RichText from './text/RichText'
+import RichText, { MeaningBox } from './text/RichText'
 import { SYSTEMS } from '../data/systems'
 import KNOWLEDGE from '../data/letterKnowledge'
 import { useLetters } from '../hooks/useLetters'
@@ -62,11 +62,14 @@ export default function Relations({ onSelectLetter }) {
         </div>
       </div>
 
+      {system.why && <MeaningBox kind="insight" label="התובנה שמאחורי הבחירה" text={system.why} />}
+
       <p className="groups-hint">לחיצה על אות מראה את הקשרים שלה בשיטה הזו.</p>
       <div className={`groups groups-${system.id}`}>
         {system.groups.map((g) => (
           <div key={g.id} className={`group ${pickedGroup?.id === g.id ? 'is-picked' : ''}`}>
             <span className="group-label">{g.label}{g.note ? ` · ${g.note}` : ''}</span>
+            {g.insight && <RichText as="p" className="group-insight" text={g.insight} />}
             <div className="group-letters">
               {g.letters.split('').map((ch) => (
                 <button

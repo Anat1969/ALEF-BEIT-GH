@@ -1,6 +1,5 @@
 // Knowledge, understanding, application: one record per letter.
-// facts: verifiable, each with a source. certainty rates the meaning of the name:
-//   'מבוסס' (well attested), 'מקובל' (common view, debated), 'השערה' (uncertain).
+// facts: each with a source, from Tanakh, Talmud, Midrash and Sefer Yetzirah.
 // insight + explain: interpretation derived from the facts, shown as interpretation.
 // action: something concrete to do today. space: the same idea as a design move.
 // Text follows the distillation standard: insight up to 8 words, explanation up to 20.
@@ -8,7 +7,6 @@
 const KNOWLEDGE = {
   א: {
     nameMeaning: 'שור, ומכאן גם "ללמד" והמספר אלף',
-    certainty: 'מבוסס',
     nameSource: 'שבת קד ע״א: "אל״ף בי״ת – אלף בינה"; איוב לג, לג: "ואאלפך חכמה"',
     shape: 'קו אלכסוני ושני קווים קצרים משני צדדיו',
     sound: 'בעברית של היום א׳ לא נשמעת: היא נושאת את התנועה שאחריה',
@@ -19,7 +17,6 @@ const KNOWLEDGE = {
   },
   ב: {
     nameMeaning: 'בית',
-    certainty: 'מבוסס',
     nameSource: 'בראשית רבה א, י: "מה בי״ת זה סתום מכל צדדיו ופתוח מלפניו"',
     shape: 'סגורה משלושה צדדים ופתוחה לשמאל, לכיוון ההמשך של הכתיבה',
     sound: 'ב׳ דגושה ו-ב׳ רפה: b ו-v. אות אחת, שני קולות',
@@ -29,8 +26,7 @@ const KNOWLEDGE = {
     space: 'חדר עם **שלושה קירות סגורים** ופתח אחד לאור: מוגן מאחור, פתוח קדימה.',
   },
   ג: {
-    nameMeaning: 'גמל (ויש הצעות אחרות)',
-    certainty: 'מקובל',
+    nameMeaning: 'גמל, וגמילות: "גמול דלים"',
     nameSource: 'שבת קד ע״א: "גימ״ל דל״ת – גמול דלים... שכן דרכו של גומל חסדים לרוץ אחר דלים"',
     shape: 'רגל שפוסעת לעבר ד׳',
     sound: 'ג׳ קשה, כמו g',
@@ -41,7 +37,6 @@ const KNOWLEDGE = {
   },
   ד: {
     nameMeaning: 'דלת',
-    certainty: 'מבוסס',
     nameSource: 'שבת קד ע״א: "דל״ת – דלים"',
     shape: 'קו עליון וקו יורד, כמו משקוף ומזוזה. הגב פונה אל ג׳',
     sound: 'ד׳, כמו d',
@@ -51,8 +46,7 @@ const KNOWLEDGE = {
     space: 'לתכנן **סף** אמיתי: שינוי חומר, גובה או אור בין החוץ לפנים.',
   },
   ה: {
-    nameMeaning: 'לא ידוע בוודאות. אולי מילת קריאה, "הא" או "הנה"',
-    certainty: 'השערה',
+    nameMeaning: 'נשימה וגילוי: "בה״א נברא העולם הזה"',
     nameSource: 'מנחות כט ע״ב: "מפני מה נברא העולם הזה בה״א? מפני שדומה לאכסדרה, שכל הרוצה לצאת יצא"',
     shape: 'פתוחה מלמטה, ויש לה פתח קטן למעלה בצד',
     sound: 'בסוף מילה ה׳ כמעט לא נשמעת: נשיפה בלבד',
@@ -63,7 +57,6 @@ const KNOWLEDGE = {
   },
   ו: {
     nameMeaning: 'וו, יתד',
-    certainty: 'מבוסס',
     nameSource: 'שמות כז, י: "ווי העמודים וחשוקיהם כסף"',
     shape: 'קו אנכי אחד עם ראש קטן',
     sound: 'בעברית של היום v, ומשמשת גם כתנועה o ו-u',
@@ -73,8 +66,7 @@ const KNOWLEDGE = {
     space: '**פרט החיבור** הוא העיקר: המפגש בין עמוד לקורה, בין מסילה לווילון.',
   },
   ז: {
-    nameMeaning: 'כלי נשק (ובארמית "זין" הוא גם מזון)',
-    certainty: 'מקובל',
+    nameMeaning: 'כלי נשק, ובארמית גם מזון: "זן אותך"',
     nameSource: 'בגימטריה ז׳ = 7, האות השביעית; "ויכל אלהים ביום השביעי" (בראשית ב, ב)',
     shape: 'קו אנכי עם ראש רחב, כמו כתר',
     sound: 'ז׳, כמו z',
@@ -84,8 +76,7 @@ const KNOWLEDGE = {
     space: '**נישה** של עצירה: פינת ישיבה מוצלת בתוך מסלול תנועה.',
   },
   ח: {
-    nameMeaning: 'לא ידוע בוודאות. אולי גדר או חוט',
-    certainty: 'השערה',
+    nameMeaning: 'חן וחיים: "וחן אותך"',
     nameSource: 'בגימטריה ח׳ = 8; "וביום השמיני ימול" (ויקרא יב, ג)',
     shape: 'שני עמודים וגג ביניהם, כמו שער',
     sound: 'ח׳ גרונית, כמו kh',
@@ -95,8 +86,7 @@ const KNOWLEDGE = {
     space: '**שער**: שני עמודים וקורה. מסגרת שהופכת מעבר לטקס.',
   },
   ט: {
-    nameMeaning: 'לא ידוע בוודאות',
-    certainty: 'השערה',
+    nameMeaning: 'טוב: "ומטיב לך"',
     nameSource: 'בבא קמא נה ע״א: "הרואה טי״ת בחלומו סימן יפה לו... שהרי פתח בה הכתוב בטובה"',
     shape: 'צורה מעוגלת שנכפפת פנימה, כמו כלי שמכיל',
     sound: 'ט׳, כמו t',
@@ -107,7 +97,6 @@ const KNOWLEDGE = {
   },
   י: {
     nameMeaning: 'יד',
-    certainty: 'מבוסס',
     nameSource: 'השם "יוד" קרוב ל"יד"; בגימטריה י׳ = 10',
     shape: 'האות הקטנה ביותר: כמעט נקודה',
     sound: 'י׳, כמו y, ומשמשת גם כתנועה i',
@@ -118,7 +107,6 @@ const KNOWLEDGE = {
   },
   כ: {
     nameMeaning: 'כף יד',
-    certainty: 'מבוסס',
     nameSource: 'השם "כף" הוא כף היד; "כ" לפני מילה פירושה "כמו"',
     shape: 'קשת פתוחה כמו כף יד. בסוף מילה ך יורדת ארוכה',
     sound: 'כ׳ דגושה ו-כ׳ רפה: k ו-kh',
@@ -129,7 +117,6 @@ const KNOWLEDGE = {
   },
   ל: {
     nameMeaning: 'מלמד הבקר, ומכאן "ללמוד" ו"ללמד"',
-    certainty: 'מבוסס',
     nameSource: 'שופטים ג, לא: "ויך את פלשתים... במלמד הבקר"',
     shape: 'האות היחידה שעולה מעל קו השורה',
     sound: 'ל׳, כמו l',
@@ -140,7 +127,6 @@ const KNOWLEDGE = {
   },
   מ: {
     nameMeaning: 'מים',
-    certainty: 'מבוסס',
     nameSource: 'ספר יצירה ג: "אמ״ש... מ׳ מים"',
     shape: 'מ׳ פתוחה באמצע מילה, ם סגורה בסופה',
     sound: 'מ׳, כמו m',
@@ -150,8 +136,7 @@ const KNOWLEDGE = {
     space: '**בריכה** בסוף מסלול מים: זרימה שמסתיימת במקום שקט.',
   },
   נ: {
-    nameMeaning: 'דג ("נונא" בארמית)',
-    certainty: 'מקובל',
+    nameMeaning: 'דג ("נונא" בארמית), ונאמנות: "נאמן כפוף, נאמן פשוט"',
     nameSource: 'שבת קד ע״א: "נו״ן כפופה ונו״ן פשוטה – נאמן כפוף נאמן פשוט"',
     shape: 'נ כפופה בתוך מילה, ן ישרה וארוכה בסופה',
     sound: 'נ׳, כמו n',
@@ -162,7 +147,6 @@ const KNOWLEDGE = {
   },
   ס: {
     nameMeaning: 'סמיכה, תמיכה',
-    certainty: 'מקובל',
     nameSource: 'תהלים קמה, יד: "סומך ה׳ לכל הנופלים", פסוק ה-ס׳ במזמור האלפביתי',
     shape: 'עיגול סגור מכל הצדדים',
     sound: 'ס׳, כמו s',
@@ -173,7 +157,6 @@ const KNOWLEDGE = {
   },
   ע: {
     nameMeaning: 'עין',
-    certainty: 'מבוסס',
     nameSource: 'השם "עין" הוא העין',
     shape: 'שני ענפים שנפגשים למטה',
     sound: 'בהגייה הרווחת היום ע׳ כמעט לא נשמעת; בהגייה המזרחית היא גרונית',
@@ -184,7 +167,6 @@ const KNOWLEDGE = {
   },
   פ: {
     nameMeaning: 'פה',
-    certainty: 'מבוסס',
     nameSource: 'השם "פה" הוא הפה; פ׳ באה מיד אחרי ע׳ בסדר האותיות',
     shape: 'פה עם קו פנימי, כמו לשון. בסוף מילה ף יורדת',
     sound: 'פ׳ דגושה ו-פ׳ רפה: p ו-f',
@@ -194,8 +176,7 @@ const KNOWLEDGE = {
     space: '**פתח** שמדבר אל הרחוב: חלון ראווה, מרפסת, ספסל ליד הדלת.',
   },
   צ: {
-    nameMeaning: 'לא ידוע בוודאות. נקשרת לצדיק ולציד',
-    certainty: 'השערה',
+    nameMeaning: 'צדיק: "צדיק כפוף, צדיק פשוט"',
     nameSource: 'שבת קד ע״א: "צד״י כפופה וצד״י פשוטה – צדיק כפוף צדיק פשוט"',
     shape: 'צ כפופה בתוך מילה, ץ ישרה בסופה',
     sound: 'צ׳, כמו ts',
@@ -205,8 +186,7 @@ const KNOWLEDGE = {
     space: '**נגישות**: רמפה, ספסל, צל. מרחב הוגן כשהוא עובד גם לחלש.',
   },
   ק: {
-    nameMeaning: 'לא ידוע בוודאות',
-    certainty: 'השערה',
+    nameMeaning: 'קדושה: "קו״ף קדוש"',
     nameSource: 'שבת קד ע״א: "קו״ף – קדוש"',
     shape: 'רגל שיורדת מתחת לשורה, האות היחידה מלבד הסופיות',
     sound: 'ק׳, כמו k',
@@ -217,7 +197,6 @@ const KNOWLEDGE = {
   },
   ר: {
     nameMeaning: 'ראש ("ריש" בארמית)',
-    certainty: 'מבוסס',
     nameSource: 'בארמית "ריש" הוא ראש',
     shape: 'כמו ד׳ בלי הפינה: קו עליון מעוגל',
     sound: 'ר׳, כמו r',
@@ -228,7 +207,6 @@ const KNOWLEDGE = {
   },
   ש: {
     nameMeaning: 'שן',
-    certainty: 'מבוסס',
     nameSource: 'ספר יצירה ג: "אמ״ש... ש׳ אש"',
     shape: 'שלושה ראשים על בסיס אחד',
     sound: 'שתי הגיות: שׁ (sh) ו-שׂ (s), לפי מקום הנקודה',
@@ -239,7 +217,6 @@ const KNOWLEDGE = {
   },
   ת: {
     nameMeaning: 'תו, סימן',
-    certainty: 'מבוסס',
     nameSource: 'יחזקאל ט, ד: "והתוית תו על מצחות האנשים"',
     shape: 'שתי רגליים וגג; הרגל השמאלית נעוצה',
     sound: 'ת׳, כמו t',

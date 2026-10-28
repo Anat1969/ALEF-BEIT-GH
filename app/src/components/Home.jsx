@@ -1,7 +1,8 @@
 import { useLetters } from '../hooks/useLetters'
-import SKILLS_DATA from '../data/dailySkills'
+import { currentSkill } from '../data/dailySkills'
 import RichText, { MeaningBox } from './text/RichText'
 import KNOWLEDGE from '../data/letterKnowledge'
+import POWER from '../data/letterPower'
 
 // Gematria tiers: the content map groups letters by order of magnitude,
 // and tile size grows with the tier so the structure reads before the labels.
@@ -13,9 +14,9 @@ const TIERS = [
 
 // Distilled: insight up to 8 words, explanation up to 20.
 const PILLARS = [
-  { n: '01', label: 'חזון', insight: 'האלף-בית כ**מערכת חיה**.', explain: 'לכל אות **אור**, **חומר**, **קול** ותנועה משלה, כמו חדר בבניין.' },
-  { n: '02', label: 'מטרה', insight: 'ללמוד אות **בגוף**, לא רק בראש.', explain: 'כל אות מתורגמת ל-**7 מימדים**, למרחב אדריכלי ולמיומנות יומית.' },
-  { n: '03', label: 'שיטה', insight: '**ידע, הבנה, יישום** בכל אות.', explain: 'עובדה עם **מקור**, פרשנות שמסומנת כפרשנות, ו**פעולה** שאפשר לעשות היום.' },
+  { n: '01', label: 'חזון', insight: 'לכל אות יש **כוח**.', explain: '22 כוחות שבונים יחד עולם אחד, כמו **22 חדרים** בבניין אחד.' },
+  { n: '02', label: 'מטרה', insight: 'לזהות את הכוח, ו**להטות אותו לחיוב**.', explain: 'לכל כוח **שני כיוונים**: אחדות או איבה, טהרה או טומאה. הבחירה בידינו.' },
+  { n: '03', label: 'שיטה', insight: '**כוח, סדר, יישום** בכל אות.', explain: 'הכוח בשני כיוונים, המקום שלו ב**סדר האותיות**, ומעשה שאפשר לעשות היום.' },
 ]
 
 function readLocalCounts() {
@@ -32,24 +33,6 @@ function readLocalCounts() {
     // Storage blocked: the page still renders with zeros.
   }
   return { articles, todayDone }
-}
-
-// The day runs 06:00 to 01:00, so minutes after midnight count as the end of the previous day.
-function dayMinutes(hhmm) {
-  const [h, m] = hhmm.split(':').map(Number)
-  const t = h * 60 + m
-  return t < 6 * 60 ? t + 24 * 60 : t
-}
-
-function currentSkill(now = new Date()) {
-  const t = dayMinutes(`${now.getHours()}:${now.getMinutes()}`)
-  const slots = SKILLS_DATA.map((s) => {
-    const [from, to] = s.time.split('–')
-    return { ...s, from: dayMinutes(from), to: dayMinutes(to) }
-  })
-  const active = slots.find((s) => t >= s.from && t < s.to)
-  if (active) return { skill: active, state: 'now' }
-  return { skill: slots[0], state: 'next' }
 }
 
 function LetterRing({ letters, onSelectLetter }) {
@@ -85,10 +68,12 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
 
   const tools = [
     { tab: 'dashboard', title: 'לוח בקרה', does: 'כל **22 האותיות** במבט אחד, עם תפקיד ומשפט מפתח.', gives: 'נקודת כניסה מהירה', stat: `${withData}/22 אותיות` },
-    { tab: 'letter', title: 'כרטיס אות', does: '**ידע** עם מקורות, **הבנה** ו**יישום**, ואחריהם שפה, מרחב ומאמר.', gives: 'אות מהעובדה ועד הפעולה', stat: '3 שכבות' },
+    { tab: 'letter', title: 'כרטיס אות', does: 'ה**כוח** בשני כיוונים, ה**ידע** עם מקורות, וה**יישום** להיום.', gives: 'אות מהכוח ועד המעשה', stat: '22 כוחות' },
+    { tab: 'sequence', title: 'הסדר', does: 'למה האותיות מסודרות כך: **המסע** של שבת קד, **המדרגות** והסימנים.', gives: 'האות שלפני ושאחרי', stat: '11 צעדים' },
     { tab: 'gallery', title: 'גלריה', does: 'הדימוי **האדריכלי** של כל אות, זה לצד זה.', gives: 'השוואה חזותית', stat: `${withImage} תמונות` },
     { tab: 'relations', title: 'קשרים', does: '**חמש שיטות** מוכרות: א״ת ב״ש, מספר קטן, מוצא בפה, ספר יצירה וצורות סופיות.', gives: 'קשר עם כלל ומקור', stat: '5 שיטות' },
-    { tab: 'workflow', title: 'סדר יום', does: 'מיומנות לכל אות, מ-**06:00** עד **01:00**.', gives: 'תרגול יומי שנשמר', stat: `${todayDone}/22 היום` },
+    { tab: 'poetics', title: 'פואטיקה', does: '**שיר** ו**פוסט** לכל אות, מוכנים להעתקה.', gives: 'הכוח במילים', stat: '44 טקסטים' },
+    { tab: 'workflow', title: 'סדר יום', does: 'לכל שעה **מחשבה**, **מעשה** ו**רישום**, מ-06:00 עד 01:00.', gives: 'יומן שנשמר', stat: `${todayDone}/22 היום` },
   ]
 
   const results = [
@@ -111,7 +96,7 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
           <RichText
             as="p"
             className="home-lead"
-            text="לכל אות: **מה ידוע** עליה ומאיפה, **מה זה אומר**, ו**מה עושים** עם זה היום."
+            text="לכל אות **כוח**, ולכל כוח **שני כיוונים**: אחדות או איבה, טהרה או טומאה. כאן לומדים לזהות אותו, ולהטות אותו לחיוב."
           />
           <div className="home-cta">
             <button className="cta-solid" onClick={() => onSelectLetter(1)}>לפתוח את א׳</button>
@@ -142,8 +127,12 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
       <section className="demo" aria-labelledby="demo-h">
         <div className="section-head">
           <span className="eyebrow">איך זה עובד</span>
-          <h2 id="demo-h" className="section-title">אות אחת, שלוש שכבות</h2>
+          <h2 id="demo-h" className="section-title">אות אחת: כוח, ידע ומעשה</h2>
           <p className="section-note">כך בנוי כל כרטיס. הדוגמה: א׳.</p>
+        </div>
+        <div className="power-poles demo-poles">
+          <MeaningBox kind="solution" label={`${POWER['א'].power} · לחיוב · ${POWER['א'].plus.word}`} text={POWER['א'].plus.line} />
+          <MeaningBox kind="problem" label={`${POWER['א'].power} · לשלילה · ${POWER['א'].minus.word}`} text={POWER['א'].minus.line} />
         </div>
         <div className="layers">
           <div className="layer layer-fact">
@@ -175,15 +164,15 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
       </section>
 
       <section className="meaning-row" aria-label="בעיה, פתרון ותובנה">
-        <MeaningBox kind="problem" label="בעיה" text="אותיות נלמדות כ**סימנים מופשטים**, מנותקות מהגוף ומהמרחב." />
-        <MeaningBox kind="solution" label="פתרון" text="כל אות מקבלת **חדר**, **מיומנות** ו**שעה** ביום." />
-        <MeaningBox kind="insight" label="תובנה" text="**אות היא מקום**, לא רק סימן על דף." />
+        <MeaningBox kind="problem" label="בעיה" text="אותיות נלמדות כ**סימנים מופשטים**, בלי הכוח שבהן." />
+        <MeaningBox kind="solution" label="פתרון" text="לכל אות **כוח**, **מקור** ו**מעשה** בשעה קבועה ביום." />
+        <MeaningBox kind="insight" label="תובנה" text="**אותו כוח** בונה או הורס. הכיוון הוא בחירה." />
       </section>
 
       <section aria-labelledby="tools-h">
         <div className="section-head">
           <span className="eyebrow">כלים</span>
-          <h2 id="tools-h" className="section-title">חמש עדשות על אותו מידע</h2>
+          <h2 id="tools-h" className="section-title">שבע עדשות על אותו מידע</h2>
         </div>
         <div className="tools-grid">
           {tools.map((t, i) => (

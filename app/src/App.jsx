@@ -4,6 +4,8 @@ import Dashboard from './components/Dashboard'
 import LetterCard from './components/LetterCard'
 import Gallery from './components/Gallery'
 import Relations from './components/Relations'
+import Sequence from './components/Sequence'
+import Poetics from './components/Poetics'
 import Workflow from './components/Workflow'
 import { useLetterImages } from './hooks/useLetterImages'
 
@@ -12,7 +14,9 @@ const TABS = [
   { id: 'dashboard', label: 'לוח בקרה' },
   { id: 'letter', label: 'אות בודדת' },
   { id: 'gallery', label: 'גלריה' },
+  { id: 'sequence', label: 'הסדר' },
   { id: 'relations', label: 'קשרים' },
+  { id: 'poetics', label: 'פואטיקה' },
   { id: 'workflow', label: 'סדר יום' },
 ]
 
@@ -63,7 +67,8 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem('app-tab', activeTab)
-    const hash = activeTab === 'letter' ? `#letter/${selectedLetterId || 1}` : `#${activeTab}`
+    // Tabs that show one letter keep it in the URL, so a copied link opens the same letter
+    const hash = activeTab === 'letter' || activeTab === 'poetics' ? `#${activeTab}/${selectedLetterId || 1}` : `#${activeTab}`
     if (window.location.hash !== hash) history.replaceState(null, '', hash)
     const label = TABS.find(t => t.id === activeTab)?.label
     document.title = label ? `${label} | 22 אותיות` : '22 אותיות'
@@ -93,6 +98,11 @@ export default function App() {
     ]
   }, [colorMode])
 
+  const pickLetter = (id) => {
+    setSelectedLetterId(id)
+    localStorage.setItem('app-letter', String(id))
+  }
+
   const handleSelectLetter = (id) => {
     setSelectedLetterId(id)
     localStorage.setItem('app-letter', String(id))
@@ -117,6 +127,10 @@ export default function App() {
         return <Gallery onSelectLetter={handleSelectLetter} letterImages={letterImages} />
       case 'relations':
         return <Relations onSelectLetter={handleSelectLetter} />
+      case 'sequence':
+        return <Sequence onSelectLetter={handleSelectLetter} />
+      case 'poetics':
+        return <Poetics selectedLetterId={selectedLetterId || 1} onPick={pickLetter} onOpenCard={handleSelectLetter} />
       case 'workflow':
         return <Workflow />
       default:
