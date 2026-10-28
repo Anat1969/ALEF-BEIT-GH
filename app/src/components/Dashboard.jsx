@@ -3,6 +3,7 @@ import { useLetters } from '../hooks/useLetters'
 import PageIntro from './PageIntro'
 import RichText from './text/RichText'
 import KNOWLEDGE from '../data/letterKnowledge'
+import POWER from '../data/letterPower'
 
 function getLetterImage(letterId, letterImages) {
   return letterImages?.getAnyImage(letterId) || null
@@ -20,9 +21,9 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
       <PageIntro
         title="כל האותיות במבט אחד"
         insight="**מפת הכניסה** לכל 22 האותיות."
-        explain="לכל אות: **פירוש השם**, תובנה אחת ודימוי. לחיצה פותחת את הכרטיס המלא."
-        howToUse="בכרטיס: **ידע** עם מקורות, **הבנה** ו**יישום**, ואחריהם קשרים, מרחב ומאמר."
-        example={`א׳ לא נשמעת בעברית של היום, ולכן ==התחלה משאירה מקום==. הפעולה: **3 דקות** של שקט לפני משימה חדשה.`}
+        explain="לכל אות **הכוח** שלה ושני הכיוונים שלו. לחיצה פותחת את הכרטיס המלא."
+        howToUse="בכרטיס: **הכוח** בשני כיוונים, המקום ב**סדר**, **ידע** עם מקורות ו**מעשה** להיום."
+        example={`א׳ היא ==כוח האחד==: אחדות או איבה. איך מטים לחיוב: לשאול מה מחבר אותי לאדם שמולי.`}
         tip={readyCount === 22 ? "כל 22 האותיות מוכנות. אפשר להתחיל מכל אות, ובסדר היום לבחור 3 עד 5 מיומנויות." : `${readyCount} מתוך 22 אותיות מוכנות כרגע. אפשר כבר להתחיל עם המוכנות.`}
       />
 
@@ -46,10 +47,9 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {letters.map(letter => {
-            const full = getLetter(letter.id)
             const image = getLetterImage(letter.id, letterImages)
-            const role = KNOWLEDGE[letter.character]?.nameMeaning || full.core?.archetypal_role || ''
-            const oneLiner = KNOWLEDGE[letter.character]?.insight || ''
+            const role = POWER[letter.character]?.power || KNOWLEDGE[letter.character]?.nameMeaning || ''
+            const oneLiner = POWER[letter.character] ? `**${POWER[letter.character].plus.word}** או ${POWER[letter.character].minus.word}` : ''
 
             return (
               <button
@@ -83,7 +83,7 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
                     <span className="text-sm text-gray-400">{letter.name}</span>
                   </div>
                   {role ? (
-                    <p className="text-xs text-accent-light leading-relaxed line-clamp-1">{role}</p>
+                    <p className="text-xs font-semibold text-accent leading-relaxed line-clamp-1">{role}</p>
                   ) : (
                     <p className="text-xs text-gray-600 leading-relaxed">ממתינה להשלמה</p>
                   )}
@@ -105,8 +105,8 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
           {letters.map(letter => {
             const full = getLetter(letter.id)
             const image = getLetterImage(letter.id, letterImages)
-            const role = KNOWLEDGE[letter.character]?.nameMeaning || full.core?.archetypal_role || ''
-            const oneLiner = KNOWLEDGE[letter.character]?.insight || ''
+            const role = POWER[letter.character]?.power || KNOWLEDGE[letter.character]?.nameMeaning || ''
+            const oneLiner = POWER[letter.character] ? `**${POWER[letter.character].plus.word}** או ${POWER[letter.character].minus.word}` : ''
             const skill = full.skill?.name || ''
 
             return (
@@ -135,7 +135,7 @@ export default function Dashboard({ onSelectLetter, letterImages }) {
                 {/* Role */}
                 <div className="flex-1 min-w-0">
                   {role ? (
-                    <p className="text-xs text-accent-light truncate">{role}</p>
+                    <p className="text-xs font-semibold text-accent truncate">{role}</p>
                   ) : (
                     <p className="text-xs text-gray-600">ממתינה להשלמה</p>
                   )}

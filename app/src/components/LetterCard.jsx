@@ -3,6 +3,7 @@ import { useLetters } from '../hooks/useLetters'
 import { SECTIONS } from './letter/constants'
 import SectionKnowing from './letter/SectionKnowing'
 import KNOWLEDGE from '../data/letterKnowledge'
+import POWER from '../data/letterPower'
 import RichText from './text/RichText'
 import SectionOverview from './letter/SectionOverview'
 import SectionDimensions from './letter/SectionDimensions'
@@ -115,6 +116,13 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
                 <div>
                   <h2 className="page-title">{letter.name}</h2>
                   <p className="explain-line">{KNOWLEDGE[letter.character]?.nameMeaning}</p>
+                  {POWER[letter.character] && (
+                    <p className="knowing-poles">
+                      <span className="pole pole-plus">{POWER[letter.character].plus.word}</span>
+                      <span className="pole-sep">או</span>
+                      <span className="pole pole-minus">{POWER[letter.character].minus.word}</span>
+                    </p>
+                  )}
                 </div>
               </div>
               {letterImages.getAnyImage(letter.id) && (
@@ -196,7 +204,7 @@ export default function LetterCard({ letterId, onSelectLetter, letterImages }) {
 
               {KNOWLEDGE[letter.character] && (
                 <div className="layer layer-read mt-4">
-                  <span className="layer-label">התובנה והפעולה</span>
+                  <span className="layer-label">{POWER[letter.character]?.power} · התובנה והפעולה</span>
                   <RichText as="p" className="insight-line" text={KNOWLEDGE[letter.character].insight} />
                   <RichText as="p" className="layer-text mt-2" text={KNOWLEDGE[letter.character].action} />
                 </div>

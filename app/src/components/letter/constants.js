@@ -35,7 +35,7 @@ export const DIMENSION_CATEGORIES = [
 ]
 
 export const SECTIONS = [
-  { id: 'knowing', label: 'ידע, הבנה, יישום' },
+  { id: 'knowing', label: 'הכוח, ידע ויישום' },
   { id: 'overview', label: 'סקירה' },
   { id: 'relationships', label: 'קשרים' },
   { id: 'words', label: 'שפה' },

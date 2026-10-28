@@ -1,116 +1,132 @@
 import { useState } from 'react'
 import PageIntro from './PageIntro'
-import SKILLS_DATA from '../data/dailySkills'
+import SKILLS_DATA, { currentSkill } from '../data/dailySkills'
+import POWER from '../data/letterPower'
 
+// One letter per hour. Each hour is a small loop: a thought to hold, a deed to do,
+// and a line to write down. Progress and journal are saved per day.
+const todayStamp = () => new Date().toLocaleDateString('en-CA')
+
+function readJSON(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key) || '') ?? fallback } catch { return fallback }
+}
 
 export default function Workflow() {
-  // Progress is per day and survives a refresh.
-  const todayKey = `workflow-${new Date().toLocaleDateString('en-CA')}`
-  const [completed, setCompleted] = useState(() => {
-    try { return new Set(JSON.parse(localStorage.getItem(todayKey) || '[]')) } catch { return new Set() }
-  })
+  const day = todayStamp()
+  const doneKey = `workflow-${day}`
+  const journalKey = `journal-${day}`
+  const [completed, setCompleted] = useState(() => new Set(readJSON(doneKey, [])))
+  const [journal, setJournal] = useState(() => readJSON(journalKey, {}))
   const [savedAt, setSavedAt] = useState(null)
-  const [expandedId, setExpandedId] = useState(null)
+  const [openId, setOpenId] = useState(null)
+  const { skill: now, state } = currentSkill()
+
+  const stamp = () => setSavedAt(new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }))
 
   const toggle = (id) => {
-    setCompleted(prev => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      localStorage.setItem(todayKey, JSON.stringify([...next]))
-      setSavedAt(new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }))
-      return next
-    })
+    const next = new Set(completed)
+    if (next.has(id)) next.delete(id)
+    else next.add(id)
+    setCompleted(next)
+    localStorage.setItem(doneKey, JSON.stringify([...next]))
+    stamp()
+  }
+
+  const write = (id, text) => {
+    const next = { ...journal, [id]: text }
+    setJournal(next)
+    localStorage.setItem(journalKey, JSON.stringify(next))
+    stamp()
   }
 
   const progress = Math.round((completed.size / 22) * 100)
-  const totalMinutes = SKILLS_DATA.reduce((sum, s) => sum + s.duration, 0)
+  const written = Object.values(journal).filter((t) => t?.trim()).length
 
   return (
     <div>
       <PageIntro
         title="מיומנות לכל שעה ביום"
-        subtitle="22 מיומנויות מ-06:00 עד 01:00"
-        insight="**22 מיומנויות** מהבוקר עד הלילה."
-        explain="כל אות היא תרגול קצר בשעה קבועה. לא חובה הכל: **3 עד 5** ביום מספיקות."
-        howToUse="סימון ליד מיומנות שהושלמה נשמר מיד. לחיצה על שורה פותחת פרטים."
-        example={`לדוגמה: התחילי עם א׳ (5 דקות נשימה ב-06:00), ג׳ (5 דקות הנאה ב-08:00), וס׳ (10 דקות סיכום ב-20:00) — 3 תרגולים קטנים שמשנים את היום.`}
-        tip={`סה"כ ${totalMinutes} דקות (${Math.round(totalMinutes / 60)} שעות) אם עושים הכל. אבל אפילו 20 דקות ביום של 3 מיומנויות נבחרות = שינוי אמיתי.`}
+        subtitle="22 אותיות, מ-06:00 עד 01:00"
+        insight="כל שעה: **מחשבה**, **מעשה**, **רישום**."
+        explain="המחשבה מכוונת, המעשה מפעיל את הכוח של האות, והרישום הופך אותו לזיכרון."
+        howToUse="לא חובה הכל: בוחרים **3 עד 5** שעות. מסמנים מה בוצע, ורושמים שורה אחת. הכל נשמר בדפדפן, לכל יום בנפרד."
+        tip={state === 'now' ? `עכשיו ${now.time}: ${now.char}׳, ${now.name}.` : `היום מתחיל ב-06:00 עם א׳.`}
       />
 
-      <div className="flex items-center justify-between mb-6">
+      <div className="day-progress">
         <div>
-          <h3 className="text-xl font-bold text-text dark:text-dark-text">התקדמות היום</h3>
+          <span className="label">התקדמות היום</span>
+          <span className="result-value">{completed.size}<small>/22</small></span>
         </div>
-        <div className="text-left">
-          <span className="text-4xl font-bold text-accent dark:text-accent-light">{progress}%</span>
-          <p className="text-sm text-text-tertiary dark:text-gray-500">{completed.size}/22 הושלמו</p>
-          <p className="text-xs font-mono text-gray-500" role="status">{savedAt ? `נשמר ${savedAt}` : 'נשמר אוטומטית בדפדפן, ומתאפס בכל יום חדש'}</p>
+        <div>
+          <span className="label">שורות ביומן</span>
+          <span className="result-value">{written}<small>/22</small></span>
+        </div>
+        <p className="day-saved" role="status">{savedAt ? `נשמר ${savedAt}` : 'נשמר אוטומטית בדפדפן, ומתחיל מחדש בכל יום'}</p>
+        <div className="result-bar day-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-label="התקדמות היום">
+          <span style={{ width: `${progress}%` }} />
         </div>
       </div>
 
-      <div className="w-full bg-surface dark:bg-dark-surface h-3 mb-8">
-        <div
-          className="bg-accent dark:bg-accent-light h-3 transition-all duration-500"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-
-      <div className="space-y-2">
-        {SKILLS_DATA.map(skill => {
+      <ol className="day-list">
+        {SKILLS_DATA.map((skill) => {
+          const power = POWER[skill.char]
           const isDone = completed.has(skill.id)
-          const isExpanded = expandedId === skill.id
+          const isNow = state === 'now' && now.id === skill.id
+          const isOpen = openId === skill.id || isNow
           return (
-            <div
-              key={skill.id}
-              className={`
-                border transition-all duration-200
-                ${isDone
-                  ? 'border-success/40 bg-success/5 dark:border-success/30 dark:bg-success/10'
-                  : 'border-border dark:border-dark-border'
-                }
-              `}
-            >
-              <div className="flex items-center gap-3 p-4">
+            <li key={skill.id} className={`day-row ${isDone ? 'is-done' : ''} ${isNow ? 'is-now' : ''}`}>
+              <div className="day-head">
                 <button
+                  className={`day-check ${isDone ? 'is-on' : ''}`}
                   onClick={() => toggle(skill.id)}
                   aria-pressed={isDone}
                   aria-label={`סימון ${skill.name} כהושלם`}
-                  className={`
-                    w-7 h-7 border-2 flex items-center justify-center shrink-0 transition-colors text-sm
-                    ${isDone
-                      ? 'bg-success border-success text-white'
-                      : 'border-border dark:border-dark-border hover:border-accent dark:hover:border-accent-light'
-                    }
-                  `}
                 >
-                  {isDone && '✓'}
+                  {isDone ? 'בוצע' : 'לסמן'}
                 </button>
-
-                <span className="text-3xl shrink-0">{skill.char}</span>
-
-                <button
-                  onClick={() => setExpandedId(isExpanded ? null : skill.id)}
-                  className="flex-1 text-right"
-                >
-                  <span className={`text-base font-medium ${isDone ? 'line-through text-text-tertiary dark:text-gray-600' : 'text-text dark:text-dark-text'}`}>
-                    {skill.name}
-                  </span>
-                  <span className="text-sm text-text-tertiary dark:text-gray-500 block">{skill.time}</span>
-                </button>
-
-                <span className="text-sm text-text-tertiary dark:text-gray-500 shrink-0 bg-surface dark:bg-dark-bg px-2 py-1">{skill.duration} דק׳</span>
+                <span className="day-glyph">{skill.char}</span>
+                <div className="day-title">
+                  <span className="day-name">{skill.name}</span>
+                  <span className="day-meta">{skill.time} · {skill.duration} דקות · {power?.power}</span>
+                </div>
+                {isNow && <span className="day-now">עכשיו</span>}
               </div>
 
-              {isExpanded && (
-                <div className="px-4 pb-4 pr-14 text-base text-text-secondary dark:text-gray-400 border-t border-border/50 dark:border-dark-border/50 pt-3">
-                  <p><span className="font-bold text-text dark:text-dark-text">פעולה:</span> {skill.action}</p>
-                </div>
+              <div className="day-steps">
+                <div><span className="label">מחשבה</span><p>{skill.think}</p></div>
+                <div><span className="label">מעשה</span><p>{skill.action}</p></div>
+                <div><span className="label">רושמים</span><p>{skill.note}</p></div>
+              </div>
+
+              {power && (
+                <p className="day-poles">
+                  <span className="pole pole-plus">{power.plus.word}</span>
+                  <span className="pole-sep">או</span>
+                  <span className="pole pole-minus">{power.minus.word}</span>
+                  <span className="pole-tilt">{power.tilt}</span>
+                </p>
               )}
-            </div>
+
+              {isOpen ? (
+                <label className="day-journal">
+                  <span className="label">היומן שלי · {skill.note}</span>
+                  <textarea
+                    rows={2}
+                    value={journal[skill.id] || ''}
+                    onChange={(e) => write(skill.id, e.target.value)}
+                    placeholder="שורה אחת: מה עשיתי, ומה שמתי לב."
+                  />
+                </label>
+              ) : (
+                <button className="cta-line day-open" onClick={() => setOpenId(skill.id)}>
+                  {journal[skill.id]?.trim() ? `ביומן: ${journal[skill.id].slice(0, 40)}` : 'לרשום ביומן'}
+                </button>
+              )}
+            </li>
           )
         })}
-      </div>
+      </ol>
     </div>
   )
 }
