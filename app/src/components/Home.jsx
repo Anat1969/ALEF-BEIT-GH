@@ -1,4 +1,5 @@
 import { useLetters } from '../hooks/useLetters'
+import BookAwakening from './BookAwakening'
 import { currentSkill } from '../data/dailySkills'
 import RichText, { MeaningBox } from './text/RichText'
 import KNOWLEDGE from '../data/letterKnowledge'
@@ -110,6 +111,8 @@ export default function Home({ onSelectLetter, onNavigate, letterImages }) {
         </div>
         <LetterRing letters={letters} onSelectLetter={onSelectLetter} />
       </section>
+
+      <BookAwakening onSelectLetter={onSelectLetter} />
 
       <section className="now-card" aria-label="עכשיו בסדר היום">
         <span className="now-glyph" aria-hidden="true">{skill.char}</span>
