@@ -924,8 +924,8 @@
 .book-awakening {
   position: relative;
   width: 100%;
-  height: 540px;
-  overflow: hidden;
+  height: 600px;
+  overflow: visible;
   direction: ltr;
   background: transparent;
 }
@@ -985,6 +985,161 @@
 @media (max-width: 640px) {
   .book-awakening { height: 380px; }
   .book-caption { bottom: 1.25rem; left: 1.25rem; }
+}
+
+/* overlay כוח האות */
+.book-power-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 3.5rem;
+  gap: 0.5rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  direction: rtl;
+  text-align: center;
+}
+.book-power-overlay.visible {
+  opacity: 1;
+}
+
+.book-letter-char {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: var(--color-zahav);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 2px 8px rgba(124, 94, 14, 0.5));
+  margin-bottom: 0.25rem;
+}
+
+.book-power-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-dyo);
+  letter-spacing: 0.04em;
+}
+
+.book-power-line {
+  font-size: 0.88rem;
+  color: var(--color-dyo);
+  opacity: 0.75;
+  max-width: 36ch;
+  line-height: 1.6;
+}
+
+.book-directions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.book-dir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  background: rgb(var(--paper-rgb) / 0.72);
+  backdrop-filter: blur(4px);
+  min-width: 8rem;
+}
+
+.book-dir-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.book-dir--plus {
+  border-top: 2px solid #3a7a3a;
+}
+.book-dir--plus .book-dir-label { color: #3a7a3a; }
+
+.book-dir--minus {
+  border-top: 2px solid #c0392b;
+}
+.book-dir--minus .book-dir-label { color: #c0392b; }
+
+.book-dir strong {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-dyo);
+}
+
+.book-dir-more {
+  font-size: 0.78rem;
+  opacity: 0.65;
+  color: var(--color-dyo);
+}
+
+/* נקודות ניווט */
+.book-nav-dots {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  max-width: 320px;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.book-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-zahav);
+  opacity: 0.28;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.book-dot:hover {
+  opacity: 0.6;
+  transform: scale(1.3);
+}
+
+.book-dot.active {
+  opacity: 1;
+  transform: scale(1.5);
+  background: var(--color-zahav-shachar);
+}
+
+/* theme-night */
+.theme-night .book-dir {
+  background: rgb(10 8 4 / 0.72);
+}
+.theme-night .book-power-name,
+.theme-night .book-power-line,
+.theme-night .book-dir strong,
+.theme-night .book-dir-more {
+  color: var(--color-neyar);
+}
+.theme-night .book-letter-char {
+  color: var(--color-zahav-shachar);
+  filter: drop-shadow(0 2px 12px rgba(162, 123, 18, 0.7));
+}
+
+/* נייד */
+@media (max-width: 640px) {
+  .book-awakening { height: 420px; }
+  .book-directions { gap: 0.75rem; }
+  .book-dir { min-width: 6.5rem; padding: 0.4rem 0.75rem; }
 }
 
 /* הפחתת תנועה — WebGL ממשיך אבל בלי תנועה */
