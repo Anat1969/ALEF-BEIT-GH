@@ -920,179 +920,38 @@
    ספר שמתעורר — BookAwakening
    ══════════════════════════════════════════ */
 
+/* Three.js WebGL canvas */
 .book-awakening {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem 4rem;
-  align-items: center;
-  padding: 4rem 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-  direction: rtl;
-}
-
-@media (max-width: 640px) {
-  .book-awakening {
-    grid-template-columns: 1fr;
-    padding: 2.5rem 1.25rem;
-    gap: 2rem;
-  }
-}
-
-/*舞台 — book stage */
-.book-stage {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  height: 240px;
-  perspective: 800px;
-}
-
-/* הספר */
-.book {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  align-items: flex-end;
-  transform-style: preserve-3d;
-  transform: rotateX(20deg) rotateY(-8deg);
-  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.book-awakening.is-open .book {
-  transform: rotateX(10deg) rotateY(-2deg);
-}
-
-.book-spine {
-  width: 14px;
-  height: 160px;
-  background: linear-gradient(to bottom, var(--color-zahav-shachar), var(--color-zahav));
-  transform: rotateY(-90deg) translateZ(7px);
-  transform-origin: right center;
-  box-shadow: inset -3px 0 6px rgba(0,0,0,0.3);
-}
-
-.book-page {
-  width: 120px;
-  height: 160px;
-  background: var(--color-neyar-lev);
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 2px 2px 12px rgba(28,26,23,0.18);
-}
-
-.book-page-left {
-  transform-origin: right center;
-  transform: rotateY(-8deg);
-  border-left: 1px solid var(--color-gvul);
-  border-top: 1px solid var(--color-gvul);
-  border-bottom: 1px solid var(--color-gvul);
-}
-
-.book-page-right {
-  transform-origin: left center;
-  transform: rotateY(8deg);
-  border-right: 1px solid var(--color-gvul);
-  border-top: 1px solid var(--color-gvul);
-  border-bottom: 1px solid var(--color-gvul);
-}
-
-.book-awakening.is-open .book-page-left {
-  transform: rotateY(-28deg);
-}
-
-.book-awakening.is-open .book-page-right {
-  transform: rotateY(28deg);
-}
-
-.page-lines {
-  padding: 1rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.page-line {
-  display: block;
-  height: 1px;
-  background: var(--color-gvul);
-  opacity: 0.6;
-}
-
-/* האותיות העולות */
-.rising-letters {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 240px;
-  height: 220px;
-  pointer-events: none;
-}
-
-.book-awakening.is-open .rising-letters {
-  pointer-events: auto;
-}
-
-.rising-letter {
-  position: absolute;
-  left: calc(var(--col, 0) * 48px + 4px);
-  top: calc(var(--row, 0) * 60px);
-  width: 44px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--color-zahav);
+  width: 100%;
+  height: 540px;
+  overflow: hidden;
+  direction: ltr;
   background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 0;
-  opacity: 0;
-  transform: translateY(40px) translateZ(-20px) scale(0.7);
-  transition: color 0.2s, background 0.2s;
-  /* animation מופעל רק ב-is-open */
 }
 
-.book-awakening.is-open .rising-letter {
-  animation: letterRise 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-delay: var(--delay, 0s);
+.book-three-canvas {
+  width: 100%;
+  height: 100%;
 }
 
-.rising-letter:hover {
-  color: var(--color-dyo);
-  background: rgba(124, 94, 14, 0.08);
+.book-three-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-.rising-letter:active {
-  transform: translateY(-2px) scale(0.96) !important;
-}
-
-@keyframes letterRise {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) translateZ(-20px) scale(0.7);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-8px) translateZ(24px) scale(1.08);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) translateZ(16px) scale(1);
-  }
-}
-
-/* כיתוב */
+/* כיתוב — overlay על ה-canvas */
 .book-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  text-align: left;
+  direction: rtl;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  pointer-events: none;
 }
 
 .book-caption .eyebrow {
@@ -1106,7 +965,7 @@
 
 .book-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
   font-weight: 400;
   color: var(--color-dyo);
   margin: 0;
@@ -1114,24 +973,21 @@
 }
 
 .book-lead {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.65;
   color: var(--color-dyo);
   opacity: 0.75;
   margin: 0;
-  max-width: 32ch;
+  max-width: 30ch;
 }
 
-/* הפחתת תנועה */
+/* נייד */
+@media (max-width: 640px) {
+  .book-awakening { height: 380px; }
+  .book-caption { bottom: 1.25rem; left: 1.25rem; }
+}
+
+/* הפחתת תנועה — WebGL ממשיך אבל בלי תנועה */
 @media (prefers-reduced-motion: reduce) {
-  .rising-letter {
-    animation: none !important;
-    opacity: 1;
-    transform: none !important;
-  }
-  .book,
-  .book-page-left,
-  .book-page-right {
-    transition: none !important;
-  }
+  .book-awakening { --three-motion: 0; }
 }
